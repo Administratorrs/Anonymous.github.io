@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Network | Blogs</title><meta name="keywords" content="Linux"><meta name="author" content="Administratorrs"><meta name="copyright" content="Administratorrs"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、网卡命名规范（设备类型 + 设备位置 + 数字）设备类型：    格式 描述    en 以太网（Ethernet）   ib 无限宽带（InfiniBand）   sl 串列线路互联网协议（slip：Serial line IP）   wl 无线局域网（WLAN）   www 无线广域网（WWAN）   设备位置：    格式 描述    o 集成设备   s 扩展槽的索引号   x 基于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network">
+<meta property="og:url" content="http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/index.html">
+<meta property="og:site_name" content="Blogs">
+<meta property="og:description" content="一、网卡命名规范（设备类型 + 设备位置 + 数字）设备类型：    格式 描述    en 以太网（Ethernet）   ib 无限宽带（InfiniBand）   sl 串列线路互联网协议（slip：Serial line IP）   wl 无线局域网（WLAN）   www 无线广域网（WWAN）   设备位置：    格式 描述    o 集成设备   s 扩展槽的索引号   x 基于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-10T10:55:35.069Z">
+<meta property="article:author" content="Administratorrs">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="manifest" href="/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-10 18:55:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Blogs" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/404.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Blogs</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Network</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-08T16:00:00.000Z" title="发表于 2021-02-09 00:00:00">2021-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T10:55:35.069Z" title="更新于 2021-02-10 18:55:35">2021-02-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/">网络应用竞赛</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、网卡命名规范（设备类型-设备位置-数字）"><a href="#一、网卡命名规范（设备类型-设备位置-数字）" class="headerlink" title="一、网卡命名规范（设备类型 + 设备位置 + 数字）"></a>一、网卡命名规范（设备类型 + 设备位置 + 数字）</h2><p><strong>设备类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">en</td>
+<td align="left">以太网（Ethernet）</td>
+</tr>
+<tr>
+<td align="center">ib</td>
+<td align="left">无限宽带（InfiniBand）</td>
+</tr>
+<tr>
+<td align="center">sl</td>
+<td align="left">串列线路互联网协议（slip：Serial line IP）</td>
+</tr>
+<tr>
+<td align="center">wl</td>
+<td align="left">无线局域网（WLAN）</td>
+</tr>
+<tr>
+<td align="center">www</td>
+<td align="left">无线广域网（WWAN）</td>
+</tr>
+</tbody></table>
+<p><strong>设备位置：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">o</td>
+<td align="left">集成设备</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="left">扩展槽的索引号</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="left">基于 MAC 进行命名</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="left">PCI 扩展总线</td>
+</tr>
+</tbody></table>
+<p><strong>实例：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">eth0</td>
+<td align="left">默认的网卡名</td>
+</tr>
+<tr>
+<td align="left">eno1</td>
+<td align="left">主板 BIOS 内置的网卡</td>
+</tr>
+<tr>
+<td align="left">ens1</td>
+<td align="left">主板 BIOS 内置的 PCI 网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">enp0s2</td>
+<td align="left">PCI 独立网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">wlp3s0</td>
+<td align="left">PCI 无线网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">wwp0s29f7u2i2</td>
+<td align="left">4G modem</td>
+</tr>
+<tr>
+<td align="left">wlp0s2f1u4u1</td>
+<td align="left">连接在 USB Hub 上的无线网卡</td>
+</tr>
+<tr>
+<td align="left">enx78e7d1ea46da</td>
+<td align="left">PCI 网卡（PCI：主板上的一个插槽）</td>
+</tr>
+</tbody></table>
+<h2 id="二、Centos-配置静态-IP"><a href="#二、Centos-配置静态-IP" class="headerlink" title="二、Centos 配置静态 IP"></a>二、Centos 配置静态 IP</h2><p>Centos7 默认网络配置文件路径为：<code>/etc/sysconfig/network-scripts/ifcfg-eth0</code> （有一些默认文件则是 <code>ifcfg-ens33</code> 或是其他的）</p>
+<p>1、编辑配置文件 <code>ifcfg-eth0</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#  在文件中找到如下内容</span><br><span class="line">BOOTPROTO&#x3D;dhcp		    #  将文件中的这行修改为 static</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;no	#  将文件中的这行修改为 yes</span><br><span class="line">ONBOOT&#x3D;no   			#  将文件中的这行修改为 yes</span><br><span class="line"></span><br><span class="line">#  在文件末尾添加如下内容</span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
+<p>2、<code>ifcfg-eth0</code> 文件详解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TYPE&#x3D;Ethernet			#  网卡类型</span><br><span class="line">PROXY_METHOD&#x3D;none		#  代理方式（默认关闭）</span><br><span class="line">BROWSER_ONLY&#x3D;no		    #  代理设置是否仅用于浏览器</span><br><span class="line">BOOTPROTO&#x3D;static		#  网卡的引导协议（static：静态 IP，dhcp：动态 IP，none：不启用）</span><br><span class="line">DEFROUTE&#x3D;yes			#  默认路由</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;yes	#  是否开启 IPV4 致命错误检测</span><br><span class="line">IPV6INIT&#x3D;yes			#  IPV6 是否自动初始化</span><br><span class="line">IPV6_AUTOCONF&#x3D;yes		#  IPV6 是否自动配置</span><br><span class="line">IPV6_DEFROUTE&#x3D;yes		#  IPV6 是否可以为默认路由</span><br><span class="line">IPV6_FAILURE_FATAL&#x3D;no	#  是否开启 IPV6 致命错误检测</span><br><span class="line">IPV6_ADDR_GEN_MODE&#x3D;stable-privacy		#  IPV6 地址生成模型</span><br><span class="line">NAME&#x3D;eth0</span><br><span class="line">UUID&#x3D;b3942c00-c0e4-45e8-8e4d-f1dd06ab9a09	#  统用唯一识别码（不能跟其他 UUID 重复）</span><br><span class="line">DEVICE&#x3D;eth0			#  网卡名称</span><br><span class="line">ONBOOT&#x3D;yes			#  是否开机自启</span><br><span class="line"></span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
+<p>3、配置完后需重启服务<br>重启网络：<code>systemctl restart network</code><br>停止：<code>systemctl stop network</code><br>开启：<code>systemctl start network</code><br>查看状态：<code>systemctl status network</code></p>
+<h2 id="三、Ubuntu-配置静态-IP"><a href="#三、Ubuntu-配置静态-IP" class="headerlink" title="三、Ubuntu 配置静态 IP"></a>三、Ubuntu 配置静态 IP</h2><p>1、如配置文件路径为 <code>/etc/network/interfaces／interfaces</code>，则在文件末尾添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#  添加网卡 eth0 并设置为 static（静态 IP）模式</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.1.123	#  网卡 IP</span><br><span class="line">netmask 255.255.255.0	#  子网掩码</span><br><span class="line">gateway 192.168.1.1	#  网关</span><br><span class="line">dns 114.114.114.114	#  dns</span><br></pre></td></tr></table></figure>
+<p>配置完成后需重启服务<br>重启网络：<code>sudo systemctl restart network</code><br>停止：<code>sudo systemctl stop network</code><br>开启：<code>sudo systemctl start network</code><br>查看状态：<code>sudo systemctl status network</code></p>
+<p>２、如配置文件路径为：<code>/etc/netplan/01-network-manager-all.yaml</code>，则在文件末尾添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">静态 IP 配置文件内容如下</span><br><span class="line">network:</span><br><span class="line">    version: 2</span><br><span class="line">    renderer: NetworkManager</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            dhcp4: no</span><br><span class="line">            dhcp6: no</span><br><span class="line">            addresses: [192.168.1.233&#x2F;23]</span><br><span class="line">            gateway4: 192.168.0.1</span><br><span class="line">            nameservers:</span><br><span class="line">                 addresses: [114.114.114.114,180.76.76.76]</span><br><span class="line"></span><br><span class="line">动态 IP 配置文件内容如下</span><br><span class="line">network:</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            dhcp4: true</span><br><span class="line">    version: 2</span><br></pre></td></tr></table></figure>
+<p>使配置生效命令：<code>sudo netplan apply</code></p>
+<p>如果配置生效后旧 IP 依然存在则使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo ip addr flush dev ens33</span><br><span class="line">sudo ifdown ens33</span><br><span class="line">sudo ifup ens33</span><br><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Administratorrs</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/">http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Blogs</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/NFS/NFS/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">NFS</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/SELinux/SELinux/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SELinux 防火墙</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/09/Linux/iptables/iptables/" title="Iptables"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">Iptables</div></div></a></div><div><a href="/2021/02/09/网络应用竞赛/DHCP/DHCP/" title="DHCP"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">DHCP</div></div></a></div><div><a href="/2021/02/09/网络应用竞赛/DNS/DNS/" title="DNS"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">DNS</div></div></a></div><div><a href="/2021/02/09/网络应用竞赛/NFS/NFS/" title="NFS"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">NFS</div></div></a></div><div><a href="/2021/02/09/网络应用竞赛/SELinux/SELinux/" title="SELinux 防火墙"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">SELinux 防火墙</div></div></a></div><div><a href="/2021/02/09/网络应用竞赛/Samba/Samba/" title="Samba"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-09</div><div class="title">Samba</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/404.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Administratorrs</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Administratorrs" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:anon_anonymous@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%EF%BC%88%E8%AE%BE%E5%A4%87%E7%B1%BB%E5%9E%8B-%E8%AE%BE%E5%A4%87%E4%BD%8D%E7%BD%AE-%E6%95%B0%E5%AD%97%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">一、网卡命名规范（设备类型 + 设备位置 + 数字）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Centos-%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81-IP"><span class="toc-number">2.</span> <span class="toc-text">二、Centos 配置静态 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Ubuntu-%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81-IP"><span class="toc-number">3.</span> <span class="toc-text">三、Ubuntu 配置静态 IP</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/" title="Windows：CVE-2020-0796 RCE 漏洞复现"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows：CVE-2020-0796 RCE 漏洞复现"/></a><div class="content"><a class="title" href="/2021/02/10/Windows/Windows%EF%BC%9ACVE-2020-0796%20RCE/" title="Windows：CVE-2020-0796 RCE 漏洞复现">Windows：CVE-2020-0796 RCE 漏洞复现</a><time datetime="2021-02-09T16:00:00.000Z" title="发表于 2021-02-10 00:00:00">2021-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/ThinkPHP/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/" title="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现"/></a><div class="content"><a class="title" href="/2021/02/10/ThinkPHP/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/" title="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现">ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现</a><time datetime="2021-02-09T16:00:00.000Z" title="发表于 2021-02-10 00:00:00">2021-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/09/Linux/iptables/iptables/" title="Iptables"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Iptables"/></a><div class="content"><a class="title" href="/2021/02/09/Linux/iptables/iptables/" title="Iptables">Iptables</a><time datetime="2021-02-08T16:00:00.000Z" title="发表于 2021-02-09 00:00:00">2021-02-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/09/Python/pip/pip/" title="pip 更换源"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="pip 更换源"/></a><div class="content"><a class="title" href="/2021/02/09/Python/pip/pip/" title="pip 更换源">pip 更换源</a><time datetime="2021-02-08T16:00:00.000Z" title="发表于 2021-02-09 00:00:00">2021-02-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DHCP/DHCP/" title="DHCP"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DHCP"/></a><div class="content"><a class="title" href="/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DHCP/DHCP/" title="DHCP">DHCP</a><time datetime="2021-02-08T16:00:00.000Z" title="发表于 2021-02-09 00:00:00">2021-02-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><div id="footer-wrap"><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div></div></body></html>
