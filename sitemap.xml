@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2021/02/10/Linux/ubuntu%20%E6%9B%B4%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/%E9%85%8D%E7%BD%AE%E6%BA%90/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/02/10/Linux/JAVA%E7%8E%AF%E5%A2%83/JAVA%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/ubuntu%20%E9%85%8D%E7%BD%AE%20socks5/socks5/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/Shadowsocks/Shadowsocks/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/vsftp/vsftp/</loc>
+    
+    <lastmod>2021-02-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2021/02/11/Apache/Apache%20Shiro%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Shiro%201.2.4/Apache%20Shiro%201.2.4/</loc>
     
     <lastmod>2021-02-10</lastmod>
@@ -142,13 +184,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/vsftp/vsftp/</loc>
-    
-    <lastmod>2021-02-10</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://example.com/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/ssh/ssh/</loc>
     
     <lastmod>2021-02-10</lastmod>
@@ -193,7 +228,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -201,49 +236,63 @@
   
   <url>
     <loc>http://example.com/tags/Windows/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Linux/</loc>
-    <lastmod>2021-02-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Python/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/ThinkPHP/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/proxy/</loc>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E5%86%85%E7%BD%91/</loc>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Apache/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -252,56 +301,63 @@
   
   <url>
     <loc>http://example.com/categories/Windows-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Linux/</loc>
-    <lastmod>2021-02-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Python/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/ThinkPHP-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Apache-Shiro-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Apache-Tomcat-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-02-10</lastmod>
+    <lastmod>2021-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

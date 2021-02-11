@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>frp | Blogs</title><meta name="keywords" content="proxy,内网"><meta name="author" content="Administratorrs"><meta name="copyright" content="Administratorrs"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、简介frp 是一个可用于内网穿透的高性能的反向代理应用，支持多种协议类型  frp 为 C&#x2F;S （客户端&#x2F;服务端）架构 服务端的配置文件名为 frps.ini （公网） 客户端的配置文件名为 frpc.ini （内网）  下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp&#x2F;tags 官方文档：中文：https:&#x2F;&#x2F;gofrp.org&#x2F;docs&#x2F;中文：https:&#x2F;&#x2F;git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="frp">
+<meta property="og:url" content="http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/index.html">
+<meta property="og:site_name" content="Blogs">
+<meta property="og:description" content="一、简介frp 是一个可用于内网穿透的高性能的反向代理应用，支持多种协议类型  frp 为 C&#x2F;S （客户端&#x2F;服务端）架构 服务端的配置文件名为 frps.ini （公网） 客户端的配置文件名为 frpc.ini （内网）  下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp&#x2F;tags 官方文档：中文：https:&#x2F;&#x2F;gofrp.org&#x2F;docs&#x2F;中文：https:&#x2F;&#x2F;git">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-11T04:41:22.299Z">
+<meta property="article:author" content="Administratorrs">
+<meta property="article:tag" content="proxy">
+<meta property="article:tag" content="内网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-11 12:41:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Blogs" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/404.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Blogs</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">frp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-11T04:41:22.299Z" title="更新于 2021-02-11 12:41:22">2021-02-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BB%A3%E7%90%86/">代理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>frp 是一个可用于内网穿透的高性能的反向代理应用，支持多种协议类型</p>
+<ul>
+<li>frp 为 C/S （客户端/服务端）架构</li>
+<li>服务端的配置文件名为 frps.ini （公网）</li>
+<li>客户端的配置文件名为 frpc.ini （内网）</li>
+</ul>
+<p><strong>下载地址：</strong><br><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/tags">https://github.com/fatedier/frp/tags</a></p>
+<p><strong>官方文档：</strong><br>中文：<a target="_blank" rel="noopener" href="https://gofrp.org/docs/">https://gofrp.org/docs/</a><br>中文：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">https://github.com/fatedier/frp/blob/master/README_zh.md</a><br>英文：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp#configuration-files">https://github.com/fatedier/frp#configuration-files</a></p>
+<p><strong>文件介绍</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">frpc		    #  客户端二进制文件</span><br><span class="line">frpc_full.ini	#  客户端配置文件完整示例</span><br><span class="line">frpc.ini		#  客户端配置文件</span><br><span class="line"></span><br><span class="line">frps		    #  服务端二进制文件</span><br><span class="line">frps_full.ini	#  服务端配置文件完整示例</span><br><span class="line">frps.ini		#  服务端配置文件</span><br></pre></td></tr></table></figure>
+<p><strong>实验环境</strong><br>VMware 15</p>
+<ul>
+<li>kali-1 IP：192.168.0.190（桥接模式，代替公网）</li>
+<li>kali-2 IP：192.168.201.152（NAT模式，内网）</li>
+</ul>
+<h2 id="二、常用参数"><a href="#二、常用参数" class="headerlink" title="二、常用参数"></a>二、常用参数</h2><p>frps.ini（服务端，用于公网）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[common]		#  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_addr &#x3D; 0.0.0.0	    #  绑定的 IP</span><br><span class="line">bind_port &#x3D; 7000	    #  服务端监听的端口</span><br><span class="line">vhost_http_port &#x3D; 80	#  为代理的 http 设置一个监听端口（通过域名访问网页时须使用此处设置的端口访问)</span><br><span class="line">vhost_https_port &#x3D; 443	#  为代理的 https 设置一个监听端口（通过域名访问网页时须使用此处设置的端口访问)</span><br><span class="line"></span><br><span class="line">#  安全</span><br><span class="line">token &#x3D; 123		#  设置身份验证</span><br><span class="line">log_file &#x3D; .&#x2F;frps.log	#  指定日志路径</span><br><span class="line">log_level &#x3D; info		#  指定日志级别（trace（跟踪）、debug（调试）、info（信息）、warn（警告）、error（错误）</span><br><span class="line">log_max_days &#x3D; 3	    #  指定日志记录最大天数</span><br><span class="line">max_ports_per_client &#x3D; 0	#  最大端口可用（默认为 0 ，表示无限制）</span><br><span class="line">allow_ports &#x3D; 2000-3000,3001,3003,4000-5000	#  端口白名单</span><br><span class="line"></span><br><span class="line">#  传输</span><br><span class="line">tls_only &#x3D; false	#  指定是否指接受 TLS 加密（默认为 false）</span><br><span class="line">tcp_mux &#x3D; true	#  开启 tcp 流多路复用（默认为 true）</span><br></pre></td></tr></table></figure>
+<p>frpc.ini（客户端，用于内网）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[common]			#  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_add &#x3D; 192.168.0.190	#  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000		#  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line">dns_server &#x3D; 8.8.8.8	#  指定 DNS 服务器</span><br><span class="line">start &#x3D; ssh,web			#  启用代理名称为 ssh 跟 web 的代理（默认为空格，表示启用所有代理）</span><br><span class="line">user &#x3D; test_name		#  连接时在代理名称前面添加 test_name. （如当前代理名称为 common ，则 test_name.common）</span><br><span class="line"></span><br><span class="line">#  安全</span><br><span class="line">token &#x3D; 123		        #  设置身份验证（必须与服务端相同）</span><br><span class="line">log_file &#x3D; .&#x2F;frpc.log	#  指定日志路径（如指定了日志文件，则控制台不会显示相关信息（会显示在日志文件里））</span><br><span class="line">log_level &#x3D; info		#  指定日志级别（trace（跟踪）、debug（调试）、info（信息）、warn（警告）、error（错误）</span><br><span class="line">log_max_days &#x3D; 3	    #  指定日志记录最大天数</span><br><span class="line"></span><br><span class="line">#  传输</span><br><span class="line">login_faile_exit &#x3D; true	#  首次跟服务器连接失败时退出程序，如为 false 则失败后重新尝试连接（默认为 true）</span><br><span class="line">protocol &#x3D; tcp		    #  用于连接服务器的通信协议（支持 tcp、kcp、websocket，默认为 tcp）</span><br><span class="line">tls_enable &#x3D; true		#  通过 tls 连接服务端</span><br><span class="line">tcp_mux &#x3D; true		    #  开启 tcp 流多路复用（默认为 true，必须与服务端相同）</span><br><span class="line"></span><br><span class="line">[ssh]			        #  代理名称</span><br><span class="line">type &#x3D; tcp		        #  协议型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22		    #  需代理的端口</span><br><span class="line">remote_port &#x3D; 6000	    #  远程端口（远程访问时使用此端口，如为 0 则服务端随机分配一个端口）</span><br><span class="line">bandwidth_limit &#x3D; 1MB	#  限制此代理的宽带（单位为 KB 和 MB）</span><br><span class="line">use_encryption &#x3D; true	#  如为 true 则与服务端的通信会被加密（默认为 false）</span><br><span class="line">use_compression &#x3D; false	#  如为 true 则消息将被压缩</span><br><span class="line"></span><br><span class="line">[web]			#  代理名称</span><br><span class="line">type &#x3D; http		#  类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 80		    #  需代理的端口</span><br><span class="line">use_encryption &#x3D; true	#  如为 true 则与服务端的通信会被加密（默认为 false）</span><br><span class="line">use_compression &#x3D; false	#  如为 true 则消息将被压缩</span><br><span class="line">http_user &#x3D; admin	    #  访问网页时需要的用户名</span><br><span class="line">http_pwd &#x3D; passwd	    #  密码</span><br><span class="line">subdomain &#x3D; test.com	#  子域名</span><br><span class="line">custom_domains &#x3D; www.test.com	#  域名</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、基于-SSH"><a href="#三、基于-SSH" class="headerlink" title="三、基于 SSH"></a>三、基于 SSH</h2><p>1、由于是基于 ssh 的，所以需开启内网的 ssh 确保能正常连接（ kali 默认关闭 ssh ）</p>
+<ul>
+<li><p>1）ssh 配置文件默认路径为 <code>/etc/ssh/sshd_config</code><br>找到图中的两个地方，并修改为一样的即可<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/ssh-1.png"><br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/ssh-2.png"></p>
+</li>
+<li><p>2）修改完后需重启服务：<code>sudo systemctl restart ssh</code></p>
+</li>
+</ul>
+<p>2、配置服务端 frps.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frps 监听的端口</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<p>3、配置客户端 frpc.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]          #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[ssh]                   #  代理名称</span><br><span class="line">type &#x3D; tcp              #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22         #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 6000      #  远程端口（远程访问时使用的端口）</span><br></pre></td></tr></table></figure>
+<p>启动服务 <code>sudo ./frpc -c ./frpc.ini</code></p>
+<p>4、使用 xshell 进行连接<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/ssh-3.png"><br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/ssh-4.png"><br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/ssh-5.png"></p>
+<hr>
+<h2 id="四、基于-WEB"><a href="#四、基于-WEB" class="headerlink" title="四、基于 WEB"></a>四、基于 WEB</h2><h3 id="提供简单的文件访问服务"><a href="#提供简单的文件访问服务" class="headerlink" title="提供简单的文件访问服务"></a>提供简单的文件访问服务</h3><ul>
+<li>1）配置服务端 frps.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frps 监听的端口</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）配置客户端 frpc.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[common]        #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190 #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000          #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[plugin_static_file]        #  代理名称</span><br><span class="line">type &#x3D; tcp                  #  协议类型</span><br><span class="line">remote_port &#x3D; 6002          #  远程端口（远程访问时使用的端口）</span><br><span class="line">plugin &#x3D; static_file        #  加载 static_file 插件</span><br><span class="line">plugin_local_path &#x3D; &#x2F;var    #  须访问的路径</span><br><span class="line">plugin_http_user &#x3D; admin    #  用户名</span><br><span class="line">plugin_http_passwd &#x3D; passwd #  密码</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frpc -c ./frpc.ini</code></p>
+<ul>
+<li>3）服务端使用浏览器访问<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/wj-1.png"><br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/wj-2.png"></li>
+</ul>
+<h3 id="基于-IP-访问-http"><a href="#基于-IP-访问-http" class="headerlink" title="基于 IP 访问 http"></a>基于 IP 访问 http</h3><ul>
+<li>1）配置服务端 frps.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frps 监听的端口</span><br><span class="line">vhost_http_port &#x3D; 2333      #  为代理的 http 设置一个监听端口（通过域名访问网页时须使用此处设置的端口访问)</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）配置客户端 frpc.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[web]                   #  代理名称</span><br><span class="line">type &#x3D; tcp              #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 80         #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 7890      #  远程端口（通过 IP 访问网页时须使用此处设置的端口访问）</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frpc -c ./frpc.ini</code></p>
+<p><strong>或客户端 frpc.ini 配置文件内容为</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">#  访问时使用服务端 vhost_http_port 参数设置的端口进行访问</span><br><span class="line">[web]                   #  代理名称</span><br><span class="line">type &#x3D; http             #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 80         #  需代理的本地端口（需能正常访问）</span><br><span class="line">custom_domains &#x3D; 192.168.0.190  #  服务端 IP</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3）服务端使用浏览器访问<br><img src="http/http_ip-2.png"></li>
+</ul>
+<p>3、基于域名访问 http</p>
+<ul>
+<li>1）配置服务端 frps.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frp 监听的端口</span><br><span class="line">vhost_http_port &#x3D; 2333      #  为代理的 http 设置一个监听端口（通过域名访问网页时须使用此处设置的端口访问)</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）配置客户端 frpc.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[common]        #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[web]                   #  代理名称</span><br><span class="line">type &#x3D; http             #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 80         #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 7890      #  远程端口（通过 IP 访问网页时须使用此处设置的端口访问）</span><br><span class="line">custom_domains &#x3D; www.test.com   #  设置需代理的域名（需能正常访问）</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li><p>3）由于是基于域名访问的所以须在服务端创建相应的域名记录<br><img src="http/http.png"></p>
+</li>
+<li><p>4）服务端使用浏览器访问<br><img src="http/http-2.png"></p>
+</li>
+</ul>
+<p>4、基于域名访问 https<br><strong>此处环境更改为:</strong><br>VMware 15</p>
+<ul>
+<li>kali-1（服务端） IP：192.168.0.190（桥接模式，代替公网）</li>
+<li>Centos（客户端，搭建了 DNS、https 服务） IP：192.168.201.152（NAT模式，内网）</li>
+</ul>
+<br>
+- 1）配置服务端 frps.ini
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000            #  服务端 frp 监听的端口</span><br><span class="line">vhost_https_port &#x3D; 4433     #  为代理的 https 设置一个监听端口（通过域名访问网页时须使用此处设置的端口访问)</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）配置客户端 frpc.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[https]                         #  代理名称</span><br><span class="line">type &#x3D; https                    #  协议类型</span><br><span class="line">custom_domains &#x3D; www.test.com   #  设置需代理的域名（需能正常访问）</span><br><span class="line">plugin &#x3D; https2http             #  加载 https2http 插件</span><br><span class="line">plugin_local_addr &#x3D; 127.0.0.1</span><br><span class="line">plugin_crt_path &#x3D; &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;localhost.crt      #  设置本地证书</span><br><span class="line">plugin_key_path &#x3D; &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;private&#x2F;localhost.key    #  设置本地密钥</span><br><span class="line">plugin_host_header_rewrite &#x3D; 127.0.0.1</span><br><span class="line">plugin_header_X-From-Where &#x3D; frp</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frpc -c ./frpc.ini</code></p>
+<ul>
+<li>3）由于是基于域名访问的所以须在服务端创建相应的域名记录<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/hosts.png"></li>
+<li>4）服务端使用浏览器访问<br><img src="https.png"></li>
+</ul>
+<p>5、仪表盘（检查 frp 状态和代理信息的统计）</p>
+<ul>
+<li>1）配置服务端 frps.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[common]       #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000            #  服务端 frp 监听的端口</span><br><span class="line">dashboard_port &#x3D; 7500       #  仪表盘监听的端口</span><br><span class="line">dashboard_user &#x3D; admin      #  仪表盘的用户名</span><br><span class="line">dashboard_pwd &#x3D; passwd      #  仪表盘的密码</span><br><span class="line">max_pool_count &#x3D; 5          #  创建地址池连接上限</span><br><span class="line">vhost_http_port &#x3D; 2333      #  为代理的 http 设置一个监听端口</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）使用浏览器访问并输入用户名跟密码<br><img src="http/dashboard-1.png"><br><img src="http/dashboard-2.png"></li>
+</ul>
+<p>6、管理界面（用于管理客户端，可实现热加载）</p>
+<ul>
+<li>1）配置服务端 frps.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frp 监听的端口</span><br></pre></td></tr></table></figure>
+<p>启动服务 <code>sudo ./frps -c ./frps.ini</code></p>
+<ul>
+<li>2）配置客户端 frpc.ini</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[common]        #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line">admin_addr &#x3D; 127.0.0.1          #  管理地址</span><br><span class="line">admin_port &#x3D; 7400               #  监听的端口</span><br><span class="line">admin_user &#x3D; admin              #  访问时的用户名</span><br><span class="line">admin_pwd &#x3D; passwd              #  访问时的密码</span><br><span class="line"></span><br><span class="line">#  管理界面默认只能本地访问，所以需将端口代理出去实现公网访问</span><br><span class="line">[web_admin]                   #  代理名称</span><br><span class="line">type &#x3D; tcp                    #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1      </span><br><span class="line">local_port &#x3D; 7400             #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 7400            #  远程端口（访问时使用的端口）</span><br></pre></td></tr></table></figure>
+<p>启动服务 <code>sudo ./frpc -c ./frpc.ini</code></p>
+<ul>
+<li>3） 服务端使用浏览器访问<br><img src="http/http_admin.png"></li>
+</ul>
+<hr>
+<h2 id="五、基于-DNS"><a href="#五、基于-DNS" class="headerlink" title="五、基于 DNS"></a>五、基于 DNS</h2><p>1、配置服务端 frps.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]        #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000        #  服务端 frp 监听的端口</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<p>2、配置客户端 frpc.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190     #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000              #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[ssh]                   #  代理名称</span><br><span class="line">type &#x3D; tcp              #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22         #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 6000      #  远程端口（访问时使用的端口）</span><br><span class="line"></span><br><span class="line">[DNS]                   #  代理名称</span><br><span class="line">type &#x3D; udp              #  协议类型</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 53         #  需代理的本地端口（需能正常访问）</span><br><span class="line">remote_port &#x3D; 5333      #  远程端口（访问时使用的端口）</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frpc -c ./frpc.ini</code></p>
+<p>3、在服务端使用 <code>dig @192.168.0.190 -p 5333 -x 192.168.201.147</code> 查看与 192.168.201.147 相关的域名解析</p>
+<p><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/dns-2.png"></p>
+<hr>
+<h2 id="六、socks5"><a href="#六、socks5" class="headerlink" title="六、socks5"></a>六、socks5</h2><p>1、配置服务端 frps.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]            #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">bind_port &#x3D; 7000    #  frp 监听的端口</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frps -c ./frps.ini</code></p>
+<p>2、配置客户端 frpc.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[common]                #  共同配置，必需有该配置（请勿修改该代理名）</span><br><span class="line">server_addr &#x3D; 192.168.0.190 #  服务端 IP（需和服务端的 IP 配置为一致）</span><br><span class="line">server_port &#x3D; 7000          #  服务端端口（需和服务端的端口配置为一致）</span><br><span class="line"></span><br><span class="line">[plugin_socks]              #  代理名称</span><br><span class="line">type &#x3D; tcp                  #  协议类型</span><br><span class="line">remote_port &#x3D; 8899          #  远程端口（服务端连接时使用此端口，如为 0 则服务端随机分配一个端口）</span><br><span class="line">plugin &#x3D; socks5             #  加载 socks5 插件</span><br><span class="line">plugin_user &#x3D; admin         #  用户名</span><br><span class="line">plugin_passwd &#x3D; passwd      #  密码</span><br><span class="line">use_encryption &#x3D; true       #  如为 true 则与服务端的通信会被加密（默认为 false）</span><br><span class="line">use_compression &#x3D; true      #  如为 true 则消息将被压缩</span><br></pre></td></tr></table></figure>
+<p>启动服务：<code>sudo ./frpc -c ./frpc.ini</code></p>
+<p>3、使用 Proxifier 进行连接<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/lianjie-1.png"><br>4、点击检查测试是否能正常连接<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/lianjie-2.png"><br>5、代理完成<br><img src="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/lianjie-3.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Administratorrs</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/">http://example.com/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Blogs</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/proxy/">proxy</a><a class="post-meta__tags" href="/tags/%E5%86%85%E7%BD%91/">内网</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/11/%E4%BB%A3%E7%90%86/Shadowsocks/Shadowsocks/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Ubuntu配置 Shadowsocks</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/11/%E4%BB%A3%E7%90%86/ubuntu%20%E9%85%8D%E7%BD%AE%20socks5/socks5/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ubuntu配置 socks5</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/11/代理/Shadowsocks/Shadowsocks/" title="Ubuntu配置 Shadowsocks"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-11</div><div class="title">Ubuntu配置 Shadowsocks</div></div></a></div><div><a href="/2021/02/11/代理/ubuntu 配置 socks5/socks5/" title="Ubuntu配置 socks5"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-11</div><div class="title">Ubuntu配置 socks5</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/404.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Administratorrs</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Administratorrs"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="http://" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:anon_anonymous@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.cnblogs.com/anonymous-test/" target="_blank" title="博客园"><i class="fas fa-blog"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">二、常用参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9F%BA%E4%BA%8E-SSH"><span class="toc-number">3.</span> <span class="toc-text">三、基于 SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9F%BA%E4%BA%8E-WEB"><span class="toc-number">4.</span> <span class="toc-text">四、基于 WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BE%9B%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.1.</span> <span class="toc-text">提供简单的文件访问服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E-IP-%E8%AE%BF%E9%97%AE-http"><span class="toc-number">4.2.</span> <span class="toc-text">基于 IP 访问 http</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E-DNS"><span class="toc-number">5.</span> <span class="toc-text">五、基于 DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81socks5"><span class="toc-number">6.</span> <span class="toc-text">六、socks5</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/" title="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现"/></a><div class="content"><a class="title" href="/2021/02/11/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/" title="ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现">ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现</a><time datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E4%BB%A3%E7%90%86/Shadowsocks/Shadowsocks/" title="Ubuntu配置 Shadowsocks"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu配置 Shadowsocks"/></a><div class="content"><a class="title" href="/2021/02/11/%E4%BB%A3%E7%90%86/Shadowsocks/Shadowsocks/" title="Ubuntu配置 Shadowsocks">Ubuntu配置 Shadowsocks</a><time datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/" title="frp"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="frp"/></a><div class="content"><a class="title" href="/2021/02/11/%E4%BB%A3%E7%90%86/frp/frp/" title="frp">frp</a><time datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E4%BB%A3%E7%90%86/ubuntu%20%E9%85%8D%E7%BD%AE%20socks5/socks5/" title="Ubuntu配置 socks5"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu配置 socks5"/></a><div class="content"><a class="title" href="/2021/02/11/%E4%BB%A3%E7%90%86/ubuntu%20%E9%85%8D%E7%BD%AE%20socks5/socks5/" title="Ubuntu配置 socks5">Ubuntu配置 socks5</a><time datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/" title="Watchdog"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Watchdog"/></a><div class="content"><a class="title" href="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/" title="Watchdog">Watchdog</a><time datetime="2021-02-10T16:00:00.000Z" title="发表于 2021-02-11 00:00:00">2021-02-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><div id="footer-wrap"><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
